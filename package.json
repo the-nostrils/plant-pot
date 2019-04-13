@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "iPhone7Plus": "react-native run-ios --simulator=\"iPhone 7 Plus\"",
+    "test": "jest" 
   },
   "dependencies": {
     "react": "16.8.3",

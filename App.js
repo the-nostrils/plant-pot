@@ -10,10 +10,9 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
 const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
+  ios: 'This will be an iOS app for tracking your veggies.',
   android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+    'This will be an Android app for tracking your veggies.',
 });
 
 type Props = {};
@@ -21,8 +20,8 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text style={styles.welcome}>Welcome to Plant Pot!</Text>
+        <Text style={styles.instructions}>This is the place that we started.</Text>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>
     );
