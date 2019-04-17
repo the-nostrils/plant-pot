@@ -6,23 +6,19 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import {
+  Platform, StyleSheet, Text, View
+} from 'react-native';
+import PlantCardList from './src/components/PlantCardList/PlantCardList';
 
-const instructions = Platform.select({
-  ios: 'This will be an iOS app for tracking your veggies.',
-  android:
-    'This will be an Android app for tracking your veggies.',
-});
+export default class App extends Component {
+  state = {};
 
-type Props = {};
-export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to Plant Pot!</Text>
-        <Text style={styles.instructions}>This is the place that we started.</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <PlantCardList />
       </View>
     );
   }
@@ -33,16 +29,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    backgroundColor: '#F5F5F5',
+    borderWidth: 5,
+    borderColor: 'purple'
+  }
 });
