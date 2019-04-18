@@ -1,0 +1,2 @@
+export const TOGGLE_TRACKING_MODE = 'TOGGLE_TRACKING_MODE';
+export const HELLO_WORLD = 'HELLO_WORLD';
