@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   FlatList, ScrollView, StyleSheet, View
 } from 'react-native';
-import PlantCard from './components/PlantCard';
+import PlantCard from '../PlantCard/PlantCard';
 import PlantListButton from '../UI/PlantListButton/PlantListButton';
 
 export default class App extends Component {

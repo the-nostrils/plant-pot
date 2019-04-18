@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
-import PlantImage from '../../PlantImage/PlantImage';
-import TrackingModeSwitch from '../../TrackingModeSwitch/TrackingModeSwitch';
-import BaseText from '../../UI/BaseText/BaseText';
+import PlantImage from '../PlantImage/PlantImage';
+import TrackingModeSwitch from '../TrackingModeSwitch/TrackingModeSwitch';
+import BaseText from '../UI/BaseText/BaseText';
 
 export default class PlantCard extends Component {
   state = {
