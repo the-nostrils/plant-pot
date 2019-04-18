@@ -11,7 +11,7 @@ export default class PlantCard extends Component {
     isTrackingModeAuto: true
   };
 
-  plantCardTouchedHandler = () => alert('You touched the plant card!');
+  plantCardTouchedHandler = () => this.props.navigation.navigate('Details');
 
   toggleSwitchHandler = () => {
     const { isTrackingModeAuto } = this.state;

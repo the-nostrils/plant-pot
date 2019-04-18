@@ -8,29 +8,50 @@
 
 import React, { Component } from 'react';
 import {
-  Platform, StyleSheet, Text, View
-} from 'react-native';
-import PlantCardList from './src/components/PlantCardList/PlantCardList';
+  createStackNavigator,
+  createMaterialTopTabNavigator,
+  createAppContainer
+} from 'react-navigation';
 
-export default class App extends Component {
-  state = {};
+import Tracking from './src/screens/Tracking/Tracking';
+import Community from './src/screens/Community/Community';
+import Plantpedia from './src/screens/Plantpedia/Plantpedia';
+import PlantImage from './src/components/PlantImage/PlantImage';
+import TabBar from './src/components/UI/TabBar/TabBar';
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <PlantCardList />
-      </View>
-    );
-  }
-}
+const TrackingStack = createStackNavigator(
+  {
+    Home: Tracking,
+    Details: PlantImage
+  },
+  { initialRouteName: 'Home' }
+);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5F5F5',
-    borderWidth: 5,
-    borderColor: 'purple'
-  }
-});
+const CommunityStack = createStackNavigator(
+  {
+    Home: Community,
+    Details: PlantImage
+  },
+  { initialRouteName: 'Home' }
+);
+
+const PlantpediaStack = createStackNavigator(
+  {
+    Home: Plantpedia,
+    Details: PlantImage
+  },
+  { initialRouteName: 'Home' }
+);
+
+export default createAppContainer(
+  createMaterialTopTabNavigator(
+    {
+      Tracking: { screen: TrackingStack },
+      Community: { screen: CommunityStack },
+      Plantpedia: { screen: PlantpediaStack }
+    },
+    {
+      tabBarComponent: TabBar
+    }
+  )
+);

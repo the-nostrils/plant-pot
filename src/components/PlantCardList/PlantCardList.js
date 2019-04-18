@@ -5,10 +5,16 @@ import {
 import PlantCard from '../PlantCard/PlantCard';
 import PlantListButton from '../UI/PlantListButton/PlantListButton';
 
-export default class App extends Component {
+export default class PlantCardList extends Component {
+  static navigationOptions = {
+    title: 'Home'
+  };
+
   state = {};
 
   buttonPressedHandler = () => alert('You pressed one of Plant List Buttons!');
+
+  // plantCardPressedhandler = () => this.props.navigation.navigate('Details');
 
   render() {
     return (
@@ -31,12 +37,12 @@ export default class App extends Component {
           />
         </View>
         <View style={styles.container}>
-          <PlantCard name="Onion" />
-          <PlantCard name="Onion" />
-          <PlantCard name="Onion" />
-          <PlantCard name="Onion" />
-          <PlantCard name="Onion" />
-          <PlantCard name="Onion" />
+          <PlantCard name="Onion" {...this.props} />
+          <PlantCard name="Onion" {...this.props} />
+          <PlantCard name="Onion" {...this.props} />
+          <PlantCard name="Onion" {...this.props} />
+          <PlantCard name="Onion" {...this.props} />
+          <PlantCard name="Onion" {...this.props} />
         </View>
       </ScrollView>
     );
