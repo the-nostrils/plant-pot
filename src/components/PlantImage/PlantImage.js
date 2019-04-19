@@ -1,17 +1,20 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
-// import PropTypes from 'prop-types';
 
-const plantImage = props => (
-  <View style={[styles.container, props.style]}>
-    {/* eslint-disable-next-line global-require */}
-    <Image
-      // eslint-disable-next-line global-require
-      source={require('../../assets/images/beet.png')}
-      style={styles.plantImage}
-    />
-  </View>
-);
+const plantImage = (props) => {
+  const { style } = props;
+
+  return (
+    <View style={[styles.container, style]}>
+      {/* eslint-disable-next-line global-require */}
+      <Image
+        // eslint-disable-next-line global-require
+        source={require('../../assets/images/beet.png')}
+        style={styles.plantImage}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -33,10 +36,5 @@ const styles = StyleSheet.create({
     width: '100%'
   }
 });
-
-// plantImage.propTypes = {
-//   width: PropTypes.number.isRequired,
-//   height: PropTypes.number.isRequired
-// }
 
 export default plantImage;
