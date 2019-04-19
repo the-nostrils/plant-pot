@@ -9,12 +9,19 @@ const S = StyleSheet.create({
     flexDirection: 'row',
     height: 118.48,
     elevation: 2,
-    borderBottomRightRadius: 80
+    borderBottomLeftRadius: 80,
+    backgroundColor: '#F5F5F5',
+    marginBottom: 48,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.16,
+    shadowRadius: 6
   },
   tabButton: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#F5F5F5'
   }
 });
 
@@ -55,15 +62,7 @@ const TabBar = (props) => {
               style={{
                 width: 66.11,
                 height: 63.36,
-                borderBottomLeftRadius: 240,
-                borderTopLeftRadius: 240,
-                borderBottomRightRadius: 240,
-                borderTopRightRadius: 240,
-                borderWidth: 2,
-                shadowColor: '#000000',
-                shadowOffset: { width: 0, height: 5 },
-                shadowOpacity: 0.16,
-                shadowRadius: 5
+                borderWidth: 2
               }}
             />
             <Text>{getLabelText({ route })}</Text>
