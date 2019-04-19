@@ -1,32 +1,68 @@
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import {
+  Image, StyleSheet, TouchableOpacity, View
+} from 'react-native';
 import PropTypes from 'prop-types';
 import BaseText from '../BaseText/BaseText';
 
 const plantListButton = (props) => {
-  const { buttonText, icon, onButtonPressed } = props;
+  const { buttonText, onPressed } = props;
+  let icon;
+  let overrideButtonContainerStyle;
+  let buttonMode;
+
+  if (buttonText === 'Add Plants') {
+    buttonMode = 0;
+    icon = require('../../../assets/images/icon_add_plants.png');
+    overrideButtonContainerStyle = { flexDirection: 'row' };
+  } else {
+    buttonMode = 1;
+    icon = require('../../../assets/images/icon_delete_plants.png');
+    overrideButtonContainerStyle = { flexDirection: 'row-reverse' };
+  }
 
   return (
-    <TouchableOpacity onPress={onButtonPressed}>
-      <View>
-        <View>
-          <BaseText>{icon}</BaseText>
-        </View>
-        <View>
-          <BaseText>{buttonText}</BaseText>
-        </View>
-        <View>
-          <BaseText>Line</BaseText>
+    <TouchableOpacity onPress={() => onPressed(buttonMode)}>
+      <View style={styles.container}>
+        <View style={[styles.buttonContainer, overrideButtonContainerStyle]}>
+          <View>
+            <Image source={icon} />
+          </View>
+          <View>
+            <BaseText style={styles.buttonText}>{buttonText}</BaseText>
+          </View>
         </View>
       </View>
     </TouchableOpacity>
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex'
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  buttonText: {
+    fontFamily: 'SFUIDisplay-Regular',
+    fontSize: 18,
+    paddingLeft: 8,
+    paddingRight: 8,
+    color: '#145240',
+    letterSpacing: -0.41,
+    opacity: 0.57,
+    shadowColor: '#000000',
+    shadowOffset: { width: 5, height: 3 },
+    shadowOpacity: 0.36,
+    shadowRadius: 6
+  }
+});
+
 plantListButton.propTypes = {
   buttonText: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  onButtonPressed: PropTypes.func.isRequired
+  onPressed: PropTypes.func.isRequired
 };
 
 export default plantListButton;
