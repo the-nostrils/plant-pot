@@ -25,11 +25,7 @@ const TrackingStack = createStackNavigator(
     Details: PlantImage
   },
   {
-    initialRouteName: 'Home',
-    headerMode: 'none',
-    navigationOptions: {
-      headerVisible: false
-    }
+    initialRouteName: 'Home'
   }
 );
 
