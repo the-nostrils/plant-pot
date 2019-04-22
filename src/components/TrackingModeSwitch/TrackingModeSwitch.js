@@ -35,8 +35,8 @@ const trackingModeSwitch = (props) => {
 
 const styles = {
   container: {
-    width: 305.81,
-    height: 24.16,
+    width: '100%',
+    height: '100%',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     backgroundColor: '#FFFFFF',
@@ -50,7 +50,7 @@ const styles = {
     shadowRadius: 13
   },
   selectedModeArea: {
-    width: 144.96,
+    width: '50%',
     height: 24.16,
     paddingTop: 4,
     paddingLeft: 41,

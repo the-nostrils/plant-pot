@@ -17,7 +17,7 @@ const plantListButton = (props) => {
     overrideButtonContainerStyle = { flexDirection: 'row' };
   } else {
     buttonMode = 1;
-    icon = require('../../../assets/images/icon_delete_plants.png');
+    icon = require('../../../assets/images/icon_remove_plants.png');
     overrideButtonContainerStyle = { flexDirection: 'row-reverse' };
   }
 

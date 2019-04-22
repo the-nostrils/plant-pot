@@ -9,8 +9,8 @@ const plantImage = (props) => {
       {/* eslint-disable-next-line global-require */}
       <Image
         // eslint-disable-next-line global-require
-        source={require('../../assets/images/beet.png')}
-        style={styles.plantImage}
+        source={require('../../assets/images/image_beet.jpeg')}
+        style={[styles.plantImage, style]}
       />
     </View>
   );
@@ -29,11 +29,13 @@ const styles = StyleSheet.create({
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.16,
-    shadowRadius: 5
+    shadowRadius: 5,
+    overflow: 'hidden'
   },
   plantImage: {
     height: '100%',
-    width: '100%'
+    width: '100%',
+    resizeMode: 'center'
   }
 });
 

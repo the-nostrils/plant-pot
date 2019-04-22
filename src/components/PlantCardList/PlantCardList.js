@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {
-  FlatList, ScrollView, StyleSheet, View
+  Alert, FlatList, ScrollView, StyleSheet, View, Image
 } from 'react-native';
+import PropTypes from 'prop-types';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import PlantCard from '../PlantCard/PlantCard';
 import PlantListButton from '../UI/PlantListButton/PlantListButton';
 
@@ -11,7 +13,6 @@ export default class PlantCardList extends Component {
   };
 
   state = {
-    listButtonMode: 0,
     plantList: [
       { id: 1, name: 'Onion' },
       { id: 2, name: 'Beet' },
@@ -22,18 +23,33 @@ export default class PlantCardList extends Component {
     ]
   };
 
-  listButtonPressedHandler = (buttonMode) => {
-    const { listButtonMode } = this.state;
+  plantButtonPressedHandler = (buttonMode) => {
+    const { navigation } = this.props;
 
-    if (buttonMode !== listButtonMode) {
-      this.setState({ listButtonMode: buttonMode });
+    switch (buttonMode) {
+      case 0:
+        Alert.alert('Add Plants modal will open.');
+        // navigation.navigate('AddPlants');
+        break;
+      case 1:
+        // Alert.alert('Go to Remove Plants Screen!');
+        navigation.navigate('RemovePlants');
+        break;
+      default:
+        Alert.alert('TrackingHome');
     }
+  };
+
+  removeButtonPressedHandler = () => {
+    Alert.alert('Remove button pressed!');
   };
 
   // plantCardPressedhandler = () => this.  props.navigation.navigate('Details');
 
   render() {
-    const { listButtonMode, plantList } = this.state;
+    const { listButtonMode } = this.props;
+    const { plantList } = this.state;
+
     const horizontalLine = listButtonMode === 0 ? (
       <View style={styles.horizontalLineContainer}>
         <View style={[styles.horizontalLine, { borderWidth: 3 }]} />
@@ -46,15 +62,26 @@ export default class PlantCardList extends Component {
       </View>
     );
 
+    const plantCardWidth = listButtonMode === 0 ? 330 : 312;
+    const plantCardContainerOverride = listButtonMode === 1 ? { opacity: 0.61 } : null;
+    const removePlantsIcon = listButtonMode === 1 ? (
+      <TouchableOpacity onPress={this.removeButtonPressedHandler}>
+        <Image
+          style={styles.removePlantsIcon}
+          source={require('../../assets/images/icon_remove_plants.png')}
+        />
+      </TouchableOpacity>
+    ) : null;
+
     return (
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.listButtonsContainer}>
             <View style={styles.buttonContainer}>
-              <PlantListButton buttonText="Add Plants" onPressed={this.listButtonPressedHandler} />
+              <PlantListButton buttonText="Add Plants" onPressed={this.plantButtonPressedHandler} />
               <PlantListButton
                 buttonText="Remove Plants"
-                onPressed={this.listButtonPressedHandler}
+                onPressed={this.plantButtonPressedHandler}
               />
             </View>
             {horizontalLine}
@@ -63,7 +90,17 @@ export default class PlantCardList extends Component {
             <FlatList
               data={plantList}
               keyExtractor={item => item.id.toString()}
-              renderItem={({ item }) => <PlantCard name={item.name} {...this.props} />}
+              renderItem={({ item }) => (
+                <View style={styles.plantCardContainer}>
+                  {removePlantsIcon}
+                  <PlantCard
+                    name={item.name}
+                    width={plantCardWidth}
+                    style={plantCardContainerOverride}
+                    {...this.props}
+                  />
+                </View>
+              )}
             />
           </View>
         </View>
@@ -112,5 +149,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5F5F5'
+  },
+  plantCardContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  removePlantsIcon: {
+    marginBottom: 10
   }
 });
+
+PlantCardList.propTypes = {
+  listButtonMode: PropTypes.number.isRequired
+};

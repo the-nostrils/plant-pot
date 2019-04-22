@@ -14,7 +14,7 @@ export default class PlantCard extends Component {
   plantCardTouchedHandler = () => {
     const { navigation } = this.props;
 
-    return navigation.navigate('Details');
+    return navigation.navigate('Plant');
   };
 
   toggleSwitchHandler = () => {
@@ -23,11 +23,12 @@ export default class PlantCard extends Component {
   };
 
   render() {
-    const { name } = this.props;
+    const { name, width, style } = this.props;
     const { isTrackingModeAuto } = this.state;
+
     return (
       <TouchableOpacity onPress={this.plantCardTouchedHandler}>
-        <View style={styles.container}>
+        <View style={[styles.container, { width }, style]}>
           <View style={styles.plantNameContainer}>
             <BaseText
               style={{
@@ -59,7 +60,8 @@ export default class PlantCard extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 0,
-    width: 330.13,
+    // width: '100%',
+    // width: 330.13,
     height: 81.67,
     backgroundColor: 'rgba(255, 255, 255, 0.61)',
     borderBottomLeftRadius: 80,
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
   },
   trackingModeSwitchContainer: {
     position: 'absolute',
-    width: 305,
+    width: '92.5%',
     height: 24,
     borderBottomLeftRadius: 80,
     borderTopLeftRadius: 80,
@@ -100,5 +102,6 @@ const styles = StyleSheet.create({
 });
 
 PlantCard.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired
 };
