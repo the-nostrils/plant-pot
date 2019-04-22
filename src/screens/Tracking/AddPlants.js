@@ -2,29 +2,25 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PlantCardList from '../../components/PlantCardList/PlantCardList';
 
-export default class Tracking extends Component {
+export default class RemovePlants extends Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'Add Plants',
     headerStyle: {
-      backgroundColor: '#F5F5F5',
-      height: 0
+      backgroundColor: '#F5F5F5'
+      // height: 0
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
-      fontWeight: 'bold',
-    },
+      fontWeight: 'bold'
+    }
   };
 
   state = {};
 
-  buttonPressedHandler = () => alert('You pressed one of Plant List Buttons!');
-
-  // plantCardPressedhandler = () => this.props.navigation.navigate('Details');
-
   render() {
     return (
       <View style={styles.container}>
-        <PlantCardList {...this.props} />
+        <PlantCardList listButtonMode={0} {...this.props} />
       </View>
     );
   }

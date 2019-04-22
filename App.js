@@ -13,7 +13,11 @@ import {
   createAppContainer
 } from 'react-navigation';
 
-import Tracking from './src/screens/Tracking/Tracking';
+import TrackingHome from './src/screens/Tracking/TrackingHome';
+// import ModalWindow from './src/components/UI/Modal/ModalWindow';
+import Plant from './src/screens/Tracking/Plant';
+import AddPlants from './src/screens/Tracking/AddPlants';
+import RemovePlants from './src/screens/Tracking/RemovePlants';
 import Community from './src/screens/Community/Community';
 import Plantpedia from './src/screens/Plantpedia/Plantpedia';
 import PlantImage from './src/components/PlantImage/PlantImage';
@@ -21,11 +25,14 @@ import TabBar from './src/components/UI/TabBar/TabBar';
 
 const TrackingStack = createStackNavigator(
   {
-    Home: Tracking,
+    TrackingHome,
+    AddPlants,
+    RemovePlants,
+    Plant,
     Details: PlantImage
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'TrackingHome'
   }
 );
 
