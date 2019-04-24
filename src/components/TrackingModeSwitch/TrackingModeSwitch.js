@@ -3,11 +3,11 @@ import { TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 import BaseText from '../UI/BaseText/BaseText';
 
-const trackingModeSwitch = (props) => {
-  const { isAuto, onToggleSwitch } = props;
+const TrackingModeSwitch = (props) => {
+  const { isAuto, onToggleSwitch, style } = props;
   const mode = isAuto ? 'Automatic' : 'Manual';
 
-  const containerStyle = isAuto ? styles.container : [styles.container, styles.containerOverwrite];
+  const containerStyle = isAuto ? [styles.container, style] : [styles.container, styles.containerOverwrite, style];
   const switchAreaStyle = isAuto
     ? styles.selectedModeArea
     : [styles.selectedModeArea, styles.switchOverwrite];
@@ -51,7 +51,7 @@ const styles = {
   },
   selectedModeArea: {
     width: '50%',
-    height: 24.16,
+    height: '100%',
     paddingTop: 4,
     paddingLeft: 41,
     paddingBottom: 5.16,
@@ -76,9 +76,9 @@ const styles = {
   }
 };
 
-trackingModeSwitch.propTypes = {
+TrackingModeSwitch.propTypes = {
   isAuto: PropTypes.bool.isRequired,
   onToggleSwitch: PropTypes.func.isRequired
 };
 
-export default trackingModeSwitch;
+export default TrackingModeSwitch;

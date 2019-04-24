@@ -28,7 +28,7 @@ const plantListButton = (props) => {
           <View>
             <Image source={icon} />
           </View>
-          <View>
+          <View style={styles.buttonTextContainer}>
             <BaseText style={styles.buttonText}>{buttonText}</BaseText>
           </View>
         </View>
@@ -47,9 +47,10 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: 'SFUIDisplay-Regular',
-    fontSize: 18,
-    paddingLeft: 8,
-    paddingRight: 8,
+    fontSize: 17,
+    padding: 4,
+    paddingLeft: 6,
+    paddingRight: 6,
     color: '#145240',
     letterSpacing: -0.41,
     opacity: 0.57,

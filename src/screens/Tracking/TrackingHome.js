@@ -5,15 +5,7 @@ import PlantCardList from '../../components/PlantCardList/PlantCardList';
 
 export default class TrackingHome extends Component {
   static navigationOptions = {
-    title: 'Tracking Home',
-    headerStyle: {
-      backgroundColor: '#F5F5F5'
-      // height: 0
-    },
-    headerTintColor: 'black',
-    headerTitleStyle: {
-      fontWeight: 'bold'
-    }
+    
   };
 
   state = {

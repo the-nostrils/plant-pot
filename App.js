@@ -16,6 +16,7 @@ import {
 import TrackingHome from './src/screens/Tracking/TrackingHome';
 // import ModalWindow from './src/components/UI/Modal/ModalWindow';
 import Plant from './src/screens/Tracking/Plant';
+import PlantTracker from './src/screens/Tracking/PlantTracker';
 import AddPlants from './src/screens/Tracking/AddPlants';
 import RemovePlants from './src/screens/Tracking/RemovePlants';
 import Community from './src/screens/Community/Community';
@@ -29,10 +30,17 @@ const TrackingStack = createStackNavigator(
     AddPlants,
     RemovePlants,
     Plant,
-    Details: PlantImage
+    PlantTracker
   },
   {
-    initialRouteName: 'TrackingHome'
+    initialRouteName: 'TrackingHome',
+    defaultNavigationOptions: {
+      headerBackTitle: null,
+      headerTintColor: '#004734',
+      backgroundColor: '#F5F5F5',
+      headerForceInset: { top: 'never', bottom: 'never' },
+      headerTransparent: true
+    }
   }
 );
 

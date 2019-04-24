@@ -1,16 +1,17 @@
 /* eslint-disable no-alert, no-undef */
 import React, { Component } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import PlantImage from '../../components/PlantImage/PlantImage';
 import MenuButton from '../../components/UI/MenuButton/MenuButton';
+import BaseText from '../../components/UI/BaseText/BaseText';
 
 export default class Plant extends Component {
   static navigationOptions = {
     title: 'Onion',
     headerStyle: {
-      backgroundColor: '#F5F5F5'
+      height: 80
     },
     headerTitleStyle: {
       fontFamily: 'SFCompactDisplay-Semibold',
@@ -37,7 +38,9 @@ export default class Plant extends Component {
   };
 
   menuButtonPressedHandler = () => {
-    Alert.alert('Menu button pressed!');
+    const { navigation } = this.props;
+
+    navigation.navigate('PlantTracker');
   };
 
   render() {
@@ -57,13 +60,13 @@ export default class Plant extends Component {
           <MenuButton
             iconName="edit-name"
             circleStyle={{ width: 38, height: 38, backgroundColor: '#FFFFFF' }}
-            iconStyle={{ width: 21, height: 21 }}
+            iconStyle={{ width: 22, height: 22 }}
             onPressed={this.menuButtonPressedHandler}
           />
           <MenuButton
             iconName="photo"
             circleStyle={{ width: 38, height: 38, backgroundColor: '#FFFFFF' }}
-            iconStyle={{ width: 21, height: 21 }}
+            iconStyle={{ width: 22, height: 22 }}
             onPressed={this.menuButtonPressedHandler}
           />
         </View>
@@ -99,26 +102,77 @@ export default class Plant extends Component {
           />
         </View>
         <View style={[styles.nestedButtonsContainer, styles.trackingButtonsNesting]}>
-          <MenuButton
-            iconName="irrigate"
-            circleStyle={{ width: 56, height: 56, backgroundColor: '#FFFFFF' }}
-            iconStyle={{ width: 23, height: 34 }}
-            onPressed={this.menuButtonPressedHandler}
-          />
-          <MenuButton
-            iconName="fertilize"
-            circleStyle={{
-              width: 56, height: 56, backgroundColor: '#FFFFFF', top: 50
-            }}
-            iconStyle={{ width: 36, height: 36 }}
-            onPressed={this.menuButtonPressedHandler}
-          />
-          <MenuButton
-            iconName="prune"
-            circleStyle={{ width: 56, height: 56, backgroundColor: '#FFFFFF' }}
-            iconStyle={{ width: 36, height: 36 }}
-            onPressed={this.menuButtonPressedHandler}
-          />
+          <View style={styles.button}>
+            <MenuButton
+              buttonName="Irrigate"
+              iconName="irrigate"
+              circleStyle={{ width: 56, height: 56, backgroundColor: '#FFFFFF' }}
+              iconStyle={{ width: 23, height: 34 }}
+              onPressed={this.menuButtonPressedHandler}
+            />
+            <BaseText
+              style={{
+                fontFamily: 'SFCompactDisplay-Regular',
+                fontSize: 15,
+                color: '#145240',
+                letterSpacing: -0.24,
+                textAlign: 'left',
+                opacity: 0.44,
+                marginTop: 7
+              }}
+            >
+              Irrigate
+            </BaseText>
+          </View>
+          <View style={styles.button}>
+            <MenuButton
+              buttonName="Fertilize"
+              iconName="fertilize"
+              circleStyle={{
+                width: 56,
+                height: 56,
+                backgroundColor: '#FFFFFF',
+                top: 50
+              }}
+              iconStyle={{ width: 23, height: 24 }}
+              onPressed={this.menuButtonPressedHandler}
+            />
+            <BaseText
+              style={{
+                fontFamily: 'SFCompactDisplay-Regular',
+                fontSize: 15,
+                color: '#145240',
+                letterSpacing: -0.24,
+                textAlign: 'left',
+                opacity: 0.44,
+                top: 50,
+                marginTop: 7
+              }}
+            >
+              Fertilize
+            </BaseText>
+          </View>
+          <View style={styles.button}>
+            <MenuButton
+              iconName="prune"
+              circleStyle={{ width: 56, height: 56, backgroundColor: '#FFFFFF' }}
+              iconStyle={{ width: 23, height: 35 }}
+              onPressed={this.menuButtonPressedHandler}
+            />
+            <BaseText
+              style={{
+                fontFamily: 'SFCompactDisplay-Regular',
+                fontSize: 15,
+                color: '#145240',
+                letterSpacing: -0.24,
+                textAlign: 'left',
+                opacity: 0.44,
+                marginTop: 7
+              }}
+            >
+              Prune
+            </BaseText>
+          </View>
         </View>
       </View>
     ) : (
@@ -143,11 +197,16 @@ export default class Plant extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.upperPart}>
-          <PlantImage style={styles.plantImage} />
-          {settingsMenu}
-        </View>
-        <View style={styles.lowerPart}>{trackingMenu}</View>
+        <ImageBackground
+          source={require('../../assets/images/background_plant.png')}
+          style={{ width: '100%', height: '100%'}}
+        >
+          <View style={styles.upperPart}>
+            <PlantImage style={styles.plantImage} />
+            {settingsMenu}
+          </View>
+          <View style={styles.lowerPart}>{trackingMenu}</View>
+        </ImageBackground>
       </View>
     );
   }
@@ -161,20 +220,18 @@ const styles = StyleSheet.create({
   upperPart: {
     flex: 0.6,
     alignItems: 'center',
-    borderColor: 'red',
-    borderBottomWidth: 1,
-    borderBottomRightRadius: 50,
-    borderBottomLeftRadius: 50,
+    marginTop: 65,
     paddingBottom: 45
   },
   lowerPart: {
     flex: 0.45,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    overflow: 'hidden'
   },
   menuContainer: {
     width: '40%',
-    marginTop: 40
+    marginTop: 70
   },
   trackingMenuContainer: {
     width: '50%',
@@ -198,6 +255,10 @@ const styles = StyleSheet.create({
     shadowOffset: { width: -10, height: 15 },
     shadowOpacity: 0.16,
     shadowRadius: 11
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

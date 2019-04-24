@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 import FertilizeIcon from '../../../assets/images/icon_fertilize.png';
 import EditNameIcon from '../../../assets/images/icon_edit_name.png';
 import IrrigateIcon from '../../../assets/images/icon_irrigate.png';
+import MissionDoneIcon from '../../../assets/images/icon_mission_done.png';
+import MissionPostponeIcon from '../../../assets/images/icon_mission_postpone.png';
 import PhotoIcon from '../../../assets/images/icon_photo.png';
 import PlantpediaIcon from '../../../assets/images/icon_plantpedia.png';
 import PruneIcon from '../../../assets/images/icon_prune.png';
@@ -30,6 +32,12 @@ const MenuButton = (props) => {
       break;
     case 'irrigate':
       icon = <Image style={[styles.icon, iconStyle]} source={IrrigateIcon} />;
+      break;
+    case 'mission-done':
+      icon = <Image style={[styles.icon, iconStyle]} source={MissionDoneIcon} />;
+      break;
+    case 'mission-postpone':
+      icon = <Image style={[styles.icon, iconStyle]} source={MissionPostponeIcon} />;
       break;
     case 'photo':
       icon = <Image style={[styles.icon, iconStyle]} source={PhotoIcon} />;
