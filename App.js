@@ -6,44 +6,69 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import {
+  createStackNavigator,
+  createMaterialTopTabNavigator,
+  createAppContainer
+} from 'react-navigation';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import TrackingHome from './src/screens/Tracking/TrackingHome';
+// import ModalWindow from './src/components/UI/Modal/ModalWindow';
+import Plant from './src/screens/Tracking/Plant';
+import PlantTracker from './src/screens/Tracking/PlantTracker';
+import AddPlants from './src/screens/Tracking/AddPlants';
+import RemovePlants from './src/screens/Tracking/RemovePlants';
+import Community from './src/screens/Community/Community';
+import Plantpedia from './src/screens/Plantpedia/Plantpedia';
+import PlantImage from './src/components/PlantImage/PlantImage';
+import TabBar from './src/components/UI/TabBar/TabBar';
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
+const TrackingStack = createStackNavigator(
+  {
+    TrackingHome,
+    AddPlants,
+    RemovePlants,
+    Plant,
+    PlantTracker
+  },
+  {
+    initialRouteName: 'TrackingHome',
+    defaultNavigationOptions: {
+      headerBackTitle: null,
+      headerTintColor: '#004734',
+      backgroundColor: '#F5F5F5',
+      headerForceInset: { top: 'never', bottom: 'never' },
+      headerTransparent: true
+    }
   }
-}
+);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+const CommunityStack = createStackNavigator(
+  {
+    Home: Community,
+    Details: PlantImage
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  { initialRouteName: 'Home' }
+);
+
+const PlantpediaStack = createStackNavigator(
+  {
+    Home: Plantpedia,
+    Details: PlantImage
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  { initialRouteName: 'Home' }
+);
+
+export default createAppContainer(
+  createMaterialTopTabNavigator(
+    {
+      Tracking: { screen: TrackingStack },
+      Community: { screen: CommunityStack },
+      Plantpedia: { screen: PlantpediaStack }
+    },
+    {
+      tabBarComponent: TabBar
+    }
+  )
+);
