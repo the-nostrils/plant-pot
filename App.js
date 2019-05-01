@@ -57,7 +57,16 @@ const PlantpediaStack = createStackNavigator(
     Home: Plantpedia,
     Details: PlantImage
   },
-  { initialRouteName: 'Home' }
+  {
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      headerBackTitle: null,
+      headerTintColor: '#004734',
+      backgroundColor: '#F5F5F5',
+      headerForceInset: { top: 'never', bottom: 'never' },
+      headerTransparent: true
+    }
+  }
 );
 
 export default createAppContainer(
