@@ -1,70 +1,71 @@
 import React, { Component } from 'react';
 import {
-  Alert, FlatList, ScrollView, StyleSheet, View, Image
+  Alert,
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  View,
+  Image
 } from 'react-native';
-import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import PlantCard from '../PlantCard/PlantCard';
-import PlantListButton from '../UI/PlantListButton/PlantListButton';
+import SearchBox from '../UI/SearchBox/SearchBox';
 
-export default class PlantCardList extends Component {
-    static navigationOptions = {
-      title: 'Home'
-    };
+export default class PlantpediaCardList extends Component {
+  static navigationOptions = {
+    title: 'Home'
+  };
 
-    state = {
-      plantList: [
-        { id: 1, name: 'Onion' },
-        { id: 2, name: 'Beet' },
-        { id: 3, name: 'Strawberry' },
-        { id: 4, name: 'Onion' },
-        { id: 5, name: 'Beet' },
-        { id: 6, name: 'Strawberry' }
-      ]
-    };
+  state = {
+    plantList: [
+      { id: 1, name: 'Onion' },
+      { id: 2, name: 'Beet' },
+      { id: 3, name: 'Strawberry' },
+      { id: 4, name: 'Onion' },
+      { id: 5, name: 'Beet' },
+      { id: 6, name: 'Strawberry' }
+    ],
+    searchQuery: ''
+  };
 
-    plantButtonPressedHandler = (buttonMode) => {
-      const { navigation } = this.props;
+  plantButtonPressedHandler = (buttonMode) => {
+    const { navigation } = this.props;
 
-      switch (buttonMode) {
-        case 0:
-          Alert.alert('Add Plants modal will open.');
-          // navigation.navigate('AddPlants');
-          break;
-        case 1:
-          // Alert.alert('Go to Remove Plants Screen!');
-          navigation.navigate('RemovePlants');
-          break;
-        default:
-          Alert.alert('TrackingHome');
-      }
-    };
+    switch (buttonMode) {
+      case 0:
+        Alert.alert('Add Plants modal will open.');
+        // navigation.navigate('AddPlants');
+        break;
+      case 1:
+        // Alert.alert('Go to Remove Plants Screen!');
+        navigation.navigate('RemovePlants');
+        break;
+      default:
+        Alert.alert('TrackingHome');
+    }
+  };
 
-    removeButtonPressedHandler = () => {
-      Alert.alert('Remove button pressed!');
-    };
+  removeButtonPressedHandler = () => {
+    Alert.alert('Remove button pressed!');
+  };
 
-    // plantCardPressedhandler = () => this.  props.navigation.navigate('Details');
+  searchHandler = (val) => {
+    this.setState({
+      searchQuery: val
+    });
+  }
+  // plantCardPressedhandler = () => this.  props.navigation.navigate('Details');
 
-    render() {
-      const { listButtonMode } = this.props;
-      const { plantList } = this.state;
+  render() {
+    const { listButtonMode } = this.props;
+    const { plantList } = this.state;
+    const { searchQuery } = this.state;
 
-      const horizontalLine = listButtonMode === 0 ? (
-        <View style={styles.horizontalLineContainer}>
-          <View style={[styles.horizontalLine, { borderWidth: 3 }]} />
-          <View style={[styles.horizontalLine, { marginTop: 1 }]} />
-        </View>
-      ) : (
-        <View style={styles.horizontalLineContainer}>
-          <View style={[styles.horizontalLine, { marginTop: 1 }]} />
-          <View style={[styles.horizontalLine, { borderWidth: 3 }]} />
-        </View>
-      );
-
-      const plantCardWidth = listButtonMode === 0 ? 330 : 312;
-      const plantCardContainerOverride = listButtonMode === 1 ? { opacity: 0.61 } : null;
-      const removePlantsIcon = listButtonMode === 1 ? (
+    const plantCardWidth = listButtonMode === 0 ? 330 : 312;
+    const plantCardContainerOverride =
+      listButtonMode === 1 ? { opacity: 0.61 } : null;
+    const removePlantsIcon =
+      listButtonMode === 1 ? (
         <TouchableOpacity onPress={this.removeButtonPressedHandler}>
           <Image
             style={styles.removePlantsIcon}
@@ -73,40 +74,36 @@ export default class PlantCardList extends Component {
         </TouchableOpacity>
       ) : null;
 
-      return (
+    return (
         <ScrollView>
           <View style={styles.container}>
-                <View style={styles.listButtonsContainer}>
-                    <View style={styles.buttonContainer}>
-                        <PlantListButton buttonText="Add Plants" onPressed={this.plantButtonPressedHandler} />
-                        <PlantListButton
-                          buttonText="Remove Plants"
-                          onPressed={this.plantButtonPressedHandler}
-                        />
-                      </View>
-                    {horizontalLine}
-                  </View>
-                <View style={styles.cardListContainer}>
-                    <FlatList
-                      data={plantList}
-                      keyExtractor={item => item.id.toString()}
-                      renderItem={({ item }) => (
-                              <View style={styles.plantCardContainer}>
-                                {removePlantsIcon}
-                                <PlantCard
-                                  name={item.name}
-                                  width={plantCardWidth}
-                                  style={plantCardContainerOverride}
-                                  {...this.props}
-                                />
-                              </View>
-                            )}
+            <View style={styles.searchBoxContainer}>
+              <SearchBox
+                searchQuery={searchQuery}
+                searchHandler={val => this.searchHandler(val)}
+              />
+            </View>
+            <View style={styles.cardListContainer}>
+              <FlatList
+                data={plantList}
+                keyExtractor={item => item.id.toString()}
+                renderItem={({ item }) => (
+                  <View style={styles.plantCardContainer}>
+                    {removePlantsIcon}
+                    <PlantCard
+                      name={item.name}
+                      width={plantCardWidth}
+                      style={plantCardContainerOverride}
+                      {...this.props}
                     />
                   </View>
-              </View>
+                )}
+              />
+            </View>
+          </View>
         </ScrollView>
-      );
-    }
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -116,15 +113,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5F5F5'
   },
-  listButtonsContainer: {
-    width: 342,
-    height: 49.17,
+  searchBoxContainer: {
     flex: 1,
-    flexDirection: 'column',
-    marginBottom: 56.9,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5F5F5'
+    marginTop: 10,
+    marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    backgroundColor: '#F5F5F5',
+    width: '86%',
+    height: 50
   },
   buttonContainer: {
     flex: 1,
@@ -158,7 +155,3 @@ const styles = StyleSheet.create({
     marginBottom: 10
   }
 });
-
-PlantCardList.propTypes = {
-  listButtonMode: PropTypes.number.isRequired
-};

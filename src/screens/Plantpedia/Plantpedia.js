@@ -18,7 +18,7 @@ export default class TrackingHome extends Component {
     // const { isModalVisible } = this.state;
     return (
       <View style={styles.container}>
-        <PlantpediaCardList listButtonMode={0} {...this.props} />
+        <PlantpediaCardList />
         {/* <ModalWindow isVisible={isModalVisible} onHideModalPressed={this.hideModalHandler} /> */}
       </View>
     );
