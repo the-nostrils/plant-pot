@@ -5,13 +5,11 @@ import {
   ScrollView,
   StyleSheet,
   View,
-  Image
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import PlantCard from '../PlantCard/PlantCard';
+import PlantpediaPlantCard from '../PlantpediaPlantCard/PlantpediaPlantCard';
 import SearchBox from '../UI/SearchBox/SearchBox';
 
-export default class PlantpediaCardList extends Component {
+export default class PlantpediaPlantCardList extends Component {
   static navigationOptions = {
     title: 'Home'
   };
@@ -64,15 +62,7 @@ export default class PlantpediaCardList extends Component {
     const plantCardWidth = listButtonMode === 0 ? 330 : 312;
     const plantCardContainerOverride =
       listButtonMode === 1 ? { opacity: 0.61 } : null;
-    const removePlantsIcon =
-      listButtonMode === 1 ? (
-        <TouchableOpacity onPress={this.removeButtonPressedHandler}>
-          <Image
-            style={styles.removePlantsIcon}
-            source={require('../../assets/images/icon_remove_plants.png')}
-          />
-        </TouchableOpacity>
-      ) : null;
+    
 
     return (
         <ScrollView>
@@ -89,8 +79,7 @@ export default class PlantpediaCardList extends Component {
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => (
                   <View style={styles.plantCardContainer}>
-                    {removePlantsIcon}
-                    <PlantCard
+                    <PlantpediaPlantCard
                       name={item.name}
                       width={plantCardWidth}
                       style={plantCardContainerOverride}
@@ -122,24 +111,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     width: '86%',
     height: 50
-  },
-  buttonContainer: {
-    flex: 1,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#F5F5F5'
-  },
-  horizontalLineContainer: {
-    width: '100%',
-    height: 0,
-    flexDirection: 'row'
-  },
-  horizontalLine: {
-    width: '50%',
-    borderWidth: 1,
-    borderColor: '#145240'
   },
   cardListContainer: {
     flex: 1,

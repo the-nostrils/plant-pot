@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import PlantpediaCardList from '../../components/PlantpediaCardList/PlantpediaCardList';
+import PlantpediaPlantCardList from '../../components/PlantpediaPlantCardList/PlantpediaPlantCardList';
 // import ModalWindow from '../../components/UI/Modal/ModalWindow';
 
 export default class TrackingHome extends Component {
@@ -18,7 +18,7 @@ export default class TrackingHome extends Component {
     // const { isModalVisible } = this.state;
     return (
       <View style={styles.container}>
-        <PlantpediaCardList />
+        <PlantpediaPlantCardList />
         {/* <ModalWindow isVisible={isModalVisible} onHideModalPressed={this.hideModalHandler} /> */}
       </View>
     );
