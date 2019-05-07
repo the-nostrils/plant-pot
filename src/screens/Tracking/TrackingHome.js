@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import PlantCardList from '../../components/PlantCardList/PlantCardList';
 import ModalWindow from '../../components/UI/Modal/ModalWindow';
 
@@ -19,7 +19,7 @@ export default class TrackingHome extends Component {
     const { isModalVisible } = this.state;
     return (
       <View style={styles.container}>
-        <ModalWindow title="Add Plant" isVisible={isModalVisible} onToggleModalPressed={this.toggleModal} />
+        <ModalWindow content="This is the content!" title="Add Plant" isVisible={isModalVisible} onDiscardModal={this.toggleModal} onConfirmPressed={() => Alert.alert('DDAENG!')} />
         <PlantCardList listButtonMode={0} {...this.props} onAddPlantsPressed={this.toggleModal} />
       </View>
     );

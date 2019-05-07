@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet, Text, TouchableOpacity, View
-} from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
 
@@ -15,7 +13,9 @@ export default class ModalWindow extends Component {
   // }
 
   render() {
-    const { isVisible, onToggleModalPressed, title } = this.props;
+    const {
+      content, isVisible, onDiscardModal, onConfirmPressed, title
+    } = this.props;
 
     return (
       <Modal isVisible={isVisible}>
@@ -34,10 +34,10 @@ export default class ModalWindow extends Component {
             </BaseText>
           </View>
           <View style={styles.contentContainer}>
-            <BaseText>This is the content!</BaseText>
+            <BaseText>{content}</BaseText>
           </View>
           <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.button} onPress={onToggleModalPressed}>
+            <TouchableOpacity style={styles.button} onPress={onDiscardModal}>
               <BaseText
                 style={{
                   fontFamily: 'SFCompactDisplay-Regular',
@@ -52,7 +52,7 @@ export default class ModalWindow extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.button, { backgroundColor: '#4EBC7C' }]}
-              onPress={onToggleModalPressed}
+              onPress={onConfirmPressed}
             >
               <BaseText
                 style={{
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   modalContainer: {
     width: 342,
     height: 250,
-    alignItems: 'center',
+    justifyContent: 'space-between',
     borderBottomLeftRadius: 80,
     borderTopLeftRadius: 80,
     borderBottomRightRadius: 0,
@@ -88,12 +88,23 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.16,
     shadowRadius: 6
   },
+  titleContainer: {
+    top: 32,
+    alignItems: 'center'
+  },
+  contentContainer: {
+    alignItems: 'center'
+  },
   buttonsContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    bottom: 26.5,
+    right: 20
   },
   button: {
     width: 77,
     height: 51,
+    marginRight: 14,
     backgroundColor: '#3B9A70',
     borderBottomLeftRadius: 80,
     borderTopLeftRadius: 80,
@@ -106,6 +117,8 @@ const styles = StyleSheet.create({
 
 ModalWindow.propTypes = {
   isVisible: PropTypes.bool.isRequired,
-  onToggleModalPressed: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired
+  onDiscardModal: PropTypes.func.isRequired,
+  onConfirmPressed: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired
 };
