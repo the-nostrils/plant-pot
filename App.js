@@ -14,7 +14,6 @@ import {
 } from 'react-navigation';
 
 import TrackingHome from './src/screens/Tracking/TrackingHome';
-// import ModalWindow from './src/components/UI/Modal/ModalWindow';
 import Plant from './src/screens/Tracking/Plant';
 import PlantTracker from './src/screens/Tracking/PlantTracker';
 import AddPlants from './src/screens/Tracking/AddPlants';
