@@ -19,7 +19,7 @@ export default class TrackingHome extends Component {
     const { isModalVisible } = this.state;
     return (
       <View style={styles.container}>
-        <ModalWindow content="This is the content!" title="Add Plant" isVisible={isModalVisible} onDiscardModal={this.toggleModal} onConfirmPressed={() => Alert.alert('DDAENG!')} />
+        <ModalWindow contentType="adding-plants" title="Add Plant" isVisible={isModalVisible} onDiscardModal={this.toggleModal} onConfirmPressed={() => Alert.alert('DDAENG!')} />
         <PlantCardList listButtonMode={0} {...this.props} onAddPlantsPressed={this.toggleModal} />
       </View>
     );
