@@ -14,10 +14,8 @@ export default class PlantCard extends Component {
   };
 
   plantCardTouchedHandler = () => {
-    /* fix navigation, it crashes
     const { navigation } = this.props;
-    return navigation.navigate('Plant'); */
-    alert('Plant clicked!');
+    return navigation.navigate('PlantInfo');
   };
 
   buttonClickedHandler = () => {
@@ -105,7 +103,7 @@ export default class PlantCard extends Component {
           </View>
           <View style={styles.moreButtonContainer}>
             <MoreButton
-              onPress={this.buttonClickedHandler}
+              onPress={this.plantCardTouchedHandler}
               name={name}
               width={moreButtonWidth}
             />

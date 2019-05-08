@@ -20,9 +20,10 @@ import PlantTracker from './src/screens/Tracking/PlantTracker';
 import AddPlants from './src/screens/Tracking/AddPlants';
 import RemovePlants from './src/screens/Tracking/RemovePlants';
 import Community from './src/screens/Community/Community';
-import Plantpedia from './src/screens/Plantpedia/Plantpedia';
 import PlantImage from './src/components/PlantImage/PlantImage';
 import TabBar from './src/components/UI/TabBar/TabBar';
+import PlantpediaHome from './src/screens/Plantpedia/PlantpediaHome';
+import PlantInfo from './src/screens/Plantpedia/PlantInfo';
 
 const TrackingStack = createStackNavigator(
   {
@@ -54,11 +55,11 @@ const CommunityStack = createStackNavigator(
 
 const PlantpediaStack = createStackNavigator(
   {
-    Home: Plantpedia,
-    Details: PlantImage
+    PlantpediaHome,
+    PlantInfo
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'PlantpediaHome',
     defaultNavigationOptions: {
       headerBackTitle: null,
       headerTintColor: '#004734',
