@@ -24,19 +24,45 @@ export default class PlantCard extends Component {
   };
 
   render() {
-    const { name, width, style } = this.props;
+    const { name, width, size } = this.props;
 
+    const sizeOfPlant =
+      size === "small" ? (
+        <View style={styles.sizeImagesContainer}>
+          <View
+            style={[styles.circleSmall, { backgroundColor: "#145240" }]}
+          />
+          <View style={[styles.circleMedium]} />
+          <View style={[styles.circleLarge]} />
+        </View>
+      ) : size === "medium" ? (
+        <View style={styles.sizeImagesContainer}>
+          <View style={[styles.circleSmall]} />
+          <View
+            style={[styles.circleMedium, , { backgroundColor: "#145240" }]}
+          />
+          <View style={[styles.circleLarge]} />
+        </View>
+      ) : (
+        <View style={styles.sizeImagesContainer}>
+          <View style={[styles.circleSmall]} />
+          <View style={[styles.circleMedium]} />
+          <View
+            style={[styles.circleLarge, { backgroundColor: "#145240" }]}
+          />
+        </View>
+      );
     return (
       <TouchableOpacity onPress={this.plantCardTouchedHandler}>
-        <View style={[styles.container, { width }, style]}>
+        <View style={[styles.container, { width }]}>
           <View style={styles.plantNameContainer}>
             <BaseText
               style={{
-                fontFamily: "SFCompactDisplay-Bold",
+                fontFamily: 'SFCompactDisplay-Bold',
                 fontSize: 18,
-                color: "#145240",
+                color: '#145240',
                 letterSpacing: -0.41,
-                textAlign: "left"
+                textAlign: 'left'
               }}
             >
               {name}
@@ -46,36 +72,37 @@ export default class PlantCard extends Component {
             <PlantImage />
           </View>
           <View style={styles.plantInfoContainer}>
-            <View style={styles.seasonContainer}>
-              <Text style={styles.textContainer}>Season</Text>
-              <View style={styles.seasonImagesContainer}>
-                <Image
-                  source={require("../../assets/images/icon_sun.png")}
-                />
-              </View>
+            <View style={styles.sizeContainer}>
+              <Text style={styles.textContainer}>Size</Text>
+              {/* <View style={styles.sizeImagesContainer}>
+                <View style={styles.circleSmall} />
+                <View style={styles.circleMedium} />
+                <View style={styles.circleLarge} />
+              </View> */}
+              {sizeOfPlant}
             </View>
             <View style={styles.levelOfExpertiseContainer}>
               <Text style={styles.textContainer}>Level Of Expertise</Text>
               <View style={styles.expertiseImagesContainer}>
                 <Image
                   style={styles.expertiseImages}
-                  source={require("../../assets/images/icon_expertise_full.png")}
+                  source={require('../../assets/images/icon_expertise_full.png')}
                 />
                 <Image
                   style={styles.expertiseImages}
-                  source={require("../../assets/images/icon_expertise_full.png")}
+                  source={require('../../assets/images/icon_expertise_full.png')}
                 />
                 <Image
                   style={styles.expertiseImages}
-                  source={require("../../assets/images/icon_expertise.png")}
+                  source={require('../../assets/images/icon_expertise.png')}
                 />
                 <Image
                   style={styles.expertiseImages}
-                  source={require("../../assets/images/icon_expertise.png")}
+                  source={require('../../assets/images/icon_expertise.png')}
                 />
                 <Image
                   style={styles.expertiseImages}
-                  source={require("../../assets/images/icon_expertise.png")}
+                  source={require('../../assets/images/icon_expertise.png')}
                 />
               </View>
             </View>
@@ -99,6 +126,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 45,
     margin: 21,
     marginBottom: 20,
+    marginRight: 25,
     shadowColor: '#CFCFCF',
     shadowOffset: { width: -1, height: 3 },
     shadowOpacity: 0.61,
@@ -120,7 +148,7 @@ const styles = StyleSheet.create({
   plantInfoContainer: {
     width: '92.5%'
   },
-  seasonContainer: {
+  sizeContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -140,15 +168,38 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     fontFamily: 'SFCompactDisplay-Regular',
-    fontSize: 16,
+    fontSize: 15,
     color: '#4AA972'
   },
-  seasonImagesContainer: {
+  sizeImagesContainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     position: 'absolute',
-    left: 138
+    left: 155,
+    alignItems: 'flex-end',
+    width: 80
+  },
+  circleSmall: {
+    width: 14.10,
+    height: 14.10,
+    borderRadius: 7.05,
+    borderWidth: 2,
+    borderColor: '#145240'
+  },
+  circleMedium: {
+    width: 19.10,
+    height: 19.10,
+    borderRadius: 9.55,
+    borderWidth: 2,
+    borderColor: '#145240'
+  },
+  circleLarge: {
+    width: 22.44,
+    height: 22.44,
+    borderRadius: 11.22,
+    borderWidth: 2,
+    borderColor: '#145240'
   },
   expertiseImagesContainer: {
     display: 'flex',

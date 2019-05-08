@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     flexDirection: 'row',
-    width: 155
+    width: 155,
+    marginRight: 10
   },
   textInput: {
     borderBottomLeftRadius: 20,

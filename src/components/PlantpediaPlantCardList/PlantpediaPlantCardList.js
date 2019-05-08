@@ -16,12 +16,12 @@ export default class PlantpediaPlantCardList extends Component {
 
   state = {
     plantList: [
-      { id: 1, name: 'Onion' },
-      { id: 2, name: 'Beet' },
-      { id: 3, name: 'Strawberry' },
-      { id: 4, name: 'Onion' },
-      { id: 5, name: 'Beet' },
-      { id: 6, name: 'Strawberry' }
+      { id: 1, name: 'Onion', size: 'small' },
+      { id: 2, name: 'Beet', size: 'medium' },
+      { id: 3, name: 'Strawberry', size: 'large' },
+      { id: 4, name: 'Onion', size: 'medium' },
+      { id: 5, name: 'Beet', size: 'large' },
+      { id: 6, name: 'Strawberry', size: 'small' }
     ],
     searchQuery: ''
   };
@@ -55,14 +55,11 @@ export default class PlantpediaPlantCardList extends Component {
   // plantCardPressedhandler = () => this.  props.navigation.navigate('Details');
 
   render() {
-    const { listButtonMode } = this.props;
+    // const { listButtonMode } = this.props;
     const { plantList } = this.state;
     const { searchQuery } = this.state;
 
-    const plantCardWidth = listButtonMode === 0 ? 330 : 312;
-    const plantCardContainerOverride =
-      listButtonMode === 1 ? { opacity: 0.61 } : null;
-    
+    const plantCardWidth = 340;
 
     return (
         <ScrollView>
@@ -82,7 +79,7 @@ export default class PlantpediaPlantCardList extends Component {
                     <PlantpediaPlantCard
                       name={item.name}
                       width={plantCardWidth}
-                      style={plantCardContainerOverride}
+                      size={item.size}
                       {...this.props}
                     />
                   </View>
