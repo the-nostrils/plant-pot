@@ -1,11 +1,13 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-alert, no-undef */
 import React, { Component } from 'react';
 import {
- StyleSheet, TouchableOpacity, View, Text, Image 
+  StyleSheet, TouchableOpacity, View, Text, Image
 } from 'react-native';
 import PropTypes from 'prop-types';
 import PlantImage from '../PlantImage/PlantImage';
 import BaseText from '../UI/BaseText/BaseText';
+import MoreButton from '../UI/MoreButton/MoreButton';
 
 export default class PlantCard extends Component {
   state = {
@@ -18,40 +20,39 @@ export default class PlantCard extends Component {
     alert('Plant clicked!');
   };
 
-  toggleSwitchHandler = () => {
-    const { isTrackingModeAuto } = this.state;
-    this.setState({ isTrackingModeAuto: !isTrackingModeAuto });
+  buttonClickedHandler = () => {
+    alert('Button clicked!');
   };
 
   render() {
     const { name, width, size } = this.props;
+    const moreButtonWidth = 82.57;
 
-    const sizeOfPlant =
-      size === "small" ? (
-        <View style={styles.sizeImagesContainer}>
-          <View
-            style={[styles.circleSmall, { backgroundColor: "#145240" }]}
-          />
-          <View style={[styles.circleMedium]} />
-          <View style={[styles.circleLarge]} />
-        </View>
-      ) : size === "medium" ? (
-        <View style={styles.sizeImagesContainer}>
-          <View style={[styles.circleSmall]} />
-          <View
-            style={[styles.circleMedium, , { backgroundColor: "#145240" }]}
-          />
-          <View style={[styles.circleLarge]} />
-        </View>
-      ) : (
-        <View style={styles.sizeImagesContainer}>
-          <View style={[styles.circleSmall]} />
-          <View style={[styles.circleMedium]} />
-          <View
-            style={[styles.circleLarge, { backgroundColor: "#145240" }]}
-          />
-        </View>
-      );
+    const sizeOfPlant = size === 'small' ? (
+      <View style={styles.sizeImagesContainer}>
+        <View
+          style={[styles.circleSmall, { backgroundColor: '#145240' }]}
+        />
+        <View style={[styles.circleMedium]} />
+        <View style={[styles.circleLarge]} />
+      </View>
+    ) : size === 'medium' ? (
+      <View style={styles.sizeImagesContainer}>
+        <View style={[styles.circleSmall]} />
+        <View
+          style={[styles.circleMedium, { backgroundColor: '#145240' }]}
+        />
+        <View style={[styles.circleLarge]} />
+      </View>
+    ) : (
+      <View style={styles.sizeImagesContainer}>
+        <View style={[styles.circleSmall]} />
+        <View style={[styles.circleMedium]} />
+        <View
+          style={[styles.circleLarge, { backgroundColor: '#145240' }]}
+        />
+      </View>
+    );
     return (
       <TouchableOpacity onPress={this.plantCardTouchedHandler}>
         <View style={[styles.container, { width }]}>
@@ -69,16 +70,11 @@ export default class PlantCard extends Component {
             </BaseText>
           </View>
           <View style={styles.plantImageContainer}>
-            <PlantImage />
+            <PlantImage style={{ width: 80.67, height: 80.67 }} />
           </View>
           <View style={styles.plantInfoContainer}>
             <View style={styles.sizeContainer}>
               <Text style={styles.textContainer}>Size</Text>
-              {/* <View style={styles.sizeImagesContainer}>
-                <View style={styles.circleSmall} />
-                <View style={styles.circleMedium} />
-                <View style={styles.circleLarge} />
-              </View> */}
               {sizeOfPlant}
             </View>
             <View style={styles.levelOfExpertiseContainer}>
@@ -107,6 +103,13 @@ export default class PlantCard extends Component {
               </View>
             </View>
           </View>
+          <View style={styles.moreButtonContainer}>
+            <MoreButton
+              onPress={this.buttonClickedHandler}
+              name={name}
+              width={moreButtonWidth}
+            />
+          </View>
         </View>
       </TouchableOpacity>
     );
@@ -116,8 +119,6 @@ export default class PlantCard extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 0,
-    // width: '100%',
-    // width: 330.13,
     height: 118.01,
     backgroundColor: 'rgba(255, 255, 255, 0.61)',
     borderBottomLeftRadius: 80,
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
     right: 0
   },
   plantInfoContainer: {
-    width: '92.5%'
+    width: '92.5%',
   },
   sizeContainer: {
     display: 'flex',
@@ -212,7 +213,14 @@ const styles = StyleSheet.create({
     width: 25,
     height: 35
   },
-  moreInfoButtonContainer: {}
+  moreButtonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    position: 'absolute',
+    right: 0,
+    bottom: 0
+  }
 });
 
 PlantCard.propTypes = {
