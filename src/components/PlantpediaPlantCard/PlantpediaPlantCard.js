@@ -2,7 +2,7 @@
 /* eslint-disable no-alert, no-undef */
 import React, { Component } from 'react';
 import {
-  StyleSheet, TouchableOpacity, View, Text, Image
+  StyleSheet, View, Text, Image
 } from 'react-native';
 import PropTypes from 'prop-types';
 import PlantImage from '../PlantImage/PlantImage';
@@ -13,13 +13,9 @@ export default class PlantCard extends Component {
   state = {
   };
 
-  plantCardTouchedHandler = () => {
+  buttonPressedHandler = () => {
     const { navigation } = this.props;
     return navigation.navigate('PlantInfo');
-  };
-
-  buttonClickedHandler = () => {
-    alert('Button clicked!');
   };
 
   render() {
@@ -52,7 +48,7 @@ export default class PlantCard extends Component {
       </View>
     );
     return (
-      <TouchableOpacity onPress={this.plantCardTouchedHandler}>
+      <View>
         <View style={[styles.container, { width }]}>
           <View style={styles.plantNameContainer}>
             <BaseText
@@ -103,13 +99,13 @@ export default class PlantCard extends Component {
           </View>
           <View style={styles.moreButtonContainer}>
             <MoreButton
-              onPress={this.plantCardTouchedHandler}
+              onPress={this.buttonPressedHandler}
               name={name}
               width={moreButtonWidth}
             />
           </View>
         </View>
-      </TouchableOpacity>
+      </View>
     );
   }
 }
