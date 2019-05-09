@@ -1,212 +1,91 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-alert, no-undef */
 import React, { Component } from 'react';
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import {
+  StyleSheet, View, Text, Image
+} from 'react-native';
 import PropTypes from 'prop-types';
-
-import PlantImage from '../../components/PlantImage/PlantImage';
-import MenuButton from '../../components/UI/MenuButton/MenuButton';
+import PlantpediaPlantImage from '../../components/PlantpediaPlantImage/PlantpediaPlantImage';
 import BaseText from '../../components/UI/BaseText/BaseText';
+import MoreButton from '../../components/UI/MoreButton/MoreButton';
+import LevelOfExpertise from '../../components/LevelOfExpertise/LevelOfExpertise';
 
-export default class Plant extends Component {
-  static navigationOptions = {
-    title: 'Onion',
-    headerStyle: {
-      height: 80
-    },
-    headerTitleStyle: {
-      fontFamily: 'SFCompactDisplay-Semibold',
-      fontSize: 34,
-      color: '#112300',
-      letterSpacing: -0.41,
-      marginBottom: 8
-    }
-  };
-
+export default class PlantCard extends Component {
   state = {
-    isSettingsMenuOpen: false,
-    isTrackingMenuOpen: false
-  };
-
-  trackingSettingsPressedHandler = () => {
-    const { isSettingsMenuOpen } = this.state;
-    this.setState({ isSettingsMenuOpen: !isSettingsMenuOpen });
-  };
-
-  trackingMenuPressedHandler = () => {
-    const { isTrackingMenuOpen } = this.state;
-    this.setState({ isTrackingMenuOpen: !isTrackingMenuOpen });
-  };
-
-  menuButtonPressedHandler = () => {
-    const { navigation } = this.props;
-
-    navigation.navigate('PlantTracker');
   };
 
   render() {
-    const { isSettingsMenuOpen, isTrackingMenuOpen } = this.state;
+    const { navigation } = this.props;
+    const name = navigation.getParam('name');
+    const size = navigation.getParam('size');
+    const levelOfExpertise = navigation.getParam('levelOfExpertise');
+    const season = navigation.getParam('season');
+    const plantTime = navigation.getParam('plantTime');
+    const harvestTime = navigation.getParam('harvestTime');
+    const family = navigation.getParam('family');
+    const waterNeedLevel = navigation.getParam('waterNeedLevel');
+    const commonProblems = navigation.getParam('commonProblems');
+    const exposure = navigation.getParam('exposure');
+    const climate = navigation.getParam('climate');
+    const width = navigation.getParam('width');
 
-    const settingsMenu = isSettingsMenuOpen ? (
-      <View style={styles.menuContainer}>
-        <View style={styles.mainButtonContainer}>
-          <MenuButton
-            iconName="tracking-settings"
-            circleStyle={{ width: 52.93, height: 52.93, backgroundColor: '#FFFFFF' }}
-            iconStyle={{ width: 36.39, height: 36.39 }}
-            onPressed={this.trackingSettingsPressedHandler}
-          />
-        </View>
-        <View style={styles.nestedButtonsContainer}>
-          <MenuButton
-            iconName="edit-name"
-            circleStyle={{ width: 38, height: 38, backgroundColor: '#FFFFFF' }}
-            iconStyle={{ width: 22, height: 22 }}
-            onPressed={this.menuButtonPressedHandler}
-          />
-          <MenuButton
-            iconName="photo"
-            circleStyle={{ width: 38, height: 38, backgroundColor: '#FFFFFF' }}
-            iconStyle={{ width: 22, height: 22 }}
-            onPressed={this.menuButtonPressedHandler}
-          />
-        </View>
+
+    const sizeOfPlant = size === 'small' ? (
+      <View style={styles.sizeImagesContainer}>
+        <View
+          style={[styles.circleSmall, { backgroundColor: '#145240' }]}
+        />
+        <View style={[styles.circleMedium]} />
+        <View style={[styles.circleLarge]} />
+      </View>
+    ) : size === 'medium' ? (
+      <View style={styles.sizeImagesContainer}>
+        <View style={[styles.circleSmall]} />
+        <View
+          style={[styles.circleMedium, { backgroundColor: '#145240' }]}
+        />
+        <View style={[styles.circleLarge]} />
       </View>
     ) : (
-      <View style={styles.menuContainer}>
-        <View style={styles.mainButtonContainer}>
-          <MenuButton
-            iconName="tracking-settings"
-            circleStyle={{ width: 54.93, height: 54.93, backgroundColor: '#FFFFFF' }}
-            iconStyle={{ width: 38.39, height: 38.39 }}
-            onPressed={this.trackingSettingsPressedHandler}
-          />
-        </View>
+      <View style={styles.sizeImagesContainer}>
+        <View style={[styles.circleSmall]} />
+        <View style={[styles.circleMedium]} />
+        <View
+          style={[styles.circleLarge, { backgroundColor: '#145240' }]}
+        />
       </View>
     );
-
-    const trackingMenu = isTrackingMenuOpen ? (
-      <View style={[styles.menuContainer, styles.trackingMenuContainer]}>
-        <View style={styles.mainButtonContainer}>
-          <MenuButton
-            circleStyle={{ width: 54, height: 54, backgroundColor: '#FFFFFF' }}
-            iconStyle={{
-              width: 19,
-              height: 19,
-              borderBottomLeftRadius: 240,
-              borderTopLeftRadius: 240,
-              borderBottomRightRadius: 240,
-              borderTopRightRadius: 240,
-              backgroundColor: '#4DAD75'
-            }}
-            onPressed={this.trackingMenuPressedHandler}
-          />
-        </View>
-        <View style={[styles.nestedButtonsContainer, styles.trackingButtonsNesting]}>
-          <View style={styles.button}>
-            <MenuButton
-              buttonName="Irrigate"
-              iconName="irrigate"
-              circleStyle={{ width: 56, height: 56, backgroundColor: '#FFFFFF' }}
-              iconStyle={{ width: 23, height: 34 }}
-              onPressed={this.menuButtonPressedHandler}
-            />
-            <BaseText
-              style={{
-                fontFamily: 'SFCompactDisplay-Regular',
-                fontSize: 15,
-                color: '#145240',
-                letterSpacing: -0.24,
-                textAlign: 'left',
-                opacity: 0.44,
-                marginTop: 7
-              }}
-            >
-              Irrigate
-            </BaseText>
-          </View>
-          <View style={styles.button}>
-            <MenuButton
-              buttonName="Fertilize"
-              iconName="fertilize"
-              circleStyle={{
-                width: 56,
-                height: 56,
-                backgroundColor: '#FFFFFF',
-                top: 50
-              }}
-              iconStyle={{ width: 23, height: 24 }}
-              onPressed={this.menuButtonPressedHandler}
-            />
-            <BaseText
-              style={{
-                fontFamily: 'SFCompactDisplay-Regular',
-                fontSize: 15,
-                color: '#145240',
-                letterSpacing: -0.24,
-                textAlign: 'left',
-                opacity: 0.44,
-                top: 50,
-                marginTop: 7
-              }}
-            >
-              Fertilize
-            </BaseText>
-          </View>
-          <View style={styles.button}>
-            <MenuButton
-              iconName="prune"
-              circleStyle={{ width: 56, height: 56, backgroundColor: '#FFFFFF' }}
-              iconStyle={{ width: 23, height: 35 }}
-              onPressed={this.menuButtonPressedHandler}
-            />
-            <BaseText
-              style={{
-                fontFamily: 'SFCompactDisplay-Regular',
-                fontSize: 15,
-                color: '#145240',
-                letterSpacing: -0.24,
-                textAlign: 'left',
-                opacity: 0.44,
-                marginTop: 7
-              }}
-            >
-              Prune
-            </BaseText>
-          </View>
-        </View>
-      </View>
-    ) : (
-      <View style={[styles.menuContainer, styles.trackingMenuContainer]}>
-        <View style={styles.mainButtonContainer}>
-          <MenuButton
-            circleStyle={{ width: 87.06, height: 87.06, backgroundColor: '#FFFFFF' }}
-            iconStyle={{
-              width: 31.57,
-              height: 31.57,
-              borderBottomLeftRadius: 240,
-              borderTopLeftRadius: 240,
-              borderBottomRightRadius: 240,
-              borderTopRightRadius: 240,
-              backgroundColor: '#4DAD75'
-            }}
-            onPressed={this.trackingMenuPressedHandler}
-          />
-        </View>
-      </View>
-    );
-
     return (
-      <View style={styles.container}>
-        <ImageBackground
-          source={require('../../assets/images/background_plant.png')}
-          style={{ width: '100%', height: '100%'}}
-        >
-          <View style={styles.upperPart}>
-            <PlantImage style={styles.plantImage} />
-            {settingsMenu}
+      <View>
+        <View style={[styles.container, { width }]}>
+          <View style={styles.plantNameContainer}>
+            <BaseText
+              style={{
+                fontFamily: 'SFCompactDisplay-Bold',
+                fontSize: 18,
+                color: '#145240',
+                letterSpacing: -0.41,
+                textAlign: 'left'
+              }}
+            >
+              {name}
+            </BaseText>
           </View>
-          <View style={styles.lowerPart}>{trackingMenu}</View>
-        </ImageBackground>
+          <View style={styles.plantImageContainer}>
+            <PlantpediaPlantImage name={name} style={{ width: 90.51, height: 90.51 }} />
+          </View>
+          <View style={styles.plantInfoContainer}>
+            <View style={styles.sizeContainer}>
+              <Text style={styles.textContainer}>Size</Text>
+              {sizeOfPlant}
+            </View>
+            <LevelOfExpertise levelOfExpertise={levelOfExpertise} iconSize={{ width: 27, height: 50 }} />
+          </View>
+          <View style={styles.moreButtonContainer}>
+            <Text>{name}</Text>
+            <Text>{climate}</Text>
+          </View>
+        </View>
       </View>
     );
   }
@@ -214,52 +93,93 @@ export default class Plant extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#F5F5F5'
+    flex: 0,
+    height: 550.44,
+    backgroundColor: 'rgba(255, 255, 255, 0.61)',
+    borderBottomLeftRadius: 80,
+    borderTopLeftRadius: 80,
+    borderBottomRightRadius: 0,
+    borderTopRightRadius: 45,
+    margin: 21,
+    marginBottom: 20,
+    marginRight: 25,
+    marginTop: 47.4,
+    shadowColor: '#CFCFCF',
+    shadowOffset: { width: -1, height: 3 },
+    shadowOpacity: 0.61,
+    shadowRadius: 13
   },
-  upperPart: {
-    flex: 0.6,
-    alignItems: 'center',
-    marginTop: 65,
-    paddingBottom: 45
+  plantNameContainer: {
+    position: 'absolute',
+    width: 240,
+    height: 25,
+    left: 36,
+    top: 9,
+    flex: 1
   },
-  lowerPart: {
-    flex: 0.45,
-    justifyContent: 'center',
-    alignItems: 'center',
-    overflow: 'hidden'
+  plantImageContainer: {
+    position: 'absolute',
+    top: -30,
+    right: 0
   },
-  menuContainer: {
-    width: '40%',
-    marginTop: 70
+  plantInfoContainer: {
+    width: '92.5%',
   },
-  trackingMenuContainer: {
-    width: '50%',
-    marginTop: 0
-  },
-  mainButtonContainer: {
-    alignItems: 'center'
-  },
-  nestedButtonsContainer: {
+  sizeContainer: {
+    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    top: -10
+    alignItems: 'center',
+    position: 'absolute',
+    left: 36.54,
+    top: 45.2
   },
-  trackingButtonsNesting: {
-    top: -30
+  textContainer: {
+    fontFamily: 'SFCompactDisplay-Regular',
+    fontSize: 15,
+    color: '#4AA972'
   },
-  plantImage: {
-    width: 153.36,
-    height: 153.36,
-    shadowColor: '#000000',
-    shadowOffset: { width: -10, height: 15 },
-    shadowOpacity: 0.16,
-    shadowRadius: 11
+  sizeImagesContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    position: 'absolute',
+    left: 155,
+    alignItems: 'flex-end',
+    width: 80
   },
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center'
+  circleSmall: {
+    width: 17,
+    height: 17,
+    borderRadius: 8.5,
+    borderWidth: 2,
+    borderColor: '#145240'
+  },
+  circleMedium: {
+    width: 23,
+    height: 23,
+    borderRadius: 11.5,
+    borderWidth: 2,
+    borderColor: '#145240'
+  },
+  circleLarge: {
+    width: 27,
+    height: 27,
+    borderRadius: 13.5,
+    borderWidth: 2,
+    borderColor: '#145240'
+  },
+  moreButtonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    position: 'absolute',
+    right: 0,
+    bottom: 0
   }
 });
 
-Plant.propTypes = {};
+PlantCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired
+};

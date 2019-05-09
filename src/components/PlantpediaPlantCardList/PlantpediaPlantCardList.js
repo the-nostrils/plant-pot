@@ -160,9 +160,17 @@ export default class PlantpediaPlantCardList extends Component {
                 >
                   <PlantpediaPlantCard
                     name={item.name}
-                    width={plantCardWidth}
                     size={item.size}
                     levelOfExpertise={item.levelOfExpertise}
+                    season={item.season}
+                    plantTime={item.plantTime}
+                    harvestTime={item.harvestTime}
+                    family={item.family}
+                    waterNeedLevel={item.waterNeedLevel}
+                    commonProblems={item.commonProblems}
+                    exposure={item.exposure}
+                    climate={item.climate}
+                    width={plantCardWidth}
                     {...this.props}
                   />
                 </View>

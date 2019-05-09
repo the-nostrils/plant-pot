@@ -15,8 +15,8 @@ export default class PlantCard extends Component {
   };
 
   buttonPressedHandler = () => {
-    const { navigation } = this.props;
-    return navigation.navigate('PlantInfo');
+    const { navigation, name, size, levelOfExpertise, season, plantTime, harvestTime, family, waterNeedLevel, commonProblems, exposure, climate } = this.props;
+    return navigation.navigate('PlantInfo', { name, size, levelOfExpertise, season, plantTime, harvestTime, family, waterNeedLevel, commonProblems, exposure, climate, width: 368.7 });
   };
 
   render() {
@@ -131,15 +131,6 @@ const styles = StyleSheet.create({
     left: 36.54,
     top: 45.2
   },
-  levelOfExpertiseContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    position: 'absolute',
-    left: 36.54,
-    top: 70.77
-  },
   textContainer: {
     fontFamily: 'SFCompactDisplay-Regular',
     fontSize: 15,
@@ -174,17 +165,6 @@ const styles = StyleSheet.create({
     borderRadius: 11.22,
     borderWidth: 2,
     borderColor: '#145240'
-  },
-  expertiseImagesContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    position: 'absolute',
-    left: 135
-  },
-  expertiseImages: {
-    width: 25,
-    height: 35
   },
   moreButtonContainer: {
     display: 'flex',
