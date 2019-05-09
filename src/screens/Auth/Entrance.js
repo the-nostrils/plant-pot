@@ -11,6 +11,8 @@ export default class Entrance extends Component {
   state = {};
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <View style={styles.container}>
         <View style={styles.logoContainer}>
@@ -125,7 +127,7 @@ Your Plant
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.props.navigation.navigate('App')}
+            onPress={() => navigation.navigate('Register', { phase: 0 })}
           >
             <BaseText
               style={{
@@ -141,7 +143,7 @@ Your Plant
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.props.navigation.navigate('App')}
+            onPress={() => navigation.navigate('Register', { phase: 2 })}
           >
             <BaseText
               style={{
