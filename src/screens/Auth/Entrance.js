@@ -19,6 +19,8 @@ export default class Entrance extends Component {
           <AppLogo />
         </View>
         <Swiper
+          autoplay
+          autoplayTimeout={4}
           style={styles.swiperContainer}
           paginationStyle={{ margin: 45 }}
           dotStyle={{
