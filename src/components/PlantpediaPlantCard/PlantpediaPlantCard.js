@@ -5,7 +5,7 @@ import {
   StyleSheet, View, Text, Image
 } from 'react-native';
 import PropTypes from 'prop-types';
-import PlantImage from '../PlantImage/PlantImage';
+import PlantpediaPlantImage from '../PlantpediaPlantImage/PlantpediaPlantImage';
 import BaseText from '../UI/BaseText/BaseText';
 import MoreButton from '../UI/MoreButton/MoreButton';
 
@@ -64,7 +64,7 @@ export default class PlantCard extends Component {
             </BaseText>
           </View>
           <View style={styles.plantImageContainer}>
-            <PlantImage style={{ width: 80.67, height: 80.67 }} />
+            <PlantpediaPlantImage name={name} style={{ width: 80.67, height: 80.67 }} />
           </View>
           <View style={styles.plantInfoContainer}>
             <View style={styles.sizeContainer}>
