@@ -22,6 +22,7 @@ import RemovePlants from './src/screens/Tracking/RemovePlants';
 import Community from './src/screens/Community/Community';
 import Plantpedia from './src/screens/Plantpedia/Plantpedia';
 import Entrance from './src/screens/Auth/Entrance';
+import SignUp from './src/screens/Auth/SignUp';
 import PlantImage from './src/components/PlantImage/PlantImage';
 import TabBar from './src/components/UI/TabBar/TabBar';
 
@@ -63,7 +64,8 @@ const PlantpediaStack = createStackNavigator(
 
 const AuthStack = createStackNavigator(
   {
-    Home: Entrance
+    Home: Entrance,
+    Register: SignUp
   },
   {
     initialRouteName: 'Home',
