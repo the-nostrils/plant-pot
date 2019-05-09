@@ -10,16 +10,18 @@ import React, { Component } from 'react';
 import {
   createStackNavigator,
   createMaterialTopTabNavigator,
-  createAppContainer
+  createAppContainer,
+  createSwitchNavigator
 } from 'react-navigation';
 
 import TrackingHome from './src/screens/Tracking/TrackingHome';
-// import ModalWindow from './src/components/UI/Modal/ModalWindow';
 import Plant from './src/screens/Tracking/Plant';
 import PlantTracker from './src/screens/Tracking/PlantTracker';
 import AddPlants from './src/screens/Tracking/AddPlants';
 import RemovePlants from './src/screens/Tracking/RemovePlants';
 import Community from './src/screens/Community/Community';
+import Entrance from './src/screens/Auth/Entrance';
+import SignUp from './src/screens/Auth/SignUp';
 import PlantImage from './src/components/PlantImage/PlantImage';
 import TabBar from './src/components/UI/TabBar/TabBar';
 import PlantpediaHome from './src/screens/Plantpedia/PlantpediaHome';
@@ -39,7 +41,7 @@ const TrackingStack = createStackNavigator(
       headerBackTitle: null,
       headerTintColor: '#004734',
       backgroundColor: '#F5F5F5',
-      headerForceInset: { top: 'never', bottom: 'never' },
+      // headerForceInset: { top: 'never', bottom: 'never' },
       headerTransparent: true
     }
   }
@@ -70,15 +72,42 @@ const PlantpediaStack = createStackNavigator(
   }
 );
 
-export default createAppContainer(
-  createMaterialTopTabNavigator(
-    {
-      Tracking: { screen: TrackingStack },
-      Community: { screen: CommunityStack },
-      Plantpedia: { screen: PlantpediaStack }
-    },
-    {
-      tabBarComponent: TabBar
+const AuthStack = createStackNavigator(
+  {
+    Home: Entrance,
+    Register: SignUp
+  },
+  {
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      headerBackTitle: null,
+      headerTintColor: '#004734',
+      backgroundColor: '#F5F5F5',
+      // headerForceInset: { top: 'never', bottom: 'never' },
+      headerTransparent: true
     }
-  )
+  }
 );
+
+const AppTabNavigator = createMaterialTopTabNavigator(
+  {
+    Tracking: { screen: TrackingStack },
+    Community: { screen: CommunityStack },
+    Plantpedia: { screen: PlantpediaStack }
+  },
+  {
+    tabBarComponent: TabBar
+  }
+);
+
+const SwitchNavigator = createSwitchNavigator(
+  {
+    App: AppTabNavigator,
+    Auth: AuthStack
+  },
+  {
+    initialRouteName: 'Auth'
+  }
+);
+
+export default createAppContainer(SwitchNavigator);
