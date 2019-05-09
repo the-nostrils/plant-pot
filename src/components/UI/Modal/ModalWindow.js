@@ -1,21 +1,90 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  Alert, StyleSheet, TouchableOpacity, View
+} from 'react-native';
 import Modal from 'react-native-modal';
+import SearchableDropdown from 'react-native-searchable-dropdown';
 import PropTypes from 'prop-types';
 
 import BaseText from '../BaseText/BaseText';
+import MagnifierIcon from '../../../assets/images/icon_magnifier.png';
+
+const plants = [
+  {
+    id: 1,
+    name: 'JavaScript'
+  },
+  {
+    id: 2,
+    name: 'Java'
+  },
+  {
+    id: 3,
+    name: 'Ruby'
+  },
+  {
+    id: 4,
+    name: 'React Native'
+  },
+  {
+    id: 5,
+    name: 'PHP'
+  },
+  {
+    id: 6,
+    name: 'Python'
+  },
+  {
+    id: 7,
+    name: 'Go'
+  },
+  {
+    id: 8,
+    name: 'Swift'
+  }
+];
 
 export default class ModalWindow extends Component {
   state = {};
 
-  // setModalVisible(visible) {
-  //   this.setState({ modalVisible: visible });
-  // }
-
   render() {
     const {
-      content, isVisible, onDiscardModal, onConfirmPressed, title
+      contentType, isVisible, onDiscardModal, onConfirmPressed, title
     } = this.props;
+
+    const addingPlants = (
+      <SearchableDropdown
+        onTextChange={(text) => Alert.alert(text)}
+        onItemSelect={plant => Alert.alert(JSON.stringify(plant))}
+        containerStyle={styles.searchableDropdownContainer}
+        textInputStyle={styles.searchableDropdownTextInput}
+        itemStyle={{
+          padding: 10,
+          marginTop: 2,
+          backgroundColor: '#ddd',
+          borderColor: '#bbb',
+          borderWidth: 1,
+          borderRadius: 5
+        }}
+        itemTextStyle={{ color: '#222' }}
+        itemsContainerStyle={styles.searchableDropdownItemsContainer}
+        items={plants}
+        placeholder="Let's find your plant"
+        resetValue={false}
+        underlineColorAndroid="transparent"
+      />
+    );
+
+    let content;
+
+    switch (contentType) {
+      case 'adding-plants':
+        content = addingPlants;
+        break;
+      default:
+        content = <BaseText>Content type is missing!</BaseText>;
+        break;
+    }
 
     return (
       <Modal isVisible={isVisible}>
@@ -33,9 +102,7 @@ export default class ModalWindow extends Component {
               {title}
             </BaseText>
           </View>
-          <View style={styles.contentContainer}>
-            <BaseText>{content}</BaseText>
-          </View>
+          <View style={styles.contentContainer}>{content}</View>
           <View style={styles.buttonsContainer}>
             <TouchableOpacity style={styles.button} onPress={onDiscardModal}>
               <BaseText
@@ -76,7 +143,8 @@ export default class ModalWindow extends Component {
 const styles = StyleSheet.create({
   modalContainer: {
     width: 342,
-    height: 250,
+    minHeight: 250,
+    maxHeight: 410,
     justifyContent: 'space-between',
     borderBottomLeftRadius: 80,
     borderTopLeftRadius: 80,
@@ -94,6 +162,33 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     alignItems: 'center'
+  },
+  searchableDropdownContainer: {
+    width: 270,
+    minHeight: 45,
+    maxHeight: 220,
+    borderBottomLeftRadius: 23,
+    borderTopLeftRadius: 23,
+    borderBottomRightRadius: 23,
+    borderTopRightRadius: 23,
+    borderWidth: 1,
+    borderColor: '#FFFFFF',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)'
+  },
+  searchableDropdownTextInput: {
+    width: '80%',
+    padding: 16,
+    paddingLeft: 27,
+    fontFamily: 'SFCompactDisplay-Regular',
+    fontSize: 13,
+    color: 'rgba(0, 71, 52, 0.29)',
+    letterSpacing: -0.08,
+    textAlign: 'left'
+  },
+  searchableDropdownItemsContainer: {
+    borderWidth: 1,
+    borderColor: 'red',
+    maxHeight: 175
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -120,5 +215,5 @@ ModalWindow.propTypes = {
   onDiscardModal: PropTypes.func.isRequired,
   onConfirmPressed: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired
+  contentType: PropTypes.string.isRequired
 };
