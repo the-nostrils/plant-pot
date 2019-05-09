@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import PlantpediaPlantImage from '../PlantpediaPlantImage/PlantpediaPlantImage';
 import BaseText from '../UI/BaseText/BaseText';
 import MoreButton from '../UI/MoreButton/MoreButton';
+import LevelOfExpertise from '../LevelOfExpertise/LevelOfExpertise';
 
 export default class PlantCard extends Component {
   state = {
@@ -19,7 +20,9 @@ export default class PlantCard extends Component {
   };
 
   render() {
-    const { name, width, size } = this.props;
+    const {
+      name, width, size, levelOfExpertise
+    } = this.props;
     const moreButtonWidth = 82.57;
 
     const sizeOfPlant = size === 'small' ? (
@@ -71,31 +74,7 @@ export default class PlantCard extends Component {
               <Text style={styles.textContainer}>Size</Text>
               {sizeOfPlant}
             </View>
-            <View style={styles.levelOfExpertiseContainer}>
-              <Text style={styles.textContainer}>Level Of Expertise</Text>
-              <View style={styles.expertiseImagesContainer}>
-                <Image
-                  style={styles.expertiseImages}
-                  source={require('../../assets/images/icon_expertise_full.png')}
-                />
-                <Image
-                  style={styles.expertiseImages}
-                  source={require('../../assets/images/icon_expertise_full.png')}
-                />
-                <Image
-                  style={styles.expertiseImages}
-                  source={require('../../assets/images/icon_expertise.png')}
-                />
-                <Image
-                  style={styles.expertiseImages}
-                  source={require('../../assets/images/icon_expertise.png')}
-                />
-                <Image
-                  style={styles.expertiseImages}
-                  source={require('../../assets/images/icon_expertise.png')}
-                />
-              </View>
-            </View>
+            <LevelOfExpertise levelOfExpertise={levelOfExpertise} />
           </View>
           <View style={styles.moreButtonContainer}>
             <MoreButton

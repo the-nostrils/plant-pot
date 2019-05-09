@@ -162,6 +162,7 @@ export default class PlantpediaPlantCardList extends Component {
                     name={item.name}
                     width={plantCardWidth}
                     size={item.size}
+                    levelOfExpertise={item.levelOfExpertise}
                     {...this.props}
                   />
                 </View>
