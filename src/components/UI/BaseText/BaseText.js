@@ -2,7 +2,7 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
-const baseText = props => (
+const BaseText = props => (
   <Text {...props} style={[styles.baseText, props.style]}>
     {props.children}
   </Text>
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default baseText;
+export default BaseText;
