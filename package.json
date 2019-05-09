@@ -16,6 +16,7 @@
     "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-native": "^0.59.4",
+    "react-native-check-box": "^2.1.7",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-modal": "^10.0.0",
     "react-native-searchable-dropdown": "^1.0.6",
