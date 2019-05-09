@@ -38,7 +38,7 @@ const TrackingStack = createStackNavigator(
       headerBackTitle: null,
       headerTintColor: '#004734',
       backgroundColor: '#F5F5F5',
-      headerForceInset: { top: 'never', bottom: 'never' },
+      // headerForceInset: { top: 'never', bottom: 'never' },
       headerTransparent: true
     }
   }
