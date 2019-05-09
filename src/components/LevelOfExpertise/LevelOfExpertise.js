@@ -8,17 +8,17 @@ import iconExpertiseNull from '../../assets/images/icon_expertise.png';
 
 
 const LevelOfExpertise = (props) => {
-  const { levelOfExpertise } = props;
+  const { levelOfExpertise, iconSize } = props;
   let expertiseField;
   const CustomTagFull = () => (
     <Image
-      style={styles.expertiseImages}
+      style={[styles.expertiseImages, iconSize]}
       source={iconExpertiseFull}
     />
   );
   const CustomTagNull = () => (
     <Image
-      style={styles.expertiseImages}
+      style={[styles.expertiseImages, iconSize]}
       source={iconExpertiseNull}
     />
   );
@@ -81,7 +81,15 @@ const LevelOfExpertise = (props) => {
       );
       break;
     default:
-      expertiseField = <View style={styles.expertiseImagesContainer} />;
+      expertiseField = (
+        <View style={styles.expertiseImagesContainer}>
+          <CustomTagFull />
+          <CustomTagNull />
+          <CustomTagNull />
+          <CustomTagNull />
+          <CustomTagNull />
+        </View>
+      );
       break;
   }
 
@@ -116,7 +124,7 @@ const styles = StyleSheet.create({
     left: 135
   },
   expertiseImages: {
-    width: 25,
+    width: 21,
     height: 35
   }
 });
