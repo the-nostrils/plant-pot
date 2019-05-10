@@ -8,6 +8,7 @@ import {
 import PlantpediaPlantImage from '../../components/PlantpediaPlantImage/PlantpediaPlantImage';
 import BaseText from '../../components/UI/BaseText/BaseText';
 import LevelOfExpertise from '../../components/LevelOfExpertise/LevelOfExpertise';
+import WaterNeedLevel from '../../components/WaterNeedLevel/WaterNeedLevel';
 
 export default class PlantCard extends Component {
   state = {
@@ -89,9 +90,7 @@ export default class PlantCard extends Component {
               <Text style={styles.textContainer}>Size</Text>
               {sizeOfPlant}
             </View>
-            <View style={styles.levelOfExpertiseContainer}>
-              <Text>{waterNeedLevel}</Text>
-            </View>
+            <WaterNeedLevel waterNeedLevel={waterNeedLevel} iconSize={{ width: 35, height: 70 }} />
             <View style={styles.levelOfExpertiseContainer}>
               <Text>{commonProblems}</Text>
             </View>
@@ -150,10 +149,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    position: 'absolute',
-    left: 36.54,
-    top: 45.2
+    alignItems: 'center'
   },
   textContainer: {
     fontFamily: 'SFCompactDisplay-Regular',
