@@ -48,10 +48,17 @@ const TrackingStack = createStackNavigator(
 
 const CommunityStack = createStackNavigator(
   {
-    Home: Community,
-    Details: PlantImage
+    Home: Community
   },
-  { initialRouteName: 'Home' }
+  {
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      headerBackTitle: null,
+      headerTintColor: '#004734',
+      backgroundColor: '#F5F5F5',
+      headerTransparent: true
+    }
+  }
 );
 
 const PlantpediaStack = createStackNavigator(
