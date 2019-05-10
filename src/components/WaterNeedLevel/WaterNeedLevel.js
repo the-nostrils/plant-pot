@@ -3,8 +3,8 @@ import {
   StyleSheet, View, Text, Image
 } from 'react-native';
 import PropTypes from 'prop-types';
-import iconExpertiseFull from '../../assets/images/icon_expertise_full.png';
-import iconExpertiseNull from '../../assets/images/icon_expertise.png';
+import iconWaterNeedLevelFull from '../../assets/images/icon_waterNeedLevel_full.png';
+import iconWaterNeedLevelNull from '../../assets/images/icon_waterNeedLevel.png';
 
 
 const WaterNeedLevel = (props) => {
@@ -13,13 +13,13 @@ const WaterNeedLevel = (props) => {
   const CustomTagFull = () => (
     <Image
       style={[styles.waterNeedLevelImages, iconSize]}
-      source={iconExpertiseFull}
+      source={iconWaterNeedLevelFull}
     />
   );
   const CustomTagNull = () => (
     <Image
       style={[styles.waterNeedLevelImages, iconSize]}
-      source={iconExpertiseNull}
+      source={iconWaterNeedLevelNull}
     />
   );
 

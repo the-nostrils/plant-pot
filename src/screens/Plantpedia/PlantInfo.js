@@ -90,7 +90,9 @@ export default class PlantCard extends Component {
               <Text style={styles.textContainer}>Size</Text>
               {sizeOfPlant}
             </View>
-            <WaterNeedLevel waterNeedLevel={waterNeedLevel} iconSize={{ width: 35, height: 70 }} />
+            <View style={styles.levelOfExpertiseContainer}>
+              <WaterNeedLevel waterNeedLevel={waterNeedLevel} iconSize={{ width: 19.61, height: 29.39, marginRight: 10 }} />
+            </View>
             <View style={styles.levelOfExpertiseContainer}>
               <Text>{commonProblems}</Text>
             </View>
