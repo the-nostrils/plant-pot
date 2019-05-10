@@ -2,12 +2,11 @@
 /* eslint-disable no-alert, no-undef */
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Text, Image
+  StyleSheet, View, Text
 } from 'react-native';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import PlantpediaPlantImage from '../../components/PlantpediaPlantImage/PlantpediaPlantImage';
 import BaseText from '../../components/UI/BaseText/BaseText';
-import MoreButton from '../../components/UI/MoreButton/MoreButton';
 import LevelOfExpertise from '../../components/LevelOfExpertise/LevelOfExpertise';
 
 export default class PlantCard extends Component {
@@ -62,7 +61,7 @@ export default class PlantCard extends Component {
             <BaseText
               style={{
                 fontFamily: 'SFCompactDisplay-Bold',
-                fontSize: 18,
+                fontSize: 26,
                 color: '#145240',
                 letterSpacing: -0.41,
                 textAlign: 'left'
@@ -75,15 +74,33 @@ export default class PlantCard extends Component {
             <PlantpediaPlantImage name={name} style={{ width: 90.51, height: 90.51 }} />
           </View>
           <View style={styles.plantInfoContainer}>
+            <View style={styles.levelOfExpertiseContainer}>
+              <Text>{season}</Text>
+              <Text>{plantTime}</Text>
+              <Text>{harvestTime}</Text>
+            </View>
+            <View style={styles.levelOfExpertiseContainer}>
+              <LevelOfExpertise levelOfExpertise={levelOfExpertise} iconSize={{ width: 27, height: 50 }} />
+            </View>
+            <View style={styles.levelOfExpertiseContainer}>
+              <Text>{family}</Text>
+            </View>
             <View style={styles.sizeContainer}>
               <Text style={styles.textContainer}>Size</Text>
               {sizeOfPlant}
             </View>
-            <LevelOfExpertise levelOfExpertise={levelOfExpertise} iconSize={{ width: 27, height: 50 }} />
-          </View>
-          <View style={styles.moreButtonContainer}>
-            <Text>{name}</Text>
-            <Text>{climate}</Text>
+            <View style={styles.levelOfExpertiseContainer}>
+              <Text>{waterNeedLevel}</Text>
+            </View>
+            <View style={styles.levelOfExpertiseContainer}>
+              <Text>{commonProblems}</Text>
+            </View>
+            <View style={styles.levelOfExpertiseContainer}>
+              <Text>{exposure}</Text>
+            </View>
+            <View style={styles.levelOfExpertiseContainer}>
+              <Text>{climate}</Text>
+            </View>
           </View>
         </View>
       </View>
@@ -123,7 +140,11 @@ const styles = StyleSheet.create({
     right: 0
   },
   plantInfoContainer: {
+    marginTop: 25,
     width: '92.5%',
+  },
+  levelOfExpertiseContainer: {
+    marginTop: 25
   },
   sizeContainer: {
     display: 'flex',
@@ -179,7 +200,6 @@ const styles = StyleSheet.create({
   }
 });
 
-PlantCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired
-};
+// PlantCard.propTypes = {
+//   navigation: PropTypes.func.isRequired
+// };
