@@ -9,6 +9,7 @@ import PlantpediaPlantImage from '../../components/PlantpediaPlantImage/Plantped
 import BaseText from '../../components/UI/BaseText/BaseText';
 import LevelOfExpertise from '../../components/LevelOfExpertise/LevelOfExpertise';
 import WaterNeedLevel from '../../components/WaterNeedLevel/WaterNeedLevel';
+import PlantAndHarvestTime from '../../components/PlantAndHarvestTime/PlantAndHarvestTime';
 
 export default class PlantCard extends Component {
   state = {
@@ -77,8 +78,7 @@ export default class PlantCard extends Component {
           <View style={styles.plantInfoContainer}>
             <View style={styles.levelOfExpertiseContainer}>
               <Text>{season}</Text>
-              <Text>{plantTime}</Text>
-              <Text>{harvestTime}</Text>
+              <PlantAndHarvestTime plantTime={plantTime} />
             </View>
             <View style={styles.levelOfExpertiseContainer}>
               <LevelOfExpertise levelOfExpertise={levelOfExpertise} iconSize={{ width: 27, height: 50 }} />
