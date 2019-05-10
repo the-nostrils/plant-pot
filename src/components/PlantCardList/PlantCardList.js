@@ -24,11 +24,12 @@ export default class PlantCardList extends Component {
   };
 
   plantButtonPressedHandler = (buttonMode) => {
-    const { navigation } = this.props;
+    const { navigation, onAddPlantsPressed } = this.props;
 
     switch (buttonMode) {
       case 0:
-        Alert.alert('Add Plants modal will open.');
+        onAddPlantsPressed();
+        // Alert.alert('Add Plants modal will open.');
         // navigation.navigate('AddPlants');
         break;
       case 1:
@@ -160,5 +161,6 @@ const styles = StyleSheet.create({
 });
 
 PlantCardList.propTypes = {
-  listButtonMode: PropTypes.number.isRequired
+  listButtonMode: PropTypes.number.isRequired,
+  onAddPlantsPressed: PropTypes.func.isRequired
 };

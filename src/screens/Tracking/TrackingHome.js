@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import PlantCardList from '../../components/PlantCardList/PlantCardList';
-// import ModalWindow from '../../components/UI/Modal/ModalWindow';
+import ModalWindow from '../../components/UI/Modal/ModalWindow';
+
 
 export default class TrackingHome extends Component {
-  static navigationOptions = {
-    
-  };
+  // static navigationOptions = {
+
+  // };
 
   state = {
-    // isModalVisible: false
+    isModalVisible: false
   };
 
-  // hideModalHandler = () => this.setState({ isModalVisible: false });
+  toggleModal = () => this.setState({ isModalVisible: !this.state.isModalVisible });
 
   render() {
-    // const { isModalVisible } = this.state;
+    const { isModalVisible } = this.state;
     return (
       <View style={styles.container}>
-        <PlantCardList listButtonMode={0} {...this.props} />
-        {/* <ModalWindow isVisible={isModalVisible} onHideModalPressed={this.hideModalHandler} /> */}
+        <ModalWindow contentType="adding-plants" title="Add Plant" isVisible={isModalVisible} onDiscardModal={this.toggleModal} onConfirmPressed={() => Alert.alert('DDAENG!')} />
+        <PlantCardList listButtonMode={0} {...this.props} onAddPlantsPressed={this.toggleModal} />
       </View>
     );
   }
@@ -31,5 +32,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5F5F5'
-  }
+  },
+  
 });
