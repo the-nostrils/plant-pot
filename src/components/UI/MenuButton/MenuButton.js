@@ -13,6 +13,7 @@ import PhotoIcon from '../../../assets/images/icon_photo.png';
 import PlantpediaIcon from '../../../assets/images/icon_plantpedia.png';
 import PruneIcon from '../../../assets/images/icon_prune.png';
 import TrackingSettingsIcon from '../../../assets/images/icon_tracking_settings.png';
+import ProfileSettingsIcon from '../../../assets/images/icon_profile_settings.png';
 
 const MenuButton = (props) => {
   const {
@@ -23,6 +24,9 @@ const MenuButton = (props) => {
   switch (iconName) {
     case 'tracking-settings':
       icon = <Image style={[styles.icon, iconStyle]} source={TrackingSettingsIcon} />;
+      break;
+    case 'profile-settings':
+      icon = <Image style={[styles.icon, iconStyle]} source={ProfileSettingsIcon} />;
       break;
     case 'fertilize':
       icon = <Image style={[styles.icon, iconStyle]} source={FertilizeIcon} />;
