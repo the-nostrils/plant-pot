@@ -20,6 +20,7 @@ import PlantTracker from './src/screens/Tracking/PlantTracker';
 import AddPlants from './src/screens/Tracking/AddPlants';
 import RemovePlants from './src/screens/Tracking/RemovePlants';
 import Community from './src/screens/Community/Community';
+import NewPost from './src/screens/Community/NewPost';
 import Plantpedia from './src/screens/Plantpedia/Plantpedia';
 import Entrance from './src/screens/Auth/Entrance';
 import SignUp from './src/screens/Auth/SignUp';
@@ -48,7 +49,9 @@ const TrackingStack = createStackNavigator(
 
 const CommunityStack = createStackNavigator(
   {
-    Home: Community
+    Home: { screen: Community },
+    NewPost: { screen: NewPost },
+    Posted: { screen: Community }
   },
   {
     initialRouteName: 'Home',
