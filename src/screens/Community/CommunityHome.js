@@ -9,13 +9,15 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { connect } from 'react-redux';
+import { addPost } from '../../store/actions/index';
 
 import Avatar from '../../components/Avatar/Avatar';
 import BaseText from '../../components/UI/BaseText/BaseText';
 import MenuButton from '../../components/UI/MenuButton/MenuButton';
 import PostCard from '../../components/PostCard/PostCard';
 
-export default class CommunityHome extends Component {
+class CommunityHome extends Component {
   state = {
     phase: 0,
     newPost: {
@@ -24,50 +26,13 @@ export default class CommunityHome extends Component {
       textContent: null,
       isNewPost: false,
       isJustPosted: false
-    },
-    postList: [
-      {
-        id: 1,
-        username: 'Daris Calinor',
-        contentType: 'existing-post',
-        textContent: 'Trolololo',
-        isNewPost: false
-      },
-      {
-        id: 2,
-        username: 'John Doe',
-        contentType: 'existing-post',
-        likeCount: 1,
-        textContent: 'Lorem',
-        isNewPost: false
-      },
-      {
-        id: 3,
-        username: 'David Copperfield',
-        contentType: 'existing-post',
-        textContent: 'Lorem ipsum',
-        isNewPost: false
-      },
-      {
-        id: 4,
-        username: 'Jon Snow',
-        contentType: 'existing-post',
-        likeCount: 24,
-        textContent: 'I know nothing.',
-        isNewPost: false
-      }
-    ]
+    }
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const newPostTextContent = nextProps.navigation.getParam('textContent');
     const isNewPost = nextProps.navigation.getParam('isNewPost');
-    const paramPostList = nextProps.navigation.getParam('postList');
     const updatedState = { ...prevState };
-
-    if (paramPostList) {
-      updatedState.postList = paramPostList;
-    }
 
     if (newPostTextContent !== undefined && newPostTextContent !== null) {
       const updatedNewPost = { ...prevState.newPost };
@@ -82,27 +47,20 @@ export default class CommunityHome extends Component {
 
   newPostInputTouchHandler = () => {
     const { navigation } = this.props;
-    const { newPost, postList } = this.state;
+    const { newPost } = this.state;
 
-    navigation.navigate('NewPost', { username: newPost.username, postList });
+    navigation.navigate('NewPost', { username: newPost.username });
   };
 
   postSendButtonHandler = (textContent, username) => {
-    const { navigation } = this.props;
-    const { postList, newPost } = this.state;
+    const { navigation, onAddPost } = this.props;
+    const { newPost } = this.state;
 
     if (newPost.textContent === null) {
       navigation.navigate('NewPost', { username });
     } else {
-      // Adding new post to post list container
-      const updatedPostList = [...postList];
-      const newPostToPush = {
-        id: postList.length + 2,
-        username,
-        contentType: 'existing-post',
-        textContent
-      };
-      updatedPostList.unshift(newPostToPush);
+      // Adding new post to post list container in Redux store
+      onAddPost(textContent, username);
 
       // Clear content and state of new post card
       const updatedNewPost = { ...newPost };
@@ -112,7 +70,7 @@ export default class CommunityHome extends Component {
       updatedNewPost.username = 'M.J.';
       console.log(updatedNewPost);
 
-      this.setState({ postList: updatedPostList, newPost: updatedNewPost });
+      this.setState({ newPost: updatedNewPost });
     }
   };
 
@@ -129,7 +87,8 @@ export default class CommunityHome extends Component {
   };
 
   render() {
-    const { phase, postList, newPost } = this.state;
+    const { postList } = this.props;
+    const { phase, newPost } = this.state;
 
     const backgroundImage = phase === 0
       ? require('../../assets/images/background_community_home.png')
@@ -275,3 +234,13 @@ const styles = StyleSheet.create({
     marginTop: 20
   }
 });
+
+const mapStateToProps = state => ({
+  postList: state.posts.postList
+});
+
+const mapDispatchToProps = dispatch => ({
+  onAddPost: (textContent, username) => dispatch(addPost(textContent, username))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommunityHome);
