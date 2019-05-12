@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
   plantAndHarvestTimeContainer: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 20
   },
   textContainer: {
     fontFamily: 'SFCompactDisplay-Bold',

@@ -72,7 +72,7 @@ export default class PlantCard extends Component {
                 fontFamily: 'SFCompactDisplay-Bold',
                 fontSize: 26,
                 color: '#145240',
-                letterSpacing: -0.41,
+                letterSpacing: 2,
                 textAlign: 'left'
               }}
             >
@@ -88,7 +88,7 @@ export default class PlantCard extends Component {
             <View style={styles.seasonContainer}>
               <View style={styles.seasonType}>
                 <Text style={styles.textContainerBold}>{season}</Text>
-                <Text style={[styles.textContainerBold, { textAlign: 'center' }]}>-</Text>
+                <Text style={[styles.textContainerBold, { flexBasis: 95 }]}>-</Text>
               </View>
               <PlantAndHarvestTime plantTime={plantTime} />
               <PlantAndHarvestTime harvestTime={harvestTime} />
