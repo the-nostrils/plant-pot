@@ -111,24 +111,26 @@ export default class PlantCard extends Component {
             <View style={{ marginTop: 23 }}>
               <WaterNeedLevel styleImage={{ left: 150 }} style={{ position: 'relative', top: 0, left: 0 }} waterNeedLevel={waterNeedLevel} iconSize={{ width: 19.61, height: 29.39, marginRight: 10 }} />
             </View>
-            <View style={{ marginTop: 3 }}>
-              <View style={styles.seasonType}>
+            <View style={[styles.seasonType, { marginTop: 20 }]}>
                 <Text style={styles.textContainer}>Common Problems</Text>
-                <View style={styles.commonProblemsContainer}>
-                  {commonProblems.map((problem, i) => <Text key={i} style={[styles.textContainerNoSpacing, { right: 57 }]}>{problem}</Text>)}
+                <View style={[styles.commonProblemsContainer, { position: 'absolute', left: 150, top: 0 }]}>
+                  {commonProblems.map((problem, i) => <Text key={i} style={[styles.textContainerNoSpacing]}>{problem}</Text>)}
+                </View>
+            </View>
+            <View style={{ marginTop: 40 }}>
+              <View style={styles.seasonType}>
+                <Text style={styles.textContainer}>Exposure</Text>
+                <View style={{ position: 'absolute', left: 151 }}>
+                  <Text style={[styles.textContainerWithSpacing]}>{exposure}</Text>
                 </View>
               </View>
             </View>
             <View style={styles.levelOfExpertiseContainer}>
               <View style={styles.seasonType}>
-                <Text style={styles.textContainer}>Exposure</Text>
-                <Text style={[styles.textContainerWithSpacing, { right: 151 }]}>{exposure}</Text>
-              </View>
-            </View>
-            <View style={styles.levelOfExpertiseContainer}>
-              <View style={styles.seasonType}>
                 <Text style={styles.textContainer}>Climate</Text>
-                <Text style={[styles.textContainerWithSpacing, { right: 129 }]}>{climate}</Text>
+                <View style={{ position: 'absolute', left: 151 }}>
+                  <Text style={[styles.textContainerWithSpacing]}>{climate}</Text>
+                </View>
               </View>
             </View>
           </View>
