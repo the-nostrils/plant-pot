@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     fontFamily: 'SFCompactDisplay-Bold',
-    fontSize: 16,
+    fontSize: 15,
     color: '#004734'
   },
   description: {
@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    right: 4
   },
   waterNeedLevelImagesContainer: {
     display: 'flex',
@@ -92,12 +93,12 @@ const styles = StyleSheet.create({
     left: 135
   },
   plantAndHarvestTimeText: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#004734',
     opacity: 0.5
   },
   plantAndHarvestTimeTextBold: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 'bold',
     color: '#004734'
   }

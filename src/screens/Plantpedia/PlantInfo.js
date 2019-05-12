@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   plantInfoContainer: {
     marginTop: 65,
     width: '92.5%',
-    marginLeft: 31
+    marginLeft: 29
   },
   seasonContainer: {
     display: 'flex',
@@ -193,12 +193,12 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     fontFamily: 'SFCompactDisplay-Regular',
-    fontSize: 16,
+    fontSize: 15,
     color: '#4AA972'
   },
   textContainerBold: {
     fontFamily: 'SFCompactDisplay-Bold',
-    fontSize: 16,
+    fontSize: 15,
     color: '#004734'
   },
   sizeImagesContainer: {
