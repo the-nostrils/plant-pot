@@ -56,6 +56,13 @@ export default class PlantCard extends Component {
         />
       </View>
     );
+
+    const horizontalLine = (
+      <View style={styles.horizontalLineContainer}>
+        <View style={[styles.horizontalLine, { marginTop: 1 }]} />
+      </View>
+    );
+
     return (
       <View>
         <View style={[styles.container, { width }]}>
@@ -72,6 +79,7 @@ export default class PlantCard extends Component {
               {name}
             </BaseText>
           </View>
+          {horizontalLine}
           <View style={styles.plantImageContainer}>
             <PlantpediaPlantImage name={name} style={{ width: 90.51, height: 90.51 }} />
           </View>
@@ -133,8 +141,20 @@ const styles = StyleSheet.create({
     width: 240,
     height: 25,
     left: 36,
-    top: 9,
+    top: 35.99,
     flex: 1
+  },
+  horizontalLineContainer: {
+    width: '100%',
+    height: 0
+  },
+  horizontalLine: {
+    width: 81.16,
+    borderWidth: 1,
+    borderColor: '#145240',
+    position: 'absolute',
+    left: 41.88,
+    top: 71.09
   },
   plantImageContainer: {
     position: 'absolute',
