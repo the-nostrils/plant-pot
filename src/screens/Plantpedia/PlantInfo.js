@@ -99,24 +99,37 @@ export default class PlantCard extends Component {
             <View style={styles.levelOfExpertiseContainer}>
               <View style={styles.seasonType}>
                 <Text style={styles.textContainer}>Family</Text>
-                <Text style={[styles.textContainerWithSpacing, { right: 113 }]}>{family}</Text>
+                <View style={{ position: 'absolute', left: 151 }}>
+                  <Text style={[styles.textContainerWithSpacing]}>{family}</Text>
+                </View>
               </View>
             </View>
             <View style={styles.sizeContainer}>
               <Text style={styles.textContainer}>Size</Text>
               {sizeOfPlant}
             </View>
-            <View style={styles.levelOfExpertiseContainer}>
+            <View style={{ marginTop: 23 }}>
               <WaterNeedLevel styleImage={{ left: 150 }} style={{ position: 'relative', top: 0, left: 0 }} waterNeedLevel={waterNeedLevel} iconSize={{ width: 19.61, height: 29.39, marginRight: 10 }} />
             </View>
-            <View style={styles.levelOfExpertiseContainer}>
-              <Text>{commonProblems}</Text>
+            <View style={{ marginTop: 3 }}>
+              <View style={styles.seasonType}>
+                <Text style={styles.textContainer}>Common Problems</Text>
+                <View style={styles.commonProblemsContainer}>
+                  {commonProblems.map((problem, i) => <Text key={i} style={[styles.textContainerNoSpacing, { right: 57 }]}>{problem}</Text>)}
+                </View>
+              </View>
             </View>
             <View style={styles.levelOfExpertiseContainer}>
-              <Text>{exposure}</Text>
+              <View style={styles.seasonType}>
+                <Text style={styles.textContainer}>Exposure</Text>
+                <Text style={[styles.textContainerWithSpacing, { right: 151 }]}>{exposure}</Text>
+              </View>
             </View>
             <View style={styles.levelOfExpertiseContainer}>
-              <Text>{climate}</Text>
+              <View style={styles.seasonType}>
+                <Text style={styles.textContainer}>Climate</Text>
+                <Text style={[styles.textContainerWithSpacing, { right: 129 }]}>{climate}</Text>
+              </View>
             </View>
           </View>
         </View>
@@ -185,8 +198,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
+  commonProblemsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    top: 18
+  },
   levelOfExpertiseContainer: {
-    marginTop: 25
+    marginTop: 20
   },
   sizeContainer: {
     display: 'flex',
@@ -209,6 +229,11 @@ const styles = StyleSheet.create({
     fontFamily: 'SFCompactDisplay-Regular',
     fontSize: 15,
     letterSpacing: 2,
+    color: '#004734'
+  },
+  textContainerNoSpacing: {
+    fontFamily: 'SFCompactDisplay-Regular',
+    fontSize: 15,
     color: '#004734'
   },
   sizeImagesContainer: {
