@@ -8,7 +8,7 @@ import iconExpertiseNull from '../../assets/images/icon_expertise.png';
 
 
 const LevelOfExpertise = (props) => {
-  const { levelOfExpertise, iconSize } = props;
+  const { levelOfExpertise, iconSize, style, styleImages } = props;
   let expertiseField;
   const CustomTagFull = () => (
     <Image
@@ -27,7 +27,7 @@ const LevelOfExpertise = (props) => {
   switch (levelOfExpertise) {
     case 1:
       expertiseField = (
-        <View style={styles.expertiseImagesContainer}>
+        <View style={[styles.expertiseImagesContainer, styleImages]}>
           <CustomTagFull />
           <CustomTagNull />
           <CustomTagNull />
@@ -38,7 +38,7 @@ const LevelOfExpertise = (props) => {
       break;
     case 2:
       expertiseField = (
-        <View style={styles.expertiseImagesContainer}>
+        <View style={[styles.expertiseImagesContainer, styleImages]}>
           <CustomTagFull />
           <CustomTagFull />
           <CustomTagNull />
@@ -49,7 +49,7 @@ const LevelOfExpertise = (props) => {
       break;
     case 3:
       expertiseField = (
-        <View style={styles.expertiseImagesContainer}>
+        <View style={[styles.expertiseImagesContainer, styleImages]}>
           <CustomTagFull />
           <CustomTagFull />
           <CustomTagFull />
@@ -60,7 +60,7 @@ const LevelOfExpertise = (props) => {
       break;
     case 4:
       expertiseField = (
-        <View style={styles.expertiseImagesContainer}>
+        <View style={[styles.expertiseImagesContainer, styleImages]}>
           <CustomTagFull />
           <CustomTagFull />
           <CustomTagFull />
@@ -71,7 +71,7 @@ const LevelOfExpertise = (props) => {
       break;
     case 5:
       expertiseField = (
-        <View style={styles.expertiseImagesContainer}>
+        <View style={[styles.expertiseImagesContainer, styleImages]}>
           <CustomTagFull />
           <CustomTagFull />
           <CustomTagFull />
@@ -82,7 +82,7 @@ const LevelOfExpertise = (props) => {
       break;
     default:
       expertiseField = (
-        <View style={styles.expertiseImagesContainer}>
+        <View style={[styles.expertiseImagesContainer, styleImages]}>
           <CustomTagFull />
           <CustomTagNull />
           <CustomTagNull />
@@ -94,7 +94,7 @@ const LevelOfExpertise = (props) => {
   }
 
   return (
-    <View style={styles.levelOfExpertiseContainer}>
+    <View style={[styles.levelOfExpertiseContainer, style]}>
       <Text style={styles.textContainer}>Level Of Expertise</Text>
       {expertiseField}
     </View>

@@ -94,7 +94,7 @@ export default class PlantCard extends Component {
               <PlantAndHarvestTime harvestTime={harvestTime} />
             </View>
             <View style={styles.levelOfExpertiseContainer}>
-              <LevelOfExpertise levelOfExpertise={levelOfExpertise} iconSize={{ width: 27, height: 50 }} />
+              <LevelOfExpertise style={{ position: 'relative', top: 0, left: 0, marginTop: 100 }} styleImages={{ left: 150 }} levelOfExpertise={levelOfExpertise} iconSize={{ width: 27, height: 50 }} />
             </View>
             <View style={styles.levelOfExpertiseContainer}>
               <Text>{family}</Text>
