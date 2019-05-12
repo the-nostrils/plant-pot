@@ -8,7 +8,7 @@ import iconWaterNeedLevelNull from '../../assets/images/icon_waterNeedLevel.png'
 
 
 const WaterNeedLevel = (props) => {
-  const { waterNeedLevel, iconSize } = props;
+  const { waterNeedLevel, iconSize, style, styleImage } = props;
   let waterNeedLevelField;
   const CustomTagFull = () => (
     <Image
@@ -27,7 +27,7 @@ const WaterNeedLevel = (props) => {
   switch (waterNeedLevel) {
     case 'low':
       waterNeedLevelField = (
-        <View style={styles.waterNeedLevelImagesContainer}>
+        <View style={[styles.waterNeedLevelImagesContainer, styleImage]}>
           <CustomTagFull />
           <CustomTagNull />
           <CustomTagNull />
@@ -36,7 +36,7 @@ const WaterNeedLevel = (props) => {
       break;
     case 'medium':
       waterNeedLevelField = (
-        <View style={styles.waterNeedLevelImagesContainer}>
+        <View style={[styles.waterNeedLevelImagesContainer, styleImage]}>
           <CustomTagFull />
           <CustomTagFull />
           <CustomTagNull />
@@ -45,7 +45,7 @@ const WaterNeedLevel = (props) => {
       break;
     case 'high':
       waterNeedLevelField = (
-        <View style={styles.waterNeedLevelImagesContainer}>
+        <View style={[styles.waterNeedLevelImagesContainer, styleImage]}>
           <CustomTagFull />
           <CustomTagFull />
           <CustomTagFull />
@@ -54,7 +54,7 @@ const WaterNeedLevel = (props) => {
       break;
     default:
       waterNeedLevelField = (
-        <View style={styles.waterNeedLevelImagesContainer}>
+        <View style={[styles.waterNeedLevelImagesContainer, styleImage]}>
           <CustomTagFull />
           <CustomTagFull />
           <CustomTagFull />
@@ -64,7 +64,7 @@ const WaterNeedLevel = (props) => {
   }
 
   return (
-    <View style={styles.waterNeedLevelContainer}>
+    <View style={[styles.waterNeedLevelContainer, style]}>
       <Text style={styles.textContainer}>Water Need Level</Text>
       {waterNeedLevelField}
     </View>

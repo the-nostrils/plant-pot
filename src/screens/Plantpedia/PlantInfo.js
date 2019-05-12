@@ -97,14 +97,17 @@ export default class PlantCard extends Component {
               <LevelOfExpertise style={{ position: 'relative', top: 0, left: 0, marginTop: 100 }} styleImages={{ left: 150 }} levelOfExpertise={levelOfExpertise} iconSize={{ width: 27, height: 50 }} />
             </View>
             <View style={styles.levelOfExpertiseContainer}>
-              <Text>{family}</Text>
+              <View style={styles.seasonType}>
+                <Text style={styles.textContainer}>Family</Text>
+                <Text style={[styles.textContainerWithSpacing, { right: 113 }]}>{family}</Text>
+              </View>
             </View>
             <View style={styles.sizeContainer}>
               <Text style={styles.textContainer}>Size</Text>
               {sizeOfPlant}
             </View>
             <View style={styles.levelOfExpertiseContainer}>
-              <WaterNeedLevel waterNeedLevel={waterNeedLevel} iconSize={{ width: 19.61, height: 29.39, marginRight: 10 }} />
+              <WaterNeedLevel styleImage={{ left: 150 }} style={{ position: 'relative', top: 0, left: 0 }} waterNeedLevel={waterNeedLevel} iconSize={{ width: 19.61, height: 29.39, marginRight: 10 }} />
             </View>
             <View style={styles.levelOfExpertiseContainer}>
               <Text>{commonProblems}</Text>
@@ -189,7 +192,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 25
   },
   textContainer: {
     fontFamily: 'SFCompactDisplay-Regular',
@@ -201,12 +205,18 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#004734'
   },
+  textContainerWithSpacing: {
+    fontFamily: 'SFCompactDisplay-Regular',
+    fontSize: 15,
+    letterSpacing: 2,
+    color: '#004734'
+  },
   sizeImagesContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     position: 'absolute',
-    left: 155,
+    left: 150,
     alignItems: 'flex-end',
     width: 80
   },
