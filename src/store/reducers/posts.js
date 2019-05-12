@@ -33,6 +33,14 @@ const initialState = {
       likeCount: 24,
       textContent: 'I know nothing.',
       isNewPost: false
+    },
+    {
+      id: 5,
+      username: 'Daris Calinor',
+      contentType: 'existing-post',
+      likeCount: 48,
+      textContent: 'yada yada yada',
+      isNewPost: false
     }
   ]
 };

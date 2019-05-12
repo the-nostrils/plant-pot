@@ -18,6 +18,7 @@ import MissionPostponeIcon from '../../../assets/images/icon_mission_postpone.pn
 import PhotoIcon from '../../../assets/images/icon_photo.png';
 import PlantpediaIcon from '../../../assets/images/icon_plantpedia.png';
 import PruneIcon from '../../../assets/images/icon_prune.png';
+import RemoveIcon from '../../../assets/images/icon_remove_plants.png';
 import TrackingSettingsIcon from '../../../assets/images/icon_tracking_settings.png';
 import ProfileSettingsIcon from '../../../assets/images/icon_profile_settings.png';
 
@@ -69,6 +70,9 @@ const MenuButton = (props) => {
       break;
     case 'prune':
       icon = <Image style={[styles.icon, iconStyle]} source={PruneIcon} />;
+      break;
+    case 'remove':
+      icon = <Image style={[styles.icon, iconStyle]} source={RemoveIcon} />;
       break;
     case 'text':
       icon = (

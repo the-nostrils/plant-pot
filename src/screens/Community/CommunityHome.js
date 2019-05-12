@@ -33,6 +33,7 @@ class CommunityHome extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     const newPostTextContent = nextProps.navigation.getParam('textContent');
     const isNewPost = nextProps.navigation.getParam('isNewPost');
+    const phase = nextProps.navigation.getParam('phase');
     const updatedState = { ...prevState };
 
     if (newPostTextContent !== undefined && newPostTextContent !== null) {
@@ -41,6 +42,7 @@ class CommunityHome extends Component {
       updatedNewPost.isNewPost = isNewPost;
 
       updatedState.newPost = updatedNewPost;
+      updatedState.phase = phase;
     }
 
     return updatedState;
@@ -48,10 +50,10 @@ class CommunityHome extends Component {
 
   newPostInputTouchHandler = () => {
     const { navigation } = this.props;
-    const { newPost } = this.state;
+    const { newPost, phase } = this.state;
     const { username, textContent } = newPost;
 
-    navigation.navigate('NewPost', { username, textContent });
+    navigation.navigate('NewPost', { username, textContent, phase });
   };
 
   postSendButtonHandler = (textContent, username) => {
@@ -76,6 +78,127 @@ class CommunityHome extends Component {
     }
   };
 
+  deletePostButtonHandler = (id) => {
+    const { navigation } = this.props;
+
+    // onDeletePost(id);
+
+    // Clear content and state of new post card
+    navigation.reset(
+      [
+        NavigationActions.navigate({
+          routeName: 'Home',
+          params: { phase: 1 }
+        })
+      ],
+      0
+    );
+  };
+
+  renderLowerPartContent = (phase) => {
+    const { postList } = this.props;
+    const { newPost } = this.state;
+    const {
+      id, username, textContent, isNewPost
+    } = newPost;
+
+    let lowerPartContent;
+
+    if (phase === 0) {
+      lowerPartContent = (
+        <View style={styles.lowerPart}>
+          <PostCard
+            id={id}
+            username={username}
+            textContent={textContent}
+            isNewPost={isNewPost}
+            onSendPressed={this.postSendButtonHandler}
+            onNewPostInputTouched={this.newPostInputTouchHandler}
+            {...this.props}
+          />
+          <FlatList
+            data={postList}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => (
+              <PostCard
+                id={item.id}
+                username={item.username}
+                contentType={item.contentType}
+                phase={phase}
+                likeCount={item.likeCount}
+                textContent={item.textContent}
+                isNewPost={item.isNewPost}
+                onSendPressed={this.postSendButtonHandler}
+                {...this.props}
+              />
+            )}
+            extraData={this.state}
+          />
+        </View>
+      );
+    } else if (phase === 1) {
+      const currentUserPosts = postList.filter(post => post.username === username);
+
+      lowerPartContent = (
+        <View style={[styles.lowerPart, { marginTop: -5 }]}>
+          <BaseText
+            style={{
+              fontFamily: 'SFCompactDisplay-Bold',
+              fontSize: 17,
+              color: '#225F4E',
+              letterSpacing: -0.41,
+              textAlign: 'left',
+              marginBottom: 8
+            }}
+          >
+            {username}
+          </BaseText>
+          <BaseText
+            style={{
+              fontFamily: 'SFCompactDisplay-Regular',
+              fontSize: 13,
+              color: '#225F4E',
+              letterSpacing: -0.08,
+              textAlign: 'center',
+              maxWidth: 310,
+              marginBottom: 45
+            }}
+          >
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+            tincidunt ut laoreet.
+          </BaseText>
+          <PostCard
+            id={id}
+            username={username}
+            textContent={textContent}
+            isNewPost={isNewPost}
+            onSendPressed={this.postSendButtonHandler}
+            onNewPostInputTouched={this.newPostInputTouchHandler}
+            {...this.props}
+          />
+          <FlatList
+            data={currentUserPosts}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => (
+              <PostCard
+                id={item.id}
+                username={item.username}
+                contentType={item.contentType}
+                likeCount={item.likeCount}
+                textContent={item.textContent}
+                isNewPost={item.isNewPost}
+                onSendPressed={this.postSendButtonHandler}
+                {...this.props}
+              />
+            )}
+          />
+        </View>
+      );
+    }
+
+    return lowerPartContent;
+  };
+
   drawHorizontalLine = (isBold) => {
     let horizontalLine;
 
@@ -89,8 +212,7 @@ class CommunityHome extends Component {
   };
 
   render() {
-    const { postList } = this.props;
-    const { phase, newPost } = this.state;
+    const { phase } = this.state;
 
     const backgroundImage = phase === 0
       ? require('../../assets/images/background_community_home.png')
@@ -163,33 +285,7 @@ class CommunityHome extends Component {
               </View>
             </View>
           </ImageBackground>
-
-          <View style={styles.lowerPart}>
-            <PostCard
-              username={newPost.username}
-              textContent={newPost.textContent}
-              isNewPost={newPost.isNewPost}
-              isJustPosted={newPost.isJustPosted}
-              onSendPressed={this.postSendButtonHandler}
-              onNewPostInputTouched={this.newPostInputTouchHandler}
-              {...this.props}
-            />
-            <FlatList
-              data={postList}
-              keyExtractor={item => item.id.toString()}
-              renderItem={({ item }) => (
-                <PostCard
-                  username={item.username}
-                  contentType={item.contentType}
-                  likeCount={item.likeCount}
-                  textContent={item.textContent}
-                  isNewPost={item.isNewPost}
-                  onSendPressed={this.postSendButtonHandler}
-                  {...this.props}
-                />
-              )}
-            />
-          </View>
+          {this.renderLowerPartContent(phase === 0 ? 0 : 1)}
         </View>
       </ScrollView>
     );
@@ -233,7 +329,8 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 0.77,
     alignItems: 'center',
-    marginTop: 20
+    marginTop: 20,
+    backgroundColor: '#F5F5F5'
   }
 });
 

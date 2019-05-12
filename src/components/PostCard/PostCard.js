@@ -65,6 +65,27 @@ export default class PostCard extends Component {
     }
   };
 
+  renderRemoveCardIcon = (phase) => {
+    if (phase === 1) {
+      return (
+        <MenuBotton
+          iconName="remove"
+          onPressed={() => onDeletePostPressed(id)}
+          circleStyle={{
+            width: 28,
+            height: 28,
+            backgroundColor: 'transparent',
+            paddingRight: 25,
+            paddingBottom: 10
+          }}
+          iconStyle={{ width: 24, height: 24, resizeMode: 'cover' }}
+        />
+      );
+    }
+
+    return null;
+  };
+
   chooseContentType = () => 'existing-post';
 
   renderContent = (contentType) => {
@@ -73,11 +94,14 @@ export default class PostCard extends Component {
     } = this.state;
     const {
       navigation,
+      id,
       username,
       contentContainer,
       onSendPressed,
       onNewPostInputTouched,
-      onNewPostScreenSendPressed
+      onNewPostScreenSendPressed,
+      onDeletePostPressed,
+      phase
     } = this.props;
 
     let contentTypeValue;
@@ -228,6 +252,7 @@ export default class PostCard extends Component {
               </View>
             </ScrollView>
             <View style={styles.buttonContainer}>
+              {this.renderRemoveCardIcon(phase)}
               <MenuBotton
                 iconName={isLiked ? 'heart-filled' : 'heart-empty'}
                 onPressed={this.likeCountHandler}
@@ -365,9 +390,11 @@ const styles = StyleSheet.create({
 });
 
 PostCard.propTypes = {
+  id: PropTypes.number.isRequired,
   username: PropTypes.string.isRequired,
   contentType: PropTypes.string,
   likeCount: PropTypes.number,
+  phase: PropTypes.number.isRequired,
   avatarContainerStyle: PropTypes.object,
   usernameContainer: PropTypes.object,
   contentContainer: PropTypes.object,
@@ -375,7 +402,8 @@ PostCard.propTypes = {
   isNewPost: PropTypes.bool,
   onSendPressed: PropTypes.func,
   onNewPostInputTouched: PropTypes.func,
-  onNewPostScreenSendPressed: PropTypes.func
+  onNewPostScreenSendPressed: PropTypes.func,
+  onDeletePostPressed: PropTypes.func,
 };
 
 PostCard.defaultProps = {
@@ -398,5 +426,7 @@ PostCard.defaultProps = {
   textContent: null,
   isNewPost: false,
   onNewPostInputTouched: () => {},
-  onNewPostScreenSendPressed: () => {}
+  onNewPostScreenSendPressed: () => {},
+  onSendPressed: () => {},
+  onDeletePostPressed: () => {}
 };

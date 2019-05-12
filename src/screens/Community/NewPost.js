@@ -12,12 +12,13 @@ export default class NewPost extends Component {
 
   newPostScreenSendPressedHandler = (textContent, isNewPost) => {
     const { navigation } = this.props;
+    const phase = navigation.getParam('phase');
 
     navigation.reset(
       [
         NavigationActions.navigate({
           routeName: 'Home',
-          params: { textContent, isNewPost }
+          params: { textContent, isNewPost, phase }
         })
       ],
       0
@@ -32,6 +33,7 @@ export default class NewPost extends Component {
     return (
       <View style={styles.container}>
         <PostCard
+          id={-1}
           username={username}
           contentType="new-post-screen"
           textContent={textContent !== undefined ? textContent : null}
