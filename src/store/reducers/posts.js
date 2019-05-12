@@ -4,9 +4,10 @@ const initialState = {
   postList: [
     {
       id: 1,
-      username: 'Daris Calinor',
+      username: 'Alex Boyd',
       contentType: 'existing-post',
-      textContent: 'Trolololo',
+      textContent:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim',
       isNewPost: false
     },
     {
@@ -14,32 +15,74 @@ const initialState = {
       username: 'John Doe',
       contentType: 'existing-post',
       likeCount: 1,
-      textContent: 'Lorem',
+      textContent:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim',
       isNewPost: false
     },
     {
       id: 3,
-      username: 'David Copperfield',
+      username: 'Lori Elliot',
       contentType: 'existing-post',
-      textContent: 'Lorem ipsum',
+      textContent:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim',
       isNewPost: false
     },
     {
       id: 4,
-      username: 'Jon Snow',
+      username: 'Will Collins',
       contentType: 'existing-post',
       likeCount: 24,
-      textContent: 'I know nothing.',
+      textContent: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim',
       isNewPost: false
     },
     {
       id: 5,
-      username: 'Daris Calinor',
+      username: 'Will Collins',
       contentType: 'existing-post',
       likeCount: 48,
-      textContent: 'yada yada yada',
+      textContent: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim',
       isNewPost: false
-    }
+    },
+    {
+      id: 6,
+      username: 'Nancy Murphy',
+      contentType: 'existing-post',
+      likeCount: 88,
+      textContent: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim',
+      isNewPost: false
+    },
+    {
+      id: 7,
+      username: 'Benjamin Watkins',
+      contentType: 'existing-post',
+      likeCount: 88,
+      textContent: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim',
+      isNewPost: false
+    },
+    {
+      id: 8,
+      username: 'Joan Mendoza',
+      contentType: 'existing-post',
+      likeCount: 88,
+      textContent: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim',
+      isNewPost: false
+    },
+    {
+      id: 9,
+      username: 'Alex Boyd',
+      contentType: 'existing-post',
+      textContent:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim',
+      isNewPost: false
+    },
+    {
+      id: 10,
+      username: 'Alex Boyd',
+      contentType: 'existing-post',
+      textContent:
+        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim',
+      isNewPost: false
+    },
   ]
 };
 
