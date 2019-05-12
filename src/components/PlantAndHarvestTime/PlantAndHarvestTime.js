@@ -7,37 +7,8 @@ import {
 
 const PlantAndHarvestTime = (props) => {
   const { plantTime, harvestTime, iconSize } = props;
-  // console.log(plantTime.length);
-  //   const time = plantTime.length > 0 ? plantTime : harvestTime;
-  // const time = plantTime;
-  const CustomTag = () => (
-    <Text style={[styles.plantAndHarvestTimeText, iconSize]} />
-  );
-  const CustomTagBold = () => (
-    <Text style={[styles.plantAndHarvestTimeTextBold, iconSize]} />
-  );
-  // const monthsObj = {
-  //   1: <Text style={[styles.plantAndHarvestTimeText, iconSize]}>J</Text>,
-  //   2: <Text style={[styles.plantAndHarvestTimeText, iconSize]}>F</Text>,
-  //   3: <Text style={[styles.plantAndHarvestTimeText, iconSize]}>M</Text>,
-  //   4: <Text style={[styles.plantAndHarvestTimeText, iconSize]}>A</Text>,
-  //   5: <Text style={[styles.plantAndHarvestTimeText, iconSize]}>M</Text>,
-  //   6: <Text style={[styles.plantAndHarvestTimeText, iconSize]}>J</Text>,
-  //   7: <Text style={[styles.plantAndHarvestTimeText, iconSize]}>J</Text>,
-  //   8: <Text style={[styles.plantAndHarvestTimeText, iconSize]}>A</Text>,
-  //   9: <Text style={[styles.plantAndHarvestTimeText, iconSize]}>S</Text>,
-  //   10: <Text style={[styles.plantAndHarvestTimeText, iconSize]}>O</Text>,
-  //   11: <Text style={[styles.plantAndHarvestTimeText, iconSize]}>N</Text>,
-  //   12: <Text style={[styles.plantAndHarvestTimeText, iconSize]}>D</Text>,
-  // };
-
-  // const monthsArr = [1,2,3,4,5,6,7,8,9,10,11,12];
-  // const toBeBoldMonths = monthsArr.filter(
-  //   function(val){
-  //     return this.indexOf(val) < 0
-  //   },
-  //   plantTime
-  // );
+  const time = typeof plantTime !== 'undefined' ? plantTime : harvestTime;
+  
   const monthsObj = {
     1: 'J',
     2: 'F',
@@ -71,46 +42,14 @@ const PlantAndHarvestTime = (props) => {
             {monthsObj[month]}
           </Text>
         )
-    }, plantTime
+    }, time
   );
   console.log(timeField);
-  // const months = plantTime.map((val, i) => {
-  //   switch (i) {
-  //     case 1:
-  //       timeField = [<CustomTag>J</CustomTag>];
-  //     case 2:
-  //       timeField = [...timeField, <CustomTag>F</CustomTag>];
-  //     case 3:
-  //       timeField = [...timeField, <CustomTag>M</CustomTag>];
-  //     case 4:
-  //       timeField = [...timeField, <CustomTag>A</CustomTag>];
-  //     case 5:
-  //       timeField = [...timeField, <CustomTag>M</CustomTag>];
-  //     case 6:
-  //       timeField = [...timeField, <CustomTag>J</CustomTag>];
-  //     case 7:
-  //       timeField = [...timeField, <CustomTag>J</CustomTag>];
-  //     case 8:
-  //       timeField = [...timeField, <CustomTag>A</CustomTag>];
-  //     case 9:
-  //       timeField = [...timeField, <CustomTag>S</CustomTag>];
-  //     case 10:
-  //       timeField = [...timeField, <CustomTag>O</CustomTag>];
-  //     case 11:
-  //       timeField = [...timeField, <CustomTag>N</CustomTag>];
-  //     case 12:
-  //       timeField = [...timeField, <CustomTag>D</CustomTag>];
-  //     default:
-  //       timeField = [...timeField, <CustomTag>N/A</CustomTag>];
-  //       break;
-  //   }
-  //   return timeField;
-  // });
 
 
   return (
     <View style={styles.waterNeedLevelContainer}>
-      <Text style={styles.textContainer}>Plant/HarvestTime</Text>
+      <Text style={styles.textContainer}>{typeof plantTime !== 'undefined' ? 'Plant Time' : 'Harvest Time'}</Text>
       {timeField}
     </View>
   );
