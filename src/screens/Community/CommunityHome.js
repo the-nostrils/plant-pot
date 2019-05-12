@@ -22,8 +22,8 @@ class CommunityHome extends Component {
   state = {
     phase: 0,
     newPost: {
-      id: 0,
-      username: 'Daris Calinor',
+      id: null,
+      username: null,
       textContent: null,
       isNewPost: false,
       isJustPosted: false
@@ -46,6 +46,18 @@ class CommunityHome extends Component {
     }
 
     return updatedState;
+  }
+
+  componentDidMount() {
+    const { currentUsername } = this.props;
+    const currentUser = this.fetchCurrentUser(currentUsername);
+
+    this.setState({
+      newPost: {
+        id: currentUser.id,
+        username: currentUsername
+      }
+    });
   }
 
   newPostInputTouchHandler = () => {
@@ -78,6 +90,13 @@ class CommunityHome extends Component {
     }
   };
 
+  fetchCurrentUser = (username) => {
+    const { userList } = this.props;
+    const [currentUser] = userList.filter(user => user.username === username);
+
+    return currentUser;
+  };
+
   deletePostButtonHandler = (id) => {
     const { navigation, onDeletePost } = this.props;
 
@@ -96,11 +115,13 @@ class CommunityHome extends Component {
   };
 
   renderLowerPartContent = (phase) => {
-    const { postList } = this.props;
+    const { currentUsername, postList } = this.props;
     const { newPost } = this.state;
     const {
       id, username, textContent, isNewPost
     } = newPost;
+    const currentUser = this.fetchCurrentUser(currentUsername);
+    const { bio } = currentUser;
 
     let lowerPartContent;
 
@@ -110,6 +131,7 @@ class CommunityHome extends Component {
           <PostCard
             id={id}
             username={username}
+            currentUsername={currentUsername}
             textContent={textContent}
             isNewPost={isNewPost}
             onSendPressed={this.postSendButtonHandler}
@@ -123,12 +145,14 @@ class CommunityHome extends Component {
               <PostCard
                 id={item.id}
                 username={item.username}
+                currentUsername={currentUsername}
                 contentType={item.contentType}
                 phase={phase}
                 likeCount={item.likeCount}
                 textContent={item.textContent}
                 isNewPost={item.isNewPost}
                 onSendPressed={this.postSendButtonHandler}
+                onDeletePostPressed={this.deletePostButtonHandler}
                 {...this.props}
               />
             )}
@@ -137,10 +161,10 @@ class CommunityHome extends Component {
         </View>
       );
     } else if (phase === 1) {
-      const currentUserPosts = postList.filter(post => post.username === username);
+      const currentUserPosts = postList.filter(post => post.username === currentUsername);
 
       lowerPartContent = (
-        <View style={[styles.lowerPart, { marginTop: -5 }]}>
+        <View style={[styles.lowerPart, { marginTop: -5, minHeight: 440 }]}>
           <BaseText
             style={{
               fontFamily: 'SFCompactDisplay-Bold',
@@ -151,7 +175,7 @@ class CommunityHome extends Component {
               marginBottom: 8
             }}
           >
-            {username}
+            {currentUsername}
           </BaseText>
           <BaseText
             style={{
@@ -164,12 +188,12 @@ class CommunityHome extends Component {
               marginBottom: 45
             }}
           >
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-            tincidunt ut laoreet.
+            {bio}
           </BaseText>
           <PostCard
             id={id}
             username={username}
+            currentUsername={currentUsername}
             textContent={textContent}
             isNewPost={isNewPost}
             onSendPressed={this.postSendButtonHandler}
@@ -183,6 +207,7 @@ class CommunityHome extends Component {
               <PostCard
                 id={item.id}
                 username={item.username}
+                currentUsername={currentUsername}
                 contentType={item.contentType}
                 likeCount={item.likeCount}
                 textContent={item.textContent}
@@ -214,6 +239,7 @@ class CommunityHome extends Component {
 
   render() {
     const { phase } = this.state;
+    const { currentUsername } = this.props;
 
     const backgroundImage = phase === 0
       ? require('../../assets/images/background_community_home.png')
@@ -256,7 +282,7 @@ class CommunityHome extends Component {
                   </View>
                 </TouchableOpacity>
 
-                <Avatar />
+                <Avatar username={currentUsername} />
 
                 <TouchableOpacity onPress={() => this.setState({ phase: 1 })}>
                   <View style={[styles.menuButtonContainer, { alignItems: 'flex-end' }]}>
@@ -336,7 +362,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  postList: state.posts.postList
+  currentUsername: state.users.currentUsername,
+  postList: state.posts.postList,
+  userList: state.users.userList
 });
 
 const mapDispatchToProps = dispatch => ({

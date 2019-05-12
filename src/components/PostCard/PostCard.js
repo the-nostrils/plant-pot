@@ -65,10 +65,12 @@ export default class PostCard extends Component {
     }
   };
 
-  renderRemoveCardIcon = (phase) => {
-    const { id, onDeletePostPressed } = this.props;
+  renderRemoveCardIcon = () => {
+    const {
+      id, currentUsername, username, onDeletePostPressed
+    } = this.props;
 
-    if (phase !== 0) {
+    if (username === currentUsername) {
       return (
         <MenuBotton
           iconName="remove"
@@ -254,7 +256,7 @@ export default class PostCard extends Component {
               </View>
             </ScrollView>
             <View style={styles.buttonContainer}>
-              {this.renderRemoveCardIcon(phase)}
+              {this.renderRemoveCardIcon()}
               <MenuBotton
                 iconName={isLiked ? 'heart-filled' : 'heart-empty'}
                 onPressed={this.likeCountHandler}
@@ -347,7 +349,7 @@ export default class PostCard extends Component {
           </BaseText>
         </View>
         <View style={[{ position: 'absolute' }, avatarContainerStyle]}>
-          <Avatar containerStyle={{ width: 50, height: 50 }} />
+          <Avatar username={username} containerStyle={{ width: 50, height: 50 }} />
         </View>
         {contentType ? this.renderContent(contentType) : this.renderContent()}
       </View>
@@ -396,7 +398,6 @@ PostCard.propTypes = {
   username: PropTypes.string.isRequired,
   contentType: PropTypes.string,
   likeCount: PropTypes.number,
-  phase: PropTypes.number.isRequired,
   avatarContainerStyle: PropTypes.object,
   usernameContainer: PropTypes.object,
   contentContainer: PropTypes.object,
@@ -405,7 +406,7 @@ PostCard.propTypes = {
   onSendPressed: PropTypes.func,
   onNewPostInputTouched: PropTypes.func,
   onNewPostScreenSendPressed: PropTypes.func,
-  onDeletePostPressed: PropTypes.func,
+  onDeletePostPressed: PropTypes.func
 };
 
 PostCard.defaultProps = {

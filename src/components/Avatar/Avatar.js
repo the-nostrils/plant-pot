@@ -1,20 +1,72 @@
+/* eslint-disable global-require */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 const Avatar = (props) => {
-  const { containerStyle, pictureStyle } = props;
+  const { containerStyle, pictureStyle, username } = props;
+  let avatar;
 
-  return (
-    <View style={[styles.container, containerStyle]}>
-      <Image
-        // eslint-disable-next-line global-require
-        source={require('../../assets/images/george-bohunicky-118985-unsplash.jpg')}
-        style={[styles.profilePicture, pictureStyle]}
-      />
-    </View>
-  );
+  switch (username) {
+    case 'Alex Boyd':
+      avatar = (
+        <Image
+          source={require('../../assets/images/avatars/alex_boyd.jpg')}
+          style={[styles.profilePicture, pictureStyle]}
+        />
+      );
+      break;
+    case 'Benjamin Watkins':
+      avatar = (
+        <Image
+          source={require('../../assets/images/avatars/benjamin_watkins.jpeg')}
+          style={[styles.profilePicture, pictureStyle]}
+        />
+      );
+      break;
+    case 'Joan Mendoza':
+      avatar = (
+        <Image
+          source={require('../../assets/images/avatars/joan_mendoza.jpg')}
+          style={[styles.profilePicture, pictureStyle]}
+        />
+      );
+      break;
+    case 'Lori Elliot':
+      avatar = (
+        <Image
+          source={require('../../assets/images/avatars/lori_elliot.jpg')}
+          style={[styles.profilePicture, pictureStyle]}
+        />
+      );
+      break;
+    case 'Nancy Murphy':
+      avatar = (
+        <Image
+          source={require('../../assets/images/avatars/nancy_murphy.jpg')}
+          style={[styles.profilePicture, pictureStyle]}
+        />
+      );
+      break;
+    case 'Will Collins':
+      avatar = (
+        <Image
+          source={require('../../assets/images/avatars/will_collins.jpg')}
+          style={[styles.profilePicture, pictureStyle]}
+        />
+      );
+      break;
+    default:
+      avatar = (
+        <Image
+          source={require('../../assets/images/george-bohunicky-118985-unsplash.jpg')}
+          style={[styles.profilePicture, pictureStyle]}
+        />
+      );
+  }
+
+  return <View style={[styles.container, containerStyle]}>{avatar}</View>;
 };
 
 const styles = StyleSheet.create({
@@ -47,7 +99,8 @@ Avatar.propTypes = {
 
 Avatar.defaultProps = {
   containerStyle: null,
-  pictureStyle: { resizeMode: 'cover' }
+  pictureStyle: { resizeMode: 'cover' },
+  username: PropTypes.string.isRequired
 };
 
 export default Avatar;
