@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   plantNameContainer: {
     position: 'absolute',
     width: 240,
-    height: 25,
+    height: 30,
     left: 36,
     top: 35.99,
     flex: 1
