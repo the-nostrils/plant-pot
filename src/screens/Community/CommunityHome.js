@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
-import { addPost } from '../../store/actions/index';
+import { addPost, deletePost } from '../../store/actions/index';
 
 import Avatar from '../../components/Avatar/Avatar';
 import BaseText from '../../components/UI/BaseText/BaseText';
@@ -79,9 +79,9 @@ class CommunityHome extends Component {
   };
 
   deletePostButtonHandler = (id) => {
-    const { navigation } = this.props;
+    const { navigation, onDeletePost } = this.props;
 
-    // onDeletePost(id);
+    onDeletePost(id);
 
     // Clear content and state of new post card
     navigation.reset(
@@ -188,6 +188,7 @@ class CommunityHome extends Component {
                 textContent={item.textContent}
                 isNewPost={item.isNewPost}
                 onSendPressed={this.postSendButtonHandler}
+                onDeletePostPressed={this.deletePostButtonHandler}
                 {...this.props}
               />
             )}
@@ -339,7 +340,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onAddPost: (textContent, username) => dispatch(addPost(textContent, username))
+  onAddPost: (textContent, username) => dispatch(addPost(textContent, username)),
+  onDeletePost: id => dispatch(deletePost(id))
 });
 
 export default connect(

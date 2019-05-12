@@ -1,6 +1,4 @@
-/* eslint-disable no-case-declarations */
-import { addPost } from '../actions/index';
-import { ADD_POST } from '../actions/actionTypes';
+import { ADD_POST, DELETE_POST } from '../actions/actionTypes';
 
 const initialState = {
   postList: [
@@ -47,7 +45,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST:
+    case ADD_POST: {
       const { textContent, username } = action.payload;
       const updatedPostList = [...state.postList];
 
@@ -63,6 +61,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         postList: updatedPostList
       };
+    }
+    case DELETE_POST: {
+      const { id } = action.payload;
+      const updatedPostList = state.postList.filter(post => post.id !== id);
+
+      return {
+        ...state,
+        postList: updatedPostList
+      };
+    }
     default:
       return state;
   }

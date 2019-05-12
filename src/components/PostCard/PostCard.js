@@ -66,7 +66,9 @@ export default class PostCard extends Component {
   };
 
   renderRemoveCardIcon = (phase) => {
-    if (phase === 1) {
+    const { id, onDeletePostPressed } = this.props;
+
+    if (phase !== 0) {
       return (
         <MenuBotton
           iconName="remove"
