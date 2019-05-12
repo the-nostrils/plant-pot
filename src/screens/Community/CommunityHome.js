@@ -73,14 +73,6 @@ class CommunityHome extends Component {
         ],
         0
       );
-      // const updatedNewPost = { ...newPost };
-      // console.log(newPost);
-      // updatedNewPost.textContent = null;
-      // updatedNewPost.isNewPost = false;
-      // updatedNewPost.username = 'M.J.';
-      // console.log(updatedNewPost);
-
-      // this.setState({ newPost: updatedNewPost });
     }
   };
 
