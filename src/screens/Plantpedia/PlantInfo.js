@@ -84,8 +84,12 @@ export default class PlantCard extends Component {
             <PlantpediaPlantImage name={name} style={{ width: 90.51, height: 90.51 }} />
           </View>
           <View style={styles.plantInfoContainer}>
-            <View style={styles.levelOfExpertiseContainer}>
-              <Text>{season}</Text>
+            <Text style={[styles.textContainer, { marginTop: 25 }]}>Season</Text>
+            <View style={styles.seasonContainer}>
+              <View style={styles.seasonType}>
+                <Text style={styles.textContainerBold}>{season}</Text>
+                <Text style={[styles.textContainerBold, { textAlign: 'center' }]}>-</Text>
+              </View>
               <PlantAndHarvestTime plantTime={plantTime} />
               <PlantAndHarvestTime harvestTime={harvestTime} />
             </View>
@@ -162,8 +166,21 @@ const styles = StyleSheet.create({
     right: 0
   },
   plantInfoContainer: {
-    marginTop: 25,
+    marginTop: 65,
     width: '92.5%',
+    marginLeft: 31
+  },
+  seasonContainer: {
+    display: 'flex',
+    marginLeft: 81,
+    position: 'absolute',
+    top: 25
+  },
+  seasonType: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   levelOfExpertiseContainer: {
     marginTop: 25
@@ -176,8 +193,13 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     fontFamily: 'SFCompactDisplay-Regular',
-    fontSize: 15,
+    fontSize: 16,
     color: '#4AA972'
+  },
+  textContainerBold: {
+    fontFamily: 'SFCompactDisplay-Bold',
+    fontSize: 16,
+    color: '#004734'
   },
   sizeImagesContainer: {
     display: 'flex',

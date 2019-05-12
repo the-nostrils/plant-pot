@@ -8,7 +8,7 @@ import {
 const PlantAndHarvestTime = (props) => {
   const { plantTime, harvestTime, iconSize } = props;
   const time = typeof plantTime !== 'undefined' ? plantTime : harvestTime;
-  
+
   const monthsObj = {
     1: 'J',
     2: 'F',
@@ -31,7 +31,7 @@ const PlantAndHarvestTime = (props) => {
           style={[styles.plantAndHarvestTimeText, iconSize]}
           key={i}
         >
-          {monthsObj[month]}
+          {`${monthsObj[month]} `}
         </Text>
       )
         : (
@@ -39,36 +39,49 @@ const PlantAndHarvestTime = (props) => {
             style={[styles.plantAndHarvestTimeTextBold, iconSize]}
             key={i}
           >
-            {monthsObj[month]}
+            {`${monthsObj[month]} `}
           </Text>
-        )
+        );
     }, time
   );
   console.log(timeField);
 
 
   return (
-    <View style={styles.waterNeedLevelContainer}>
-      <Text style={styles.textContainer}>{typeof plantTime !== 'undefined' ? 'Plant Time' : 'Harvest Time'}</Text>
-      {timeField}
+    <View style={styles.plantAndHarvestTimeContainer}>
+      <View style={styles.description}>
+        <Text style={styles.textContainer}>{typeof plantTime !== 'undefined' ? 'Plant' : 'Harvest'}</Text>
+      </View>
+      <View style={styles.months}>
+        {timeField}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  waterNeedLevelContainer: {
+  plantAndHarvestTimeContainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    position: 'absolute',
-    left: 36.54,
-    top: 70.77
+    alignItems: 'center'
   },
   textContainer: {
-    fontFamily: 'SFCompactDisplay-Regular',
-    fontSize: 15,
-    color: '#4AA972'
+    fontFamily: 'SFCompactDisplay-Bold',
+    fontSize: 16,
+    color: '#004734'
+  },
+  description: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    width: 76
+  },
+  months: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end'
   },
   waterNeedLevelImagesContainer: {
     display: 'flex',
@@ -78,13 +91,14 @@ const styles = StyleSheet.create({
     left: 135
   },
   plantAndHarvestTimeText: {
-    fontSize: 17,
-    color: '#4AA972'
+    fontSize: 16,
+    color: '#004734',
+    opacity: 0.5
   },
   plantAndHarvestTimeTextBold: {
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: 'bold',
-    color: '#4AA972'
+    color: '#004734'
   }
 });
 
