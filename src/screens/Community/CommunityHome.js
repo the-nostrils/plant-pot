@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { addPost } from '../../store/actions/index';
 
@@ -48,8 +49,9 @@ class CommunityHome extends Component {
   newPostInputTouchHandler = () => {
     const { navigation } = this.props;
     const { newPost } = this.state;
+    const { username, textContent } = newPost;
 
-    navigation.navigate('NewPost', { username: newPost.username });
+    navigation.navigate('NewPost', { username, textContent });
   };
 
   postSendButtonHandler = (textContent, username) => {
@@ -63,14 +65,22 @@ class CommunityHome extends Component {
       onAddPost(textContent, username);
 
       // Clear content and state of new post card
-      const updatedNewPost = { ...newPost };
-      console.log(newPost);
-      updatedNewPost.textContent = null;
-      updatedNewPost.isNewPost = false;
-      updatedNewPost.username = 'M.J.';
-      console.log(updatedNewPost);
+      navigation.reset(
+        [
+          NavigationActions.navigate({
+            routeName: 'Home'
+          })
+        ],
+        0
+      );
+      // const updatedNewPost = { ...newPost };
+      // console.log(newPost);
+      // updatedNewPost.textContent = null;
+      // updatedNewPost.isNewPost = false;
+      // updatedNewPost.username = 'M.J.';
+      // console.log(updatedNewPost);
 
-      this.setState({ newPost: updatedNewPost });
+      // this.setState({ newPost: updatedNewPost });
     }
   };
 
@@ -243,4 +253,7 @@ const mapDispatchToProps = dispatch => ({
   onAddPost: (textContent, username) => dispatch(addPost(textContent, username))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommunityHome);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CommunityHome);
