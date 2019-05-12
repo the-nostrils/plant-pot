@@ -3,11 +3,27 @@ import React, { Component } from 'react';
 import {
   Alert, StyleSheet, View, Text
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
 import PostCard from '../../components/PostCard/PostCard';
 
 export default class NewPost extends Component {
   state = {};
+
+  newPostScreenSendPressedHandler = (textContent, isNewPost) => {
+    const { navigation } = this.props;
+    const postList = navigation.getParam('postList');
+
+    navigation.reset(
+      [
+        NavigationActions.navigate({
+          routeName: 'Home',
+          params: { textContent, isNewPost, postList }
+        })
+      ],
+      0
+    );
+  }
 
   render() {
     const { navigation } = this.props;
@@ -19,6 +35,7 @@ export default class NewPost extends Component {
           username={username}
           contentType="new-post-screen"
           isNewPost
+          onNewPostScreenSendPressed={this.newPostScreenSendPressedHandler}
           style={{
             width: 365,
             height: 200,

@@ -18,6 +18,14 @@ export default class PostCard extends Component {
     isNewPost: false
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.contentType === 'new-post' && nextProps.textContent === null) {
+      const updatedState = { ...prevState, textContent: null, isNewPost: false };
+      return updatedState;
+    }
+    return null;
+  }
+
   componentDidMount() {
     const { likeCount, textContent, isNewPost } = this.props;
 
@@ -60,8 +68,17 @@ export default class PostCard extends Component {
   chooseContentType = () => 'existing-post';
 
   renderContent = (contentType) => {
-    const { isLiked, likeCount, textContent } = this.state;
-    const { navigation, username, contentContainer } = this.props;
+    const {
+      isLiked, likeCount, textContent, isNewPost
+    } = this.state;
+    const {
+      navigation,
+      username,
+      contentContainer,
+      onSendPressed,
+      onNewPostInputTouched,
+      onNewPostScreenSendPressed
+    } = this.props;
 
     let contentTypeValue;
     if (contentType) {
@@ -74,7 +91,7 @@ export default class PostCard extends Component {
       case 'new-post':
         return (
           <View style={[{ position: 'absolute' }, contentContainer]}>
-            <TouchableOpacity onPress={() => navigation.navigate('NewPost', { username })}>
+            <TouchableOpacity onPress={onNewPostInputTouched}>
               <View style={styles.textContainer}>
                 <BaseText
                   style={{
@@ -86,7 +103,7 @@ export default class PostCard extends Component {
                     opacity: textContent === null ? 0.5 : 1
                   }}
                 >
-                  {textContent === '__EMPTY-TEXT-CONTENT__' ? 'Touch here for your new post' : textContent}
+                  {textContent === null ? 'Touch here for your new post' : textContent}
                 </BaseText>
               </View>
             </TouchableOpacity>
@@ -105,7 +122,7 @@ export default class PostCard extends Component {
               <MenuBotton
                 iconName="text"
                 buttonText="Send"
-                onPressed={() => Alert.alert('Send the comment!')}
+                onPressed={() => onSendPressed(textContent, username)}
                 circleStyle={{
                   width: 90,
                   height: 30,
@@ -128,7 +145,7 @@ export default class PostCard extends Component {
       case 'new-post-screen':
         return (
           <View style={[{ position: 'absolute' }, contentContainer]}>
-            <TouchableOpacity onPress={() => navigation.navigate('NewPost', { username })}>
+            <TouchableOpacity onPress={() => navigation.replace('NewPost', { username })}>
               <View style={styles.textContainer}>
                 <TextInput
                   onChangeText={text => this.setState({ textContent: text })}
@@ -172,7 +189,7 @@ export default class PostCard extends Component {
               <MenuBotton
                 iconName="text"
                 buttonText="Send"
-                onPressed={() => navigation.navigate('Posted', { textContent })}
+                onPressed={() => onNewPostScreenSendPressed(textContent, isNewPost)}
                 circleStyle={{
                   width: 90,
                   height: 30,
@@ -355,7 +372,10 @@ PostCard.propTypes = {
   usernameContainer: PropTypes.object,
   contentContainer: PropTypes.object,
   textContent: PropTypes.string,
-  isNewPost: PropTypes.bool.isRequired
+  isNewPost: PropTypes.bool,
+  onSendPressed: PropTypes.func,
+  onNewPostInputTouched: PropTypes.func,
+  onNewPostScreenSendPressed: PropTypes.func
 };
 
 PostCard.defaultProps = {
@@ -375,5 +395,8 @@ PostCard.defaultProps = {
     bottom: 0,
     right: 0
   },
-  textContent: ''
+  textContent: null,
+  isNewPost: false,
+  onNewPostInputTouched: () => {},
+  onNewPostScreenSendPressed: () => {}
 };
