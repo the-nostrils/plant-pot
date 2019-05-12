@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
-import OnionImage from '../../assets/images/image_onion.jpeg';
-import SpinachImage from '../../assets/images/image_spinach.jpeg';
-import GarlicImage from '../../assets/images/image_garlic.jpeg';
-import LettuceImage from '../../assets/images/image_lettuce.jpeg';
-import BrusselSproutsImage from '../../assets/images/image_brussel_sprouts.jpeg';
-import ParsleyImage from '../../assets/images/image_parsley.jpeg';
+import OnionImage from '../../assets/images/image_onion.jpg';
+import SpinachImage from '../../assets/images/image_spinach.jpg';
+import GarlicImage from '../../assets/images/image_garlic.jpg';
+import LettuceImage from '../../assets/images/image_lettuce.jpg';
+import BrusselSproutsImage from '../../assets/images/image_brussel_sprouts.jpg';
+import ParsleyImage from '../../assets/images/image_parsley.jpg';
 
 
 const plantpediaPlantImage = (props) => {
