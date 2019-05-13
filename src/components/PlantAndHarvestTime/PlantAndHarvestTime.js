@@ -44,7 +44,7 @@ const PlantAndHarvestTime = (props) => {
         );
     }, time
   );
-  console.log(timeField);
+  // console.log(timeField);
 
 
   return (
