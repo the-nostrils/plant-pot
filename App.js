@@ -17,7 +17,6 @@ import {
 import TrackingHome from './src/screens/Tracking/TrackingHome';
 import Plant from './src/screens/Tracking/Plant';
 import PlantTracker from './src/screens/Tracking/PlantTracker';
-import AddPlants from './src/screens/Tracking/AddPlants';
 import RemovePlants from './src/screens/Tracking/RemovePlants';
 import CommunityHome from './src/screens/Community/CommunityHome';
 import NewPost from './src/screens/Community/NewPost';
@@ -30,20 +29,13 @@ import TabBar from './src/components/UI/TabBar/TabBar';
 const TrackingStack = createStackNavigator(
   {
     TrackingHome,
-    AddPlants,
     RemovePlants,
     Plant,
     PlantTracker
   },
   {
     initialRouteName: 'TrackingHome',
-    defaultNavigationOptions: {
-      headerBackTitle: null,
-      headerTintColor: '#004734',
-      backgroundColor: '#F5F5F5',
-      // headerForceInset: { top: 'never', bottom: 'never' },
-      headerTransparent: true
-    }
+    headerMode: 'none'
   }
 );
 
@@ -56,10 +48,8 @@ const CommunityStack = createStackNavigator(
   {
     initialRouteName: 'Home',
     defaultNavigationOptions: {
-      headerBackTitle: null,
-      headerTintColor: '#004734',
       backgroundColor: '#F5F5F5',
-      // headerTransparent: true
+      headerTransparent: true
     }
   }
 );
@@ -69,7 +59,13 @@ const PlantpediaStack = createStackNavigator(
     Home: Plantpedia,
     Details: PlantImage
   },
-  { initialRouteName: 'Home' }
+  {
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      backgroundColor: '#F5F5F5',
+      headerTransparent: true
+    }
+  }
 );
 
 const AuthStack = createStackNavigator(
@@ -80,10 +76,7 @@ const AuthStack = createStackNavigator(
   {
     initialRouteName: 'Home',
     defaultNavigationOptions: {
-      headerBackTitle: null,
-      headerTintColor: '#004734',
       backgroundColor: '#F5F5F5',
-      // headerForceInset: { top: 'never', bottom: 'never' },
       headerTransparent: true
     }
   }
@@ -109,5 +102,6 @@ const SwitchNavigator = createSwitchNavigator(
     initialRouteName: 'Auth'
   }
 );
+
 
 export default createAppContainer(SwitchNavigator);
