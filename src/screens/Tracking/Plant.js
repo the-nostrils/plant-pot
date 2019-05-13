@@ -1,17 +1,20 @@
 /* eslint-disable no-alert, no-undef */
 import React, { Component } from 'react';
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import {
+  Alert, ImageBackground, StyleSheet, View
+} from 'react-native';
 import PropTypes from 'prop-types';
 
-import PlantImage from '../../components/PlantImage/PlantImage';
+// import PlantImage from '../../components/PlantImage/PlantImage';
+import PlantpediaPlantImage from '../../components/PlantpediaPlantImage/PlantpediaPlantImage';
 import MenuButton from '../../components/UI/MenuButton/MenuButton';
 import BaseText from '../../components/UI/BaseText/BaseText';
 
 export default class Plant extends Component {
-  static navigationOptions = {
-    title: 'Onion',
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.getParam('name'),
     headerStyle: {
-      height: 80
+      height: 55
     },
     headerTitleStyle: {
       fontFamily: 'SFCompactDisplay-Semibold',
@@ -19,8 +22,9 @@ export default class Plant extends Component {
       color: '#112300',
       letterSpacing: -0.41,
       marginBottom: 8
-    }
-  };
+    },
+    headerTransparent: true
+  });
 
   state = {
     isSettingsMenuOpen: false,
@@ -37,14 +41,18 @@ export default class Plant extends Component {
     this.setState({ isTrackingMenuOpen: !isTrackingMenuOpen });
   };
 
-  menuButtonPressedHandler = () => {
+  menuButtonPressedHandler = (pageName) => {
     const { navigation } = this.props;
+    const name = navigation.getParam('name');
+    const pageTitle = `${name} ${pageName} Time`
 
-    navigation.navigate('PlantTracker');
+    navigation.navigate('PlantTracker', { pageName, pageTitle });
   };
 
   render() {
     const { isSettingsMenuOpen, isTrackingMenuOpen } = this.state;
+    const { navigation } = this.props;
+    const name = navigation.getParam('name');
 
     const settingsMenu = isSettingsMenuOpen ? (
       <View style={styles.menuContainer}>
@@ -108,7 +116,7 @@ export default class Plant extends Component {
               iconName="irrigate"
               circleStyle={{ width: 56, height: 56, backgroundColor: '#FFFFFF' }}
               iconStyle={{ width: 23, height: 34 }}
-              onPressed={this.menuButtonPressedHandler}
+              onPressed={() => this.menuButtonPressedHandler('Irrigate')}
             />
             <BaseText
               style={{
@@ -135,7 +143,7 @@ export default class Plant extends Component {
                 top: 50
               }}
               iconStyle={{ width: 23, height: 24 }}
-              onPressed={this.menuButtonPressedHandler}
+              onPressed={() => this.menuButtonPressedHandler('Fertilize')}
             />
             <BaseText
               style={{
@@ -157,7 +165,7 @@ export default class Plant extends Component {
               iconName="prune"
               circleStyle={{ width: 56, height: 56, backgroundColor: '#FFFFFF' }}
               iconStyle={{ width: 23, height: 35 }}
-              onPressed={this.menuButtonPressedHandler}
+              onPressed={() => this.menuButtonPressedHandler('Prune')}
             />
             <BaseText
               style={{
@@ -199,10 +207,10 @@ export default class Plant extends Component {
       <View style={styles.container}>
         <ImageBackground
           source={require('../../assets/images/background_plant.png')}
-          style={{ width: '100%', height: '100%'}}
+          style={{ width: '100%', height: '100%' }}
         >
           <View style={styles.upperPart}>
-            <PlantImage style={styles.plantImage} />
+            <PlantpediaPlantImage name={name} style={styles.plantImage} />
             {settingsMenu}
           </View>
           <View style={styles.lowerPart}>{trackingMenu}</View>

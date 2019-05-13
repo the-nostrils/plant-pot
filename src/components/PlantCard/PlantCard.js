@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
-import PlantImage from '../PlantImage/PlantImage';
+// import PlantImage from '../PlantImage/PlantImage';
+import PlantpediaPlantImage from '../PlantpediaPlantImage/PlantpediaPlantImage';
 import TrackingModeSwitch from '../TrackingModeSwitch/TrackingModeSwitch';
 import BaseText from '../UI/BaseText/BaseText';
 
@@ -12,9 +13,9 @@ export default class PlantCard extends Component {
   };
 
   plantCardTouchedHandler = () => {
-    const { navigation } = this.props;
+    const { navigation, name } = this.props;
 
-    return navigation.navigate('Plant');
+    return navigation.navigate('Plant', { name });
   };
 
   toggleSwitchHandler = () => {
@@ -43,7 +44,7 @@ export default class PlantCard extends Component {
             </BaseText>
           </View>
           <View style={styles.plantImageContainer}>
-            <PlantImage />
+            <PlantpediaPlantImage name={name} />
           </View>
           <View style={styles.trackingModeSwitchContainer}>
             <TrackingModeSwitch

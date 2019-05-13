@@ -7,6 +7,10 @@ import PlantCardList from '../../components/PlantCardList/PlantCardList';
 import ModalWindow from '../../components/UI/Modal/ModalWindow';
 
 class TrackingHome extends Component {
+  static navigationOptions = {
+    header: null
+  };
+
   state = {
     isModalVisible: false,
     listButtonMode: 0
@@ -30,6 +34,7 @@ class TrackingHome extends Component {
 
   render() {
     const { isModalVisible, listButtonMode } = this.state;
+    const { plantList } = this.props;
     return (
       <View style={styles.container}>
         <ModalWindow
@@ -38,11 +43,13 @@ class TrackingHome extends Component {
           isVisible={isModalVisible}
           onDiscardModal={this.toggleModal}
           onConfirmPressed={() => Alert.alert('DDAENG!')}
+          plantList={plantList}
         />
         <PlantCardList
           listButtonMode={listButtonMode}
           addPlantButtonPressed={this.addPlantButtonHandler}
           removePlantButtonPressed={this.removePlantButtonHandler}
+          plantList={plantList}
           {...this.props}
         />
       </View>

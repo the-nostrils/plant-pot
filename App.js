@@ -34,8 +34,7 @@ const TrackingStack = createStackNavigator(
     PlantTracker
   },
   {
-    initialRouteName: 'TrackingHome',
-    headerMode: 'none'
+    initialRouteName: 'TrackingHome'
   }
 );
 
