@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import PlantpediaPlantCard from '../PlantpediaPlantCard/PlantpediaPlantCard';
-import SearchBox from '../UI/SearchBox/SearchBox';
+// import SearchBox from '../UI/SearchBox/SearchBox';
 
 export default class PlantpediaPlantCardList extends Component {
   static navigationOptions = {
@@ -472,8 +472,9 @@ export default class PlantpediaPlantCardList extends Component {
         exposure: 'Low',
         climate: '10-18°C'
       }
-    ],
-    searchQuery: ''
+    ]
+    // ,
+    // searchQuery: ''
   };
 
   componentWillMount() {
@@ -488,26 +489,26 @@ export default class PlantpediaPlantCardList extends Component {
     }));
   }
 
-  searchHandler = (val) => {
-    this.setState({
-      searchQuery: val
-    });
-  };
+  // searchHandler = (val) => {
+  //   this.setState({
+  //     searchQuery: val
+  //   });
+  // };
 
   render() {
-    const { plantList, searchQuery } = this.state;
+    const { plantList } = this.state;
     const plantCardWidth = 340;
 
     return (
       <ScrollView>
         <View style={styles.container}>
-          <View style={styles.searchBoxContainer}>
+          {/* <View style={styles.searchBoxContainer}>
             <SearchBox
               searchQuery={searchQuery}
               searchHandler={val => this.searchHandler(val)
               }
             />
-          </View>
+          </View> */}
           <View style={styles.cardListContainer}>
             <FlatList
               data={plantList}
@@ -546,6 +547,7 @@ export default class PlantpediaPlantCardList extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 10,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

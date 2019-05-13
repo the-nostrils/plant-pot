@@ -2,7 +2,7 @@
 /* eslint-disable no-alert, no-undef */
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Text, Image
+  StyleSheet, View, Text
 } from 'react-native';
 import PropTypes from 'prop-types';
 import PlantpediaPlantImage from '../PlantpediaPlantImage/PlantpediaPlantImage';
@@ -98,9 +98,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 80,
     borderBottomRightRadius: 0,
     borderTopRightRadius: 45,
-    margin: 21,
-    marginBottom: 20,
+    marginTop: 28,
+    marginBottom: 13,
     marginRight: 25,
+    marginLeft: 21,
     shadowColor: '#CFCFCF',
     shadowOffset: { width: -1, height: 3 },
     shadowOpacity: 0.61,
