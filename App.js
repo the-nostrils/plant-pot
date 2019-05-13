@@ -59,7 +59,7 @@ const CommunityStack = createStackNavigator(
       headerBackTitle: null,
       headerTintColor: '#004734',
       backgroundColor: '#F5F5F5',
-      headerTransparent: true
+      // headerTransparent: true
     }
   }
 );
