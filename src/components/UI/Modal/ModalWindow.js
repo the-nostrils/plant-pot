@@ -49,26 +49,24 @@ export default class ModalWindow extends Component {
 
   render() {
     const {
-      contentType, isVisible, onDiscardModal, onConfirmPressed, title
+      contentType, isVisible, onDiscardModal, onConfirmPressed, title, plantList
     } = this.props;
 
     const addingPlants = (
       <SearchableDropdown
-        onTextChange={(text) => Alert.alert(text)}
+        onTextChange={() => {}}
         onItemSelect={plant => Alert.alert(JSON.stringify(plant))}
         containerStyle={styles.searchableDropdownContainer}
         textInputStyle={styles.searchableDropdownTextInput}
         itemStyle={{
           padding: 10,
-          marginTop: 2,
-          backgroundColor: '#ddd',
-          borderColor: '#bbb',
+          backgroundColor: 'rgba(97, 162, 136, 0.2)',
+          borderColor: 'rgba(97, 162, 136, 0.2)',
           borderWidth: 1,
-          borderRadius: 5
         }}
         itemTextStyle={{ color: '#222' }}
         itemsContainerStyle={styles.searchableDropdownItemsContainer}
-        items={plants}
+        items={plantList}
         placeholder="Let's find your plant"
         resetValue={false}
         underlineColorAndroid="transparent"
@@ -143,8 +141,7 @@ export default class ModalWindow extends Component {
 const styles = StyleSheet.create({
   modalContainer: {
     width: 342,
-    minHeight: 250,
-    maxHeight: 410,
+    height: 410,
     justifyContent: 'space-between',
     borderBottomLeftRadius: 80,
     borderTopLeftRadius: 80,
@@ -171,8 +168,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 23,
     borderBottomRightRadius: 23,
     borderTopRightRadius: 23,
-    borderWidth: 1,
-    borderColor: '#FFFFFF',
     backgroundColor: 'rgba(255, 255, 255, 0.8)'
   },
   searchableDropdownTextInput: {
@@ -181,13 +176,11 @@ const styles = StyleSheet.create({
     paddingLeft: 27,
     fontFamily: 'SFCompactDisplay-Regular',
     fontSize: 13,
-    color: 'rgba(0, 71, 52, 0.29)',
+    color: '#225F4E',
     letterSpacing: -0.08,
     textAlign: 'left'
   },
   searchableDropdownItemsContainer: {
-    borderWidth: 1,
-    borderColor: 'red',
     maxHeight: 175
   },
   buttonsContainer: {
@@ -200,7 +193,6 @@ const styles = StyleSheet.create({
     width: 77,
     height: 51,
     marginRight: 14,
-    backgroundColor: '#3B9A70',
     borderBottomLeftRadius: 80,
     borderTopLeftRadius: 80,
     borderBottomRightRadius: 80,
@@ -215,5 +207,6 @@ ModalWindow.propTypes = {
   onDiscardModal: PropTypes.func.isRequired,
   onConfirmPressed: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  contentType: PropTypes.string.isRequired
+  contentType: PropTypes.string.isRequired,
+  plantList: PropTypes.array
 };

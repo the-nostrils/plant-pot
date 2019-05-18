@@ -22,7 +22,7 @@ const plantListButton = (props) => {
   }
 
   return (
-    <TouchableOpacity onPress={() => onPressed(buttonMode)}>
+    <TouchableOpacity onPress={onPressed}>
       <View style={styles.container}>
         <View style={[styles.buttonContainer, overrideButtonContainerStyle]}>
           <View>

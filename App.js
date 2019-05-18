@@ -17,12 +17,11 @@ import {
 import TrackingHome from './src/screens/Tracking/TrackingHome';
 import Plant from './src/screens/Tracking/Plant';
 import PlantTracker from './src/screens/Tracking/PlantTracker';
-import AddPlants from './src/screens/Tracking/AddPlants';
 import RemovePlants from './src/screens/Tracking/RemovePlants';
-import Community from './src/screens/Community/Community';
+import CommunityHome from './src/screens/Community/CommunityHome';
+import NewPost from './src/screens/Community/NewPost';
 import Entrance from './src/screens/Auth/Entrance';
 import SignUp from './src/screens/Auth/SignUp';
-import PlantImage from './src/components/PlantImage/PlantImage';
 import TabBar from './src/components/UI/TabBar/TabBar';
 import PlantpediaHome from './src/screens/Plantpedia/PlantpediaHome';
 import PlantInfo from './src/screens/Plantpedia/PlantInfo';
@@ -30,29 +29,28 @@ import PlantInfo from './src/screens/Plantpedia/PlantInfo';
 const TrackingStack = createStackNavigator(
   {
     TrackingHome,
-    AddPlants,
     RemovePlants,
     Plant,
     PlantTracker
   },
   {
-    initialRouteName: 'TrackingHome',
-    defaultNavigationOptions: {
-      headerBackTitle: null,
-      headerTintColor: '#004734',
-      backgroundColor: '#F5F5F5',
-      // headerForceInset: { top: 'never', bottom: 'never' },
-      headerTransparent: true
-    }
+    initialRouteName: 'TrackingHome'
   }
 );
 
 const CommunityStack = createStackNavigator(
   {
-    Home: Community,
-    Details: PlantImage
+    Home: { screen: CommunityHome },
+    NewPost: { screen: NewPost },
+    Posted: { screen: CommunityHome }
   },
-  { initialRouteName: 'Home' }
+  {
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      backgroundColor: '#F5F5F5',
+      headerTransparent: true
+    }
+  }
 );
 
 const PlantpediaStack = createStackNavigator(
@@ -80,10 +78,7 @@ const AuthStack = createStackNavigator(
   {
     initialRouteName: 'Home',
     defaultNavigationOptions: {
-      headerBackTitle: null,
-      headerTintColor: '#004734',
       backgroundColor: '#F5F5F5',
-      // headerForceInset: { top: 'never', bottom: 'never' },
       headerTransparent: true
     }
   }
@@ -109,5 +104,6 @@ const SwitchNavigator = createSwitchNavigator(
     initialRouteName: 'Auth'
   }
 );
+
 
 export default createAppContainer(SwitchNavigator);

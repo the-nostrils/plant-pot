@@ -1,12 +1,11 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 
-const plantImage = (props) => {
+const PlantImage = (props) => {
   const { style } = props;
 
   return (
     <View style={[styles.container, style]}>
-      {/* eslint-disable-next-line global-require */}
       <Image
         // eslint-disable-next-line global-require
         source={require('../../assets/images/image_beet.jpeg')}
@@ -39,4 +38,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default plantImage;
+export default PlantImage;

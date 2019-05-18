@@ -9,30 +9,56 @@ import BaseText from '../../components/UI/BaseText/BaseText';
 import MenuButton from '../../components/UI/MenuButton/MenuButton';
 import TrackingCalendar from '../../components/TrackingCalendar/TrackingCalendar';
 
+import FertilizeAnimation from '../../assets/animations/fertilize.gif';
+import IrrigateAnimation from '../../assets/animations/irrigate.gif';
+import PruneAnimation from '../../assets/animations/prune.gif';
+
 export default class PlantTracker extends Component {
-  static navigationOptions = {
-    title: 'Red Onion Irrigation Time',
-    headerStyle: {
-      height: 80
-    },
-    headerTitleStyle: {
-      fontFamily: 'SFCompactDisplay-Bold',
-      fontSize: 17,
-      color: '#004734',
-      letterSpacing: -0.41,
-      marginBottom: 8
-    }
-  };
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.getParam('pageTitle'),
+    header: null
+  });
 
   state = {};
 
+  renderAnimation = () => {
+    const { navigation } = this.props;
+    const pageName = navigation.getParam('pageName');
+
+    switch (pageName) {
+      case 'Fertilize':
+        return <Image source={FertilizeAnimation} style={{ marginTop: 16 }} />;
+      case 'Irrigate':
+        return <Image source={IrrigateAnimation} style={{ marginTop: 16 }} />;
+      case 'Prune':
+        return <Image source={PruneAnimation} style={{ marginTop: 30 }} />;
+      default:
+        return null;
+    }
+  };
+
   render() {
+    const { navigation } = this.props;
+    const pageTitle = navigation.getParam('pageTitle');
+
     return (
       <View style={styles.container}>
         {/* <ImageBackground
           source={require('../../assets/images/Tracktobedone.png')}
           style={[styles.container, { width: '100%', height: '100%', paddingBottom: 60 }]}
         > */}
+        <BaseText
+          style={{
+            fontFamily: 'SFCompactDisplay-Bold',
+            fontSize: 17,
+            color: '#004734',
+            letterSpacing: -0.41,
+            textAlign: 'center',
+            marginBottom: 8
+          }}
+        >
+          {pageTitle}
+        </BaseText>
         <BaseText
           style={{
             fontFamily: 'SFCompactDisplay-Regular',
@@ -46,7 +72,7 @@ export default class PlantTracker extends Component {
           {' '}
         </BaseText>
         {/* <View style={styles.animationContainer} /> */}
-        <Image source={require('../../assets/animations/irrigate.gif')} />
+        {this.renderAnimation()}
         <View style={styles.missionButtonsContainer}>
           <View style={styles.missionButton}>
             <MenuButton
@@ -125,7 +151,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#F5F5F5',
-    paddingTop: 60
+    paddingTop: 35
   },
   missionButtonsContainer: {
     flexDirection: 'row',

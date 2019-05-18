@@ -8,48 +8,69 @@ import PlantCard from '../PlantCard/PlantCard';
 import PlantListButton from '../UI/PlantListButton/PlantListButton';
 
 export default class PlantCardList extends Component {
-  static navigationOptions = {
-    title: 'Home'
-  };
+  state = {};
 
-  state = {
-    plantList: [
-      { id: 1, name: 'Onion' },
-      { id: 2, name: 'Beet' },
-      { id: 3, name: 'Strawberry' },
-      { id: 4, name: 'Onion' },
-      { id: 5, name: 'Beet' },
-      { id: 6, name: 'Strawberry' }
-    ]
-  };
+  renderPlantCardList = () => {
+    const { listButtonMode, removePlantButtonPressed, plantList } = this.props;
 
-  plantButtonPressedHandler = (buttonMode) => {
-    const { navigation, onAddPlantsPressed } = this.props;
+    const plantCardWidth = listButtonMode === 0 ? 330 : 312;
+    const plantCardContainerOverride = listButtonMode === 1 ? { opacity: 0.61 } : null;
 
-    switch (buttonMode) {
+    switch (listButtonMode) {
       case 0:
-        onAddPlantsPressed();
-        // Alert.alert('Add Plants modal will open.');
-        // navigation.navigate('AddPlants');
-        break;
+        return (
+          <View style={styles.cardListContainer}>
+            <FlatList
+              data={plantList}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({ item }) => (
+                <View style={styles.plantCardContainer}>
+                  <PlantCard
+                    name={item.name}
+                    width={plantCardWidth}
+                    style={plantCardContainerOverride}
+                    {...this.props}
+                  />
+                </View>
+              )}
+              extraData={this.props}
+            />
+          </View>
+        );
       case 1:
-        // Alert.alert('Go to Remove Plants Screen!');
-        navigation.navigate('RemovePlants');
-        break;
+        return (
+          <View style={styles.cardListContainer}>
+            <FlatList
+              data={plantList}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({ item }) => (
+                <View style={styles.plantCardContainer}>
+                  <TouchableOpacity onPress={removePlantButtonPressed}>
+                    <Image
+                      style={styles.removePlantsIcon}
+                      // eslint-disable-next-line global-require
+                      source={require('../../assets/images/icon_remove_plants.png')}
+                    />
+                  </TouchableOpacity>
+                  <PlantCard
+                    name={item.name}
+                    width={plantCardWidth}
+                    style={plantCardContainerOverride}
+                    {...this.props}
+                  />
+                </View>
+              )}
+              extraData={this.props}
+            />
+          </View>
+        );
       default:
-        Alert.alert('TrackingHome');
+        return null;
     }
   };
 
-  removeButtonPressedHandler = () => {
-    Alert.alert('Remove button pressed!');
-  };
-
-  // plantCardPressedhandler = () => this.  props.navigation.navigate('Details');
-
-  render() {
+  drawHorizontalLine = () => {
     const { listButtonMode } = this.props;
-    const { plantList } = this.state;
 
     const horizontalLine = listButtonMode === 0 ? (
       <View style={styles.horizontalLineContainer}>
@@ -63,47 +84,23 @@ export default class PlantCardList extends Component {
       </View>
     );
 
-    const plantCardWidth = listButtonMode === 0 ? 330 : 312;
-    const plantCardContainerOverride = listButtonMode === 1 ? { opacity: 0.61 } : null;
-    const removePlantsIcon = listButtonMode === 1 ? (
-      <TouchableOpacity onPress={this.removeButtonPressedHandler}>
-        <Image
-          style={styles.removePlantsIcon}
-          source={require('../../assets/images/icon_remove_plants.png')}
-        />
-      </TouchableOpacity>
-    ) : null;
+    return horizontalLine;
+  };
+
+  render() {
+    const { addPlantButtonPressed, removePlantButtonPressed } = this.props;
 
     return (
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.listButtonsContainer}>
             <View style={styles.buttonContainer}>
-              <PlantListButton buttonText="Add Plants" onPressed={this.plantButtonPressedHandler} />
-              <PlantListButton
-                buttonText="Remove Plants"
-                onPressed={this.plantButtonPressedHandler}
-              />
+              <PlantListButton buttonText="Add Plants" onPressed={addPlantButtonPressed} />
+              <PlantListButton buttonText="Remove Plants" onPressed={removePlantButtonPressed} />
             </View>
-            {horizontalLine}
+            {this.drawHorizontalLine()}
           </View>
-          <View style={styles.cardListContainer}>
-            <FlatList
-              data={plantList}
-              keyExtractor={item => item.id.toString()}
-              renderItem={({ item }) => (
-                <View style={styles.plantCardContainer}>
-                  {removePlantsIcon}
-                  <PlantCard
-                    name={item.name}
-                    width={plantCardWidth}
-                    style={plantCardContainerOverride}
-                    {...this.props}
-                  />
-                </View>
-              )}
-            />
-          </View>
+          {this.renderPlantCardList()}
         </View>
       </ScrollView>
     );
@@ -115,7 +112,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F5F5'
+    backgroundColor: '#F5F5F5',
+    zIndex: 900
   },
   listButtonsContainer: {
     width: 342,
@@ -133,7 +131,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#F5F5F5'
+    backgroundColor: '#F5F5F5',
+    paddingBottom: 20
   },
   horizontalLineContainer: {
     width: '100%',
@@ -149,11 +148,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F5F5'
+    backgroundColor: '#F5F5F5',
+    zIndex: 910
   },
   plantCardContainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    zIndex: 920
   },
   removePlantsIcon: {
     marginBottom: 10
@@ -162,5 +163,6 @@ const styles = StyleSheet.create({
 
 PlantCardList.propTypes = {
   listButtonMode: PropTypes.number.isRequired,
-  onAddPlantsPressed: PropTypes.func.isRequired
+  addPlantButtonPressed: PropTypes.func.isRequired,
+  removePlantButtonPressed: PropTypes.func.isRequired
 };
