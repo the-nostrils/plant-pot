@@ -50,6 +50,8 @@ export default class PlantCardList extends Component {
                 }}
               >
                 There is no plant in your tracking list.
+                {'\n'}
+                Click Add Plants button to select one.
                 {' '}
               </BaseText>
             )}

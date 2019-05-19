@@ -59,7 +59,7 @@ export default class ModalWindow extends Component {
     }
 
     return (
-      <Modal isVisible={isVisible}>
+      <Modal isVisible={isVisible} style={styles.modal}>
         <View style={styles.modalContainer}>
           <View style={styles.titleContainer}>
             <BaseText
@@ -113,6 +113,10 @@ export default class ModalWindow extends Component {
 }
 
 const styles = StyleSheet.create({
+  modal: {
+    alignItems: 'center',
+    top: -80
+  },
   modalContainer: {
     width: 342,
     height: 410,
