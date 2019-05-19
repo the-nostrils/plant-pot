@@ -373,13 +373,21 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PLANT: {
-      const { plant } = action.payload;
-      const { id } = plant;
+      const { id } = action.payload.plant;
       const { plantList } = state;
       const updatedTrackedPlantList = [...state.trackedPlantList];
 
       const [newPlantToPush] = plantList.filter(item => item.id === id);
       updatedTrackedPlantList.push(newPlantToPush);
+
+      return {
+        ...state,
+        trackedPlantList: updatedTrackedPlantList
+      };
+    }
+    case DELETE_PLANT: {
+      const { id } = action.payload.plant;
+      const updatedTrackedPlantList = state.trackedPlantList.filter(post => post.id !== id);
 
       return {
         ...state,

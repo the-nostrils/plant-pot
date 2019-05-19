@@ -36,8 +36,20 @@ class TrackingHome extends Component {
   }
 
   removePlantButtonHandler = () => {
-    this.setState({ listButtonMode: 1 });
+    const { listButtonMode } = this.state;
+
+    if (listButtonMode === 0) {
+      this.setState({ listButtonMode: 1 });
+    } else {
+      this.setState({ listButtonMode: 0 });
+    }
   };
+
+  removePlantSubmitHandler = (plant) => {
+    const { onDeletePost } = this.props;
+
+    onDeletePost(plant);
+  }
 
   render() {
     const { isModalVisible, listButtonMode } = this.state;
@@ -58,6 +70,7 @@ class TrackingHome extends Component {
           listButtonMode={listButtonMode}
           addPlantButtonPressed={this.addPlantButtonHandler}
           removePlantButtonPressed={this.removePlantButtonHandler}
+          onRemovePlantSubmit={this.removePlantSubmitHandler}
           plantList={trackedPlantList}
         />
       </View>
@@ -81,7 +94,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onAddPost: plant => dispatch(addPlant(plant))
+  onAddPost: plant => dispatch(addPlant(plant)),
+  onDeletePost: plant => dispatch(deletePlant(plant))
 });
 
 export default connect(

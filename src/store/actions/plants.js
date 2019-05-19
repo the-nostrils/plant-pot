@@ -7,9 +7,9 @@ export const addPlant = plant => ({
   }
 });
 
-export const deletePlant = id => ({
+export const deletePlant = plant => ({
   type: DELETE_PLANT,
   payload: {
-    id
+    plant
   }
 });

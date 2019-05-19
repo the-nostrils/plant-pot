@@ -13,7 +13,7 @@ export default class PlantCardList extends Component {
   state = {};
 
   renderPlantCardList = () => {
-    const { listButtonMode, removePlantButtonPressed, plantList } = this.props;
+    const { listButtonMode, plantList, onRemovePlantSubmit } = this.props;
 
     const plantCardWidth = listButtonMode === 0 ? 330 : 312;
     const plantCardContainerOverride = listButtonMode === 1 ? { opacity: 0.61 } : null;
@@ -62,21 +62,21 @@ export default class PlantCardList extends Component {
               data={plantList}
               keyExtractor={item => item.id.toString()}
               renderItem={({ item }) => (
-                <View style={styles.plantCardContainer}>
-                  <TouchableOpacity onPress={removePlantButtonPressed}>
+                <TouchableOpacity onPress={() => onRemovePlantSubmit(item)}>
+                  <View style={styles.plantCardContainer}>
                     <Image
                       style={styles.removePlantsIcon}
                       // eslint-disable-next-line global-require
                       source={require('../../assets/images/icon_remove_plants.png')}
                     />
-                  </TouchableOpacity>
-                  <PlantCard
-                    name={item.name}
-                    width={plantCardWidth}
-                    style={plantCardContainerOverride}
-                    {...this.props}
-                  />
-                </View>
+                    <PlantCard
+                      name={item.name}
+                      width={plantCardWidth}
+                      style={plantCardContainerOverride}
+                      {...this.props}
+                    />
+                  </View>
+                </TouchableOpacity>
               )}
               extraData={this.props}
             />
@@ -182,5 +182,6 @@ const styles = StyleSheet.create({
 PlantCardList.propTypes = {
   listButtonMode: PropTypes.number.isRequired,
   addPlantButtonPressed: PropTypes.func.isRequired,
+  onRemovePlantSubmit: PropTypes.func.isRequired,
   removePlantButtonPressed: PropTypes.func.isRequired
 };
