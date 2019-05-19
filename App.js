@@ -26,15 +26,27 @@ import TabBar from './src/components/UI/TabBar/TabBar';
 import PlantpediaHome from './src/screens/Plantpedia/PlantpediaHome';
 import PlantInfo from './src/screens/Plantpedia/PlantInfo';
 
+const defaultNavStyle = {
+  backgroundColor: '#F5F5F5',
+  headerTransparent: true,
+  headerBackTitle: null,
+  headerTruncatedBackTitle: null,
+  headerTintColor: '#3C9568',
+  headerLeftContainerStyle: {
+    left: 50
+  }
+};
+
 const TrackingStack = createStackNavigator(
   {
-    TrackingHome,
-    RemovePlants,
-    Plant,
-    PlantTracker
+    TrackingHome: { screen: TrackingHome },
+    RemovePlants: { screen: RemovePlants },
+    Plant: { screen: Plant },
+    PlantTracker: { screen: PlantTracker }
   },
   {
-    initialRouteName: 'TrackingHome'
+    initialRouteName: 'TrackingHome',
+    defaultNavigationOptions: defaultNavStyle
   }
 );
 
@@ -46,10 +58,7 @@ const CommunityStack = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
-    defaultNavigationOptions: {
-      backgroundColor: '#F5F5F5',
-      headerTransparent: true
-    }
+    defaultNavigationOptions: defaultNavStyle
   }
 );
 
@@ -60,13 +69,7 @@ const PlantpediaStack = createStackNavigator(
   },
   {
     initialRouteName: 'PlantpediaHome',
-    defaultNavigationOptions: {
-      headerBackTitle: null,
-      headerTintColor: '#004734',
-      backgroundColor: '#F5F5F5',
-      headerForceInset: { top: 'never', bottom: 'never' },
-      headerTransparent: true
-    }
+    defaultNavigationOptions: defaultNavStyle
   }
 );
 
@@ -77,10 +80,7 @@ const AuthStack = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
-    defaultNavigationOptions: {
-      backgroundColor: '#F5F5F5',
-      headerTransparent: true
-    }
+    defaultNavigationOptions: defaultNavStyle
   }
 );
 
@@ -104,6 +104,5 @@ const SwitchNavigator = createSwitchNavigator(
     initialRouteName: 'Auth'
   }
 );
-
 
 export default createAppContainer(SwitchNavigator);
