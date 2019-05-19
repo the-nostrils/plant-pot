@@ -49,6 +49,10 @@ export default class Plant extends Component {
     navigation.navigate('PlantTracker', { pageName, pageTitle });
   };
 
+  buttonPressedHandler = (string) => {
+    Alert.alert(string);
+  }
+
   render() {
     const { isSettingsMenuOpen, isTrackingMenuOpen } = this.state;
     const { navigation } = this.props;
@@ -69,13 +73,13 @@ export default class Plant extends Component {
             iconName="edit-name"
             circleStyle={{ width: 38, height: 38, backgroundColor: '#FFFFFF' }}
             iconStyle={{ width: 22, height: 22 }}
-            onPressed={this.menuButtonPressedHandler}
+            onPressed={() => this.buttonPressedHandler('Open Plant Name Edit Screen')}
           />
           <MenuButton
             iconName="photo"
             circleStyle={{ width: 38, height: 38, backgroundColor: '#FFFFFF' }}
             iconStyle={{ width: 22, height: 22 }}
-            onPressed={this.menuButtonPressedHandler}
+            onPressed={() => this.buttonPressedHandler('Open Photo Album')}
           />
         </View>
       </View>
