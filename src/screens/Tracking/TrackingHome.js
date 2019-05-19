@@ -31,7 +31,10 @@ class TrackingHome extends Component {
   addPlantSubmitHandler = (plant) => {
     const { onAddPost } = this.props;
 
-    onAddPost(plant);
+    if (plant !== null) {
+      onAddPost(plant);
+    }
+
     this.setState({ isModalVisible: false });
   }
 

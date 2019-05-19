@@ -37,7 +37,18 @@ export default class PlantTracker extends Component {
 
     switch (pageName) {
       case 'Fertilization':
-        return <Image source={FertilizeAnimation} style={{ marginTop: 16 }} />;
+        return (
+          <Image
+            source={FertilizeAnimation}
+            style={{
+              marginTop: 16,
+              shadowColor: '#000000',
+              shadowOffset: { width: 0, height: 3 },
+              shadowOpacity: 0.16,
+              shadowRadius: 6
+            }}
+          />
+        );
       case 'Irrigation':
         return <Image source={IrrigateAnimation} style={{ marginTop: 16 }} />;
       case 'Pruning':
@@ -146,8 +157,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#F5F5F5',
-    paddingTop: 35
+    backgroundColor: '#F5F5F5'
+    // paddingTop: 35
   },
   missionButtonsContainer: {
     flexDirection: 'row',
