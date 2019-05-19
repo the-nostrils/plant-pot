@@ -22,7 +22,6 @@ export default class PlantCardList extends Component {
       case 0:
         return (
           <View style={styles.cardListContainer}>
-            {console.log(plantList)}
             {typeof plantList !== 'undefined' && plantList.length > 0 ? (
               <FlatList
                 data={plantList}
