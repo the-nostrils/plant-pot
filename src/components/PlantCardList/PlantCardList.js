@@ -4,8 +4,10 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
 import PlantCard from '../PlantCard/PlantCard';
 import PlantListButton from '../UI/PlantListButton/PlantListButton';
+import BaseText from '../UI/BaseText/BaseText';
 
 export default class PlantCardList extends Component {
   state = {};
@@ -20,21 +22,38 @@ export default class PlantCardList extends Component {
       case 0:
         return (
           <View style={styles.cardListContainer}>
-            <FlatList
-              data={plantList}
-              keyExtractor={item => item.id.toString()}
-              renderItem={({ item }) => (
-                <View style={styles.plantCardContainer}>
-                  <PlantCard
-                    name={item.name}
-                    width={plantCardWidth}
-                    style={plantCardContainerOverride}
-                    {...this.props}
-                  />
-                </View>
-              )}
-              extraData={this.props}
-            />
+            {console.log(plantList)}
+            {typeof plantList !== 'undefined' && plantList.length > 0 ? (
+              <FlatList
+                data={plantList}
+                keyExtractor={item => item.id.toString()}
+                renderItem={({ item }) => (
+                  <View style={styles.plantCardContainer}>
+                    <PlantCard
+                      name={item.name}
+                      width={plantCardWidth}
+                      style={plantCardContainerOverride}
+                      {...this.props}
+                    />
+                  </View>
+                )}
+                extraData={this.props}
+              />
+            ) : (
+              <BaseText
+                style={{
+                  fontFamily: 'SFCompactDisplay-Regular',
+                  fontSize: 15,
+                  color: '#004734',
+                  letterSpacing: -0.24,
+                  textAlign: 'left',
+                  marginTop: 60
+                }}
+              >
+                There is no plant in your tracking list.
+                {' '}
+              </BaseText>
+            )}
           </View>
         );
       case 1:

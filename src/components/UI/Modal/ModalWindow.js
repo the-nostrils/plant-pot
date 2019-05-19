@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import {
   Alert, StyleSheet, TouchableOpacity, View
@@ -9,60 +10,33 @@ import PropTypes from 'prop-types';
 import BaseText from '../BaseText/BaseText';
 import MagnifierIcon from '../../../assets/images/icon_magnifier.png';
 
-const plants = [
-  {
-    id: 1,
-    name: 'JavaScript'
-  },
-  {
-    id: 2,
-    name: 'Java'
-  },
-  {
-    id: 3,
-    name: 'Ruby'
-  },
-  {
-    id: 4,
-    name: 'React Native'
-  },
-  {
-    id: 5,
-    name: 'PHP'
-  },
-  {
-    id: 6,
-    name: 'Python'
-  },
-  {
-    id: 7,
-    name: 'Go'
-  },
-  {
-    id: 8,
-    name: 'Swift'
-  }
-];
-
 export default class ModalWindow extends Component {
-  state = {};
+  state = {
+    selected: null
+  };
 
   render() {
     const {
-      contentType, isVisible, onDiscardModal, onConfirmPressed, title, plantList
+      contentType,
+      isVisible,
+      onDiscardModal,
+      onConfirmPressed,
+      title,
+      plantList
     } = this.props;
+    const { selected } = this.state;
 
     const addingPlants = (
       <SearchableDropdown
         onTextChange={() => {}}
-        onItemSelect={plant => Alert.alert(JSON.stringify(plant))}
+        onItemSelect={plant => this.setState({ selected: plant })}
         containerStyle={styles.searchableDropdownContainer}
         textInputStyle={styles.searchableDropdownTextInput}
         itemStyle={{
           padding: 10,
           backgroundColor: 'rgba(97, 162, 136, 0.2)',
           borderColor: 'rgba(97, 162, 136, 0.2)',
-          borderWidth: 1,
+          borderWidth: 1
         }}
         itemTextStyle={{ color: '#222' }}
         itemsContainerStyle={styles.searchableDropdownItemsContainer}
@@ -117,7 +91,7 @@ export default class ModalWindow extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.button, { backgroundColor: '#4EBC7C' }]}
-              onPress={onConfirmPressed}
+              onPress={() => onConfirmPressed(selected)}
             >
               <BaseText
                 style={{
@@ -208,5 +182,26 @@ ModalWindow.propTypes = {
   onConfirmPressed: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   contentType: PropTypes.string.isRequired,
-  plantList: PropTypes.array
+  plantList: PropTypes.array,
+  onAddPlantSubmit: PropTypes.func
+};
+
+ModalWindow.defaultProps = {
+  plantList: [
+    {
+      id: 17,
+      name: 'Broccoli',
+      season: 'Sow',
+      plantTime: [4, 5, 6, 7],
+      harvestTime: [2, 3, 4, 7, 8, 9, 10],
+      levelOfExpertise: 2,
+      family: 'Brassicaceae',
+      size: 'medium',
+      waterNeedLevel: 'high',
+      commonProblems: ['Birds', 'Caterpillars', 'Club Root'],
+      exposure: 'High',
+      climate: '13°C'
+    }
+  ],
+  onAddPlantSubmit: () => {}
 };

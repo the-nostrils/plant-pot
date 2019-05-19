@@ -16,7 +16,17 @@ import PruneAnimation from '../../assets/animations/prune.gif';
 export default class PlantTracker extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam('pageTitle'),
-    header: null
+    headerStyle: {
+      height: 55
+    },
+    headerTitleStyle: {
+      fontFamily: 'SFCompactDisplay-Bold',
+      fontSize: 17,
+      color: '#004734',
+      letterSpacing: -0.41,
+      marginBottom: 8
+    },
+    headerTransparent: true
   });
 
   state = {};
@@ -38,27 +48,12 @@ export default class PlantTracker extends Component {
   };
 
   render() {
-    const { navigation } = this.props;
-    const pageTitle = navigation.getParam('pageTitle');
-
     return (
       <View style={styles.container}>
         {/* <ImageBackground
           source={require('../../assets/images/Tracktobedone.png')}
           style={[styles.container, { width: '100%', height: '100%', paddingBottom: 60 }]}
         > */}
-        <BaseText
-          style={{
-            fontFamily: 'SFCompactDisplay-Bold',
-            fontSize: 17,
-            color: '#004734',
-            letterSpacing: -0.41,
-            textAlign: 'center',
-            marginBottom: 8
-          }}
-        >
-          {pageTitle}
-        </BaseText>
         <BaseText
           style={{
             fontFamily: 'SFCompactDisplay-Regular',

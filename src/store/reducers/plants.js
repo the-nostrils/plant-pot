@@ -1,4 +1,7 @@
+import { ADD_PLANT, DELETE_PLANT } from '../actions/actionTypes';
+
 const initialState = {
+  trackedPlantList: [],
   plantList: [
     {
       id: 1,
@@ -10,11 +13,7 @@ const initialState = {
       harvestTime: [7, 8, 9],
       family: 'Liliaceae',
       waterNeedLevel: 'medium',
-      commonProblems: [
-        'Leek Rust',
-        'Onion White Rot',
-        'Onion Downy Mildew'
-      ],
+      commonProblems: ['Leek Rust', 'Onion White Rot', 'Onion Downy Mildew'],
       exposure: 'High',
       climate: '16-24°C'
     },
@@ -28,11 +27,7 @@ const initialState = {
       harvestTime: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       family: 'Amaranthaceae',
       waterNeedLevel: 'high',
-      commonProblems: [
-        'Birds',
-        'Bolting',
-        'Spinach downy mildew'
-      ],
+      commonProblems: ['Birds', 'Bolting', 'Spinach downy mildew'],
       exposure: 'Winter cultivars need sunny position',
       climate: '16-18°C'
     },
@@ -46,11 +41,7 @@ const initialState = {
       harvestTime: [6, 7, 8],
       family: 'Herbaceous',
       waterNeedLevel: 'medium',
-      commonProblems: [
-        'Onion white rot',
-        'Leek rust',
-        'Birds'
-      ],
+      commonProblems: ['Onion white rot', 'Leek rust', 'Birds'],
       exposure: 'High',
       climate: '13-24°C'
     },
@@ -64,11 +55,7 @@ const initialState = {
       harvestTime: [5, 6, 7, 8, 9, 10, 11, 12],
       family: 'Asteraceae',
       waterNeedLevel: 'medium',
-      commonProblems: [
-        'Slugs and snails',
-        'Grey mould',
-        'Bolting'
-      ],
+      commonProblems: ['Slugs and snails', 'Grey mould', 'Bolting'],
       exposure: 'High',
       climate: '2°C (Min.)'
     },
@@ -82,11 +69,7 @@ const initialState = {
       harvestTime: [1, 2, 3, 9, 10, 11, 12],
       family: 'Crucifers',
       waterNeedLevel: 'high',
-      commonProblems: [
-        'Birds',
-        'Club Root',
-        'Cabbage Root Fly'
-      ],
+      commonProblems: ['Birds', 'Club Root', 'Cabbage Root Fly'],
       exposure: 'High',
       climate: '16-18°C'
     },
@@ -100,11 +83,7 @@ const initialState = {
       harvestTime: [6, 7, 8],
       family: 'Apiaceae',
       waterNeedLevel: 'high',
-      commonProblems: [
-        'Carrot Fly',
-        'Celery Leaf Miner',
-        'Carrot Motley Dwarf Virus'
-      ],
+      commonProblems: ['Carrot Fly', 'Celery Leaf Miner', 'Carrot Motley Dwarf Virus'],
       exposure: 'Winter cultivars need sunny position',
       climate: '7°C (Min.)'
     },
@@ -118,11 +97,7 @@ const initialState = {
       family: 'Umbelliferae',
       size: 'small',
       waterNeedLevel: 'medium',
-      commonProblems: [
-        'Carrot Fly',
-        'Aphids',
-        'Forked Carrots'
-      ],
+      commonProblems: ['Carrot Fly', 'Aphids', 'Forked Carrots'],
       exposure: 'High',
       climate: '7°C (Min.)'
     },
@@ -136,11 +111,7 @@ const initialState = {
       family: 'Fabaceae',
       size: 'large',
       waterNeedLevel: 'high',
-      commonProblems: [
-        'Pea Moth',
-        'Mice',
-        'Powdery Mildew '
-      ],
+      commonProblems: ['Pea Moth', 'Mice', 'Powdery Mildew '],
       exposure: 'High',
       climate: '9°C (Min.)'
     },
@@ -154,11 +125,7 @@ const initialState = {
       family: 'Lamiaceae',
       size: 'small',
       waterNeedLevel: 'low',
-      commonProblems: [
-        'Frost Damage',
-        'Scale Insects',
-        'Rosemary Beetle'
-      ],
+      commonProblems: ['Frost Damage', 'Scale Insects', 'Rosemary Beetle'],
       exposure: 'High',
       climate: '9°C (Min.)'
     },
@@ -172,11 +139,7 @@ const initialState = {
       family: 'Pepper',
       size: 'small',
       waterNeedLevel: 'high',
-      commonProblems: [
-        'Aphids',
-        'Blossom End Rot',
-        'Glasshouse Red Spider'
-      ],
+      commonProblems: ['Aphids', 'Blossom End Rot', 'Glasshouse Red Spider'],
       exposure: 'Medium',
       climate: '18-21°C'
     },
@@ -190,11 +153,7 @@ const initialState = {
       family: 'Solanaceae',
       size: 'small',
       waterNeedLevel: 'high',
-      commonProblems: [
-        'Tomato Blight',
-        'Blossom End Rot',
-        'Tomato Leaf Mould'
-      ],
+      commonProblems: ['Tomato Blight', 'Blossom End Rot', 'Tomato Leaf Mould'],
       exposure: 'High',
       climate: '13°C'
     },
@@ -208,9 +167,7 @@ const initialState = {
       family: 'Amaranthaceae',
       size: 'small',
       waterNeedLevel: 'high',
-      commonProblems: [
-        'Bolting'
-      ],
+      commonProblems: ['Bolting'],
       exposure: 'Medium',
       climate: '13°C'
     },
@@ -224,10 +181,7 @@ const initialState = {
       family: 'Crucifers',
       size: 'medium',
       waterNeedLevel: 'low',
-      commonProblems: [
-        'Powdery Mildew',
-        'Grey Mould'
-      ],
+      commonProblems: ['Powdery Mildew', 'Grey Mould'],
       exposure: 'High',
       climate: '13°C'
     },
@@ -241,11 +195,7 @@ const initialState = {
       family: 'Poaceae',
       size: 'medium',
       waterNeedLevel: 'high',
-      commonProblems: [
-        'Mice',
-        'Birds',
-        'Slugs and Snails'
-      ],
+      commonProblems: ['Mice', 'Birds', 'Slugs and Snails'],
       exposure: 'Low',
       climate: '13°C'
     },
@@ -259,11 +209,7 @@ const initialState = {
       family: 'Potatoe',
       size: 'small',
       waterNeedLevel: 'high',
-      commonProblems: [
-        'Potato Blight',
-        'Potato Blackleg',
-        'Potato Scab'
-      ],
+      commonProblems: ['Potato Blight', 'Potato Blackleg', 'Potato Scab'],
       exposure: 'High',
       climate: '13°C'
     },
@@ -277,11 +223,7 @@ const initialState = {
       family: 'Asteraceae',
       size: 'medium',
       waterNeedLevel: 'medium',
-      commonProblems: [
-        'Cabbage Root Fly',
-        'Caterpillars',
-        'Club Root'
-      ],
+      commonProblems: ['Cabbage Root Fly', 'Caterpillars', 'Club Root'],
       exposure: 'Medium',
       climate: '13°C'
     },
@@ -295,11 +237,7 @@ const initialState = {
       family: 'Brassicaceae',
       size: 'medium',
       waterNeedLevel: 'high',
-      commonProblems: [
-        'Birds',
-        'Caterpillars',
-        'Club Root'
-      ],
+      commonProblems: ['Birds', 'Caterpillars', 'Club Root'],
       exposure: 'High',
       climate: '13°C'
     },
@@ -313,11 +251,7 @@ const initialState = {
       family: 'Okra',
       size: 'small',
       waterNeedLevel: 'high',
-      commonProblems: [
-        'Glasshouse Red Spider',
-        'Whitefly',
-        'Aphids'
-      ],
+      commonProblems: ['Glasshouse Red Spider', 'Whitefly', 'Aphids'],
       exposure: 'Medium',
       climate: '13°C'
     },
@@ -331,11 +265,7 @@ const initialState = {
       family: 'Leek',
       size: 'small',
       waterNeedLevel: 'medium',
-      commonProblems: [
-        'Leeks Rust',
-        'Onion White Rot',
-        'Leek Moth'
-      ],
+      commonProblems: ['Leeks Rust', 'Onion White Rot', 'Leek Moth'],
       exposure: 'Medium',
       climate: '13°C'
     },
@@ -349,9 +279,7 @@ const initialState = {
       family: 'Celery Root',
       size: 'small',
       waterNeedLevel: 'medium',
-      commonProblems: [
-        'Slugs and Snails'
-      ],
+      commonProblems: ['Slugs and Snails'],
       exposure: 'Full sun',
       climate: '13°C'
     },
@@ -365,9 +293,7 @@ const initialState = {
       family: 'White Radish',
       size: 'small',
       waterNeedLevel: 'medium',
-      commonProblems: [
-        '-'
-      ],
+      commonProblems: ['-'],
       exposure: 'Medium',
       climate: '13°C'
     },
@@ -381,9 +307,7 @@ const initialState = {
       family: 'Brassicaceae',
       size: 'small',
       waterNeedLevel: 'medium',
-      commonProblems: [
-        'Flea Beetle'
-      ],
+      commonProblems: ['Flea Beetle'],
       exposure: 'High',
       climate: '13°C'
     },
@@ -397,10 +321,7 @@ const initialState = {
       family: 'Crucifers',
       size: 'small',
       waterNeedLevel: 'medium',
-      commonProblems: [
-        'Powdery Mildew',
-        'Grey Mould'
-      ],
+      commonProblems: ['Powdery Mildew', 'Grey Mould'],
       exposure: 'High',
       climate: '13°C'
     },
@@ -414,11 +335,7 @@ const initialState = {
       family: 'Solamaceae',
       size: 'medium',
       waterNeedLevel: 'high',
-      commonProblems: [
-        'Glasshouse Red Spider',
-        'Whitefly',
-        'Aphids'
-      ],
+      commonProblems: ['Glasshouse Red Spider', 'Whitefly', 'Aphids'],
       exposure: 'Medium',
       climate: '13°C'
     },
@@ -432,11 +349,7 @@ const initialState = {
       family: 'Cucurbitaceae',
       size: 'medium',
       waterNeedLevel: 'medium',
-      commonProblems: [
-        'Whitefly',
-        'Cucumber Mosaic Virus',
-        'Powdery Mildew'
-      ],
+      commonProblems: ['Whitefly', 'Cucumber Mosaic Virus', 'Powdery Mildew'],
       exposure: 'High',
       climate: '21-27°C'
     },
@@ -450,10 +363,7 @@ const initialState = {
       family: 'Cabbage',
       size: 'small',
       waterNeedLevel: 'medium',
-      commonProblems: [
-        'Flea Beetle',
-        'Bolting'
-      ],
+      commonProblems: ['Flea Beetle', 'Bolting'],
       exposure: 'Low',
       climate: '10-18°C'
     }
@@ -462,6 +372,20 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_PLANT: {
+      const { plant } = action.payload;
+      const { id } = plant;
+      const { plantList } = state;
+      const updatedTrackedPlantList = [...state.trackedPlantList];
+
+      const [newPlantToPush] = plantList.filter(item => item.id === id);
+      updatedTrackedPlantList.push(newPlantToPush);
+
+      return {
+        ...state,
+        trackedPlantList: updatedTrackedPlantList
+      };
+    }
     default:
       return state;
   }
