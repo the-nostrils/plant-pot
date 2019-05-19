@@ -394,8 +394,8 @@ const styles = StyleSheet.create({
 });
 
 PostCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  username: PropTypes.string.isRequired,
+  id: PropTypes.number,
+  username: PropTypes.string,
   contentType: PropTypes.string,
   likeCount: PropTypes.number,
   avatarContainerStyle: PropTypes.object,
@@ -428,6 +428,8 @@ PostCard.defaultProps = {
   },
   textContent: null,
   isNewPost: false,
+  id: 1,
+  username: 'Will Collins',
   onNewPostInputTouched: () => {},
   onNewPostScreenSendPressed: () => {},
   onSendPressed: () => {},

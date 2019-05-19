@@ -4,14 +4,16 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
 import PlantCard from '../PlantCard/PlantCard';
 import PlantListButton from '../UI/PlantListButton/PlantListButton';
+import BaseText from '../UI/BaseText/BaseText';
 
 export default class PlantCardList extends Component {
   state = {};
 
   renderPlantCardList = () => {
-    const { listButtonMode, removePlantButtonPressed, plantList } = this.props;
+    const { listButtonMode, plantList, onRemovePlantSubmit } = this.props;
 
     const plantCardWidth = listButtonMode === 0 ? 330 : 312;
     const plantCardContainerOverride = listButtonMode === 1 ? { opacity: 0.61 } : null;
@@ -20,21 +22,39 @@ export default class PlantCardList extends Component {
       case 0:
         return (
           <View style={styles.cardListContainer}>
-            <FlatList
-              data={plantList}
-              keyExtractor={item => item.id.toString()}
-              renderItem={({ item }) => (
-                <View style={styles.plantCardContainer}>
-                  <PlantCard
-                    name={item.name}
-                    width={plantCardWidth}
-                    style={plantCardContainerOverride}
-                    {...this.props}
-                  />
-                </View>
-              )}
-              extraData={this.props}
-            />
+            {typeof plantList !== 'undefined' && plantList.length > 0 ? (
+              <FlatList
+                data={plantList}
+                keyExtractor={item => item.id.toString()}
+                renderItem={({ item }) => (
+                  <View style={styles.plantCardContainer}>
+                    <PlantCard
+                      name={item.name}
+                      width={plantCardWidth}
+                      style={plantCardContainerOverride}
+                      {...this.props}
+                    />
+                  </View>
+                )}
+                extraData={this.props}
+              />
+            ) : (
+              <BaseText
+                style={{
+                  fontFamily: 'SFCompactDisplay-Regular',
+                  fontSize: 15,
+                  color: '#004734',
+                  letterSpacing: -0.24,
+                  textAlign: 'left',
+                  marginTop: 60
+                }}
+              >
+                There is no plant in your tracking list.
+                {'\n'}
+                Click Add Plants button to select one.
+                {' '}
+              </BaseText>
+            )}
           </View>
         );
       case 1:
@@ -44,21 +64,21 @@ export default class PlantCardList extends Component {
               data={plantList}
               keyExtractor={item => item.id.toString()}
               renderItem={({ item }) => (
-                <View style={styles.plantCardContainer}>
-                  <TouchableOpacity onPress={removePlantButtonPressed}>
+                <TouchableOpacity onPress={() => onRemovePlantSubmit(item)}>
+                  <View style={styles.plantCardContainer}>
                     <Image
                       style={styles.removePlantsIcon}
                       // eslint-disable-next-line global-require
                       source={require('../../assets/images/icon_remove_plants.png')}
                     />
-                  </TouchableOpacity>
-                  <PlantCard
-                    name={item.name}
-                    width={plantCardWidth}
-                    style={plantCardContainerOverride}
-                    {...this.props}
-                  />
-                </View>
+                    <PlantCard
+                      name={item.name}
+                      width={plantCardWidth}
+                      style={plantCardContainerOverride}
+                      {...this.props}
+                    />
+                  </View>
+                </TouchableOpacity>
               )}
               extraData={this.props}
             />
@@ -164,5 +184,6 @@ const styles = StyleSheet.create({
 PlantCardList.propTypes = {
   listButtonMode: PropTypes.number.isRequired,
   addPlantButtonPressed: PropTypes.func.isRequired,
+  onRemovePlantSubmit: PropTypes.func.isRequired,
   removePlantButtonPressed: PropTypes.func.isRequired
 };

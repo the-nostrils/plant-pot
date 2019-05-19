@@ -307,7 +307,7 @@ class CommunityHome extends Component {
                   iconName="profile-settings"
                   circleStyle={{ width: 32, height: 32, backgroundColor: '#FFFFFF' }}
                   iconStyle={{ width: 22, height: 22 }}
-                  onPressed={() => Alert.alert('Ooops, I did it again!')}
+                  onPressed={() => Alert.alert('Open Profile Settings Screen')}
                 />
               </View>
             </View>

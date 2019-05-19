@@ -16,7 +16,17 @@ import PruneAnimation from '../../assets/animations/prune.gif';
 export default class PlantTracker extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam('pageTitle'),
-    header: null
+    headerStyle: {
+      height: 55
+    },
+    headerTitleStyle: {
+      fontFamily: 'SFCompactDisplay-Bold',
+      fontSize: 17,
+      color: '#004734',
+      letterSpacing: -0.41,
+      marginBottom: 8
+    },
+    headerTransparent: true
   });
 
   state = {};
@@ -26,11 +36,22 @@ export default class PlantTracker extends Component {
     const pageName = navigation.getParam('pageName');
 
     switch (pageName) {
-      case 'Fertilize':
-        return <Image source={FertilizeAnimation} style={{ marginTop: 16 }} />;
-      case 'Irrigate':
+      case 'Fertilization':
+        return (
+          <Image
+            source={FertilizeAnimation}
+            style={{
+              marginTop: 16,
+              shadowColor: '#000000',
+              shadowOffset: { width: 0, height: 3 },
+              shadowOpacity: 0.16,
+              shadowRadius: 6
+            }}
+          />
+        );
+      case 'Irrigation':
         return <Image source={IrrigateAnimation} style={{ marginTop: 16 }} />;
-      case 'Prune':
+      case 'Pruning':
         return <Image source={PruneAnimation} style={{ marginTop: 30 }} />;
       default:
         return null;
@@ -38,9 +59,6 @@ export default class PlantTracker extends Component {
   };
 
   render() {
-    const { navigation } = this.props;
-    const pageTitle = navigation.getParam('pageTitle');
-
     return (
       <View style={styles.container}>
         {/* <ImageBackground
@@ -49,23 +67,12 @@ export default class PlantTracker extends Component {
         > */}
         <BaseText
           style={{
-            fontFamily: 'SFCompactDisplay-Bold',
-            fontSize: 17,
-            color: '#004734',
-            letterSpacing: -0.41,
-            textAlign: 'center',
-            marginBottom: 8
-          }}
-        >
-          {pageTitle}
-        </BaseText>
-        <BaseText
-          style={{
             fontFamily: 'SFCompactDisplay-Regular',
             fontSize: 15,
             color: '#004734',
             letterSpacing: -0.24,
-            textAlign: 'left'
+            textAlign: 'left',
+            marginTop: 60
           }}
         >
           You have 2 mission for this week
@@ -150,8 +157,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#F5F5F5',
-    paddingTop: 35
+    backgroundColor: '#F5F5F5'
+    // paddingTop: 35
   },
   missionButtonsContainer: {
     flexDirection: 'row',

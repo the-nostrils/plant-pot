@@ -44,10 +44,14 @@ export default class Plant extends Component {
   menuButtonPressedHandler = (pageName) => {
     const { navigation } = this.props;
     const name = navigation.getParam('name');
-    const pageTitle = `${name} ${pageName} Time`
+    const pageTitle = `${name} ${pageName} Time`;
 
     navigation.navigate('PlantTracker', { pageName, pageTitle });
   };
+
+  buttonPressedHandler = (string) => {
+    Alert.alert(string);
+  }
 
   render() {
     const { isSettingsMenuOpen, isTrackingMenuOpen } = this.state;
@@ -69,13 +73,13 @@ export default class Plant extends Component {
             iconName="edit-name"
             circleStyle={{ width: 38, height: 38, backgroundColor: '#FFFFFF' }}
             iconStyle={{ width: 22, height: 22 }}
-            onPressed={this.menuButtonPressedHandler}
+            onPressed={() => this.buttonPressedHandler('Open Plant Name Edit Screen')}
           />
           <MenuButton
             iconName="photo"
             circleStyle={{ width: 38, height: 38, backgroundColor: '#FFFFFF' }}
             iconStyle={{ width: 22, height: 22 }}
-            onPressed={this.menuButtonPressedHandler}
+            onPressed={() => this.buttonPressedHandler('Open Photo Album')}
           />
         </View>
       </View>
@@ -116,7 +120,7 @@ export default class Plant extends Component {
               iconName="irrigate"
               circleStyle={{ width: 56, height: 56, backgroundColor: '#FFFFFF' }}
               iconStyle={{ width: 23, height: 34 }}
-              onPressed={() => this.menuButtonPressedHandler('Irrigate')}
+              onPressed={() => this.menuButtonPressedHandler('Irrigation')}
             />
             <BaseText
               style={{
@@ -143,7 +147,7 @@ export default class Plant extends Component {
                 top: 50
               }}
               iconStyle={{ width: 23, height: 24 }}
-              onPressed={() => this.menuButtonPressedHandler('Fertilize')}
+              onPressed={() => this.menuButtonPressedHandler('Fertilization')}
             />
             <BaseText
               style={{
@@ -165,7 +169,7 @@ export default class Plant extends Component {
               iconName="prune"
               circleStyle={{ width: 56, height: 56, backgroundColor: '#FFFFFF' }}
               iconStyle={{ width: 23, height: 35 }}
-              onPressed={() => this.menuButtonPressedHandler('Prune')}
+              onPressed={() => this.menuButtonPressedHandler('Pruning')}
             />
             <BaseText
               style={{
