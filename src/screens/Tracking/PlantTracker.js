@@ -26,11 +26,11 @@ export default class PlantTracker extends Component {
     const pageName = navigation.getParam('pageName');
 
     switch (pageName) {
-      case 'Fertilize':
+      case 'Fertilization':
         return <Image source={FertilizeAnimation} style={{ marginTop: 16 }} />;
-      case 'Irrigate':
+      case 'Irrigation':
         return <Image source={IrrigateAnimation} style={{ marginTop: 16 }} />;
-      case 'Prune':
+      case 'Pruning':
         return <Image source={PruneAnimation} style={{ marginTop: 30 }} />;
       default:
         return null;
@@ -65,7 +65,8 @@ export default class PlantTracker extends Component {
             fontSize: 15,
             color: '#004734',
             letterSpacing: -0.24,
-            textAlign: 'left'
+            textAlign: 'left',
+            marginTop: 60
           }}
         >
           You have 2 mission for this week
